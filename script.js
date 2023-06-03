@@ -1,3 +1,5 @@
+// let socket = io();
+
 let white = "#f1f1f1";
 let black = 0;
 
@@ -9,10 +11,15 @@ fg_re = black;
 let tileX = 2;
 let tileY, tileW, tileH;
 let switchDir = 1;
+let count;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowWidth);
   // angleMode(DEGREES);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowWidth);
 }
 
 function draw() {  
@@ -21,21 +28,22 @@ function draw() {
   strokeWeight(0.75);
   
   tileY = tileX;
-  tileW = width/tileX;
-  tileH = height/tileY;
+  count = int(1 + mouseX * 0.05) ;
+  tileW = width/count;
+  tileH = tileW;
   
   moving_speed = sin(frameCount * 0.08);
   moving = map(moving_speed, -1, 0, 0.8, 0);
   moving_re = map(moving_speed, 0, 1, 0, 0.8);
   
-  if(frameCount % 120 == 0) {
-    tileX = int(random(1,4)) * 2;
-  }
+  // if(frameCount % 120 == 0) {
+  //   tileX = int(random(1,4)) * 2;
+  // }
   // console.log(tileX);
   
   translate(tileW/2, tileH/2);
-  for(let y = 0; y < tileY; y++) {
-    for(let x = 0; x < tileX; x++) {
+  for(let y = 0; y < count; y++) {
+    for(let x = 0; x < count; x++) {
       if(x % 1 == 0) {
         switchDir *= -1;
       }
