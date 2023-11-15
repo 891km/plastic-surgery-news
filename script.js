@@ -9,15 +9,13 @@ let pixelSizeH = 12;
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
-  // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/popart.png?v=1700033404069');
-  // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa.jpeg?v=1700026288384');
-  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/face.png?v=1700037781248');
-  // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa_resize.png?v=1700030059878');
+  // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/face.png?v=1700037781248');
+  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa_resize.png?v=1700030059878');
 }
 
 function setup() {
-  let canvasWidth = windowWidth > img.width ? img.width : windowWidth;
-  // let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
+  // let canvasWidth = windowWidth > img.width ? img.width : windowWidth;
+  let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   let canvasHeight = canvasWidth * (img.height / img.width);
   
   createCanvas(canvasWidth, canvasHeight);
@@ -36,27 +34,33 @@ function setup() {
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
-  for (let y = 0; y < img.height; y += pixelSizeH) {
-    
-    pixelSizeW = Math.round(Math.random() * 80 + pixelSizeH, 0)
-    for (let x = 0; x < img.width; x += pixelSizeW) {
-      let index = (x + y * img.width) * 4;
-      let r = img.pixels[index];
-      let g = img.pixels[index + 1];
-      let b = img.pixels[index + 2];
-      
-      
-      for (let i = 0; i < pixelSizeW; i++) {
-        for (let j = 0; j < pixelSizeH; j++) {
-          let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
-          targetImg.pixels[pixelIndex] = r;
-          targetImg.pixels[pixelIndex + 1] = g;
-          targetImg.pixels[pixelIndex + 2] = b;
-          targetImg.pixels[pixelIndex + 3] = 255; // 투명도 설정
+  for (let a = 0; a < 50; a++)
+    {
+      pixelSizeH = Math.round(Math.random() * 25 + 10, 0);
+      for (let y = 0; y < img.height; y += pixelSizeH) {
+
+        // pixelSizeH = Math.round(Math.random() * 25 + 10, 0);
+        pixelSizeW = Math.round(Math.random() * 20 + 10, 0);
+        for (let x = 0; x < img.width; x += pixelSizeW) {
+          let index = (x + y * img.width) * 4;
+          let r = img.pixels[index];
+          let g = img.pixels[index + 1];
+          let b = img.pixels[index + 2];
+
+
+          for (let i = 0; i < pixelSizeW; i++) {
+            for (let j = 0; j < pixelSizeH; j++) {
+              let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
+              targetImg.pixels[pixelIndex] = r;
+              targetImg.pixels[pixelIndex + 1] = g;
+              targetImg.pixels[pixelIndex + 2] = b;
+              targetImg.pixels[pixelIndex + 3] = 255; // 투명도 설정
+            }
+          }
         }
       }
     }
-  }
+
 }
 
 function windowResized() {
