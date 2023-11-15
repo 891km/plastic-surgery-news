@@ -39,11 +39,12 @@ function randomValue(min, max) {
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
-  pixelSizeH = 40;
+  // pixelSizeH = 0;
+  // console.log(pixelSizeH);
   for (let y = 0; y < img.height; y += pixelSizeH) {
 
-    pixelSizeH = randomValue(30, 40);
-    pixelSizeW = randomValue(20, 30);
+    pixelSizeH = randomValue(40, 70);
+    pixelSizeW = randomValue(30, 50);
     
     for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
