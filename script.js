@@ -5,7 +5,7 @@
 
 let img;
 let pixelSizeW = 22;
-let pixelSizeH = 22;
+let pixelSizeH = 14;
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
@@ -32,15 +32,17 @@ function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   
   for (let y = 0; y < img.height; y += pixelSizeH) {
     
-    pixelSizeW = Math.random() * 10 + 5
+    
+    // console.log(pixelSizeW);
     for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
       let r = img.pixels[index];
       let g = img.pixels[index + 1];
       let b = img.pixels[index + 2];
       
-      for (let i = 0; i < pixelSizeH; i++) {
-        for (let j = 0; j < pixelSizeW; j++) {
+      pixelSizeW = Math.round(Math.random() * (80 - 50 + 1) + 40, 0)
+      for (let i = 0; i < pixelSizeW; i++) {
+        for (let j = 0; j < pixelSizeH; j++) {
           let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
           targetImg.pixels[pixelIndex] = r;
           targetImg.pixels[pixelIndex + 1] = g;
