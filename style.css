@@ -9,11 +9,13 @@ body {
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: yellow;
+  background-color: black;
 }
 
 canvas {
-  position: relative;
-  top: 0;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
