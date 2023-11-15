@@ -28,7 +28,6 @@ function setup() {
   targetImg.updatePixels();
 
   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
-  console.log(img.width, width, height);
   
   
 }
