@@ -5,7 +5,7 @@
 
 let img;
 let pixelSizeW; // random
-let pixelSizeH = 20;
+let pixelSizeH;
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
@@ -30,40 +30,38 @@ function setup() {
   targetImg.updatePixels();
 
   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
-  
-  
+}
+
+function randomValue(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
-  for (let a = 0; a < 50; a++)
-    {
-      
-      for (let y = 0; y < img.height; y += pixelSizeH) {
+  pixelSizeH = 40;
+  for (let y = 0; y < img.height; y += pixelSizeH) {
 
-        pixelSizeH = Math.round(Math.random() * 25 + 20, 0);
-        pixelSizeW = Math.round(Math.random() * 20 + 20, 0);
-        for (let x = 0; x < img.width; x += pixelSizeW) {
-          let index = (x + y * img.width) * 4;
-          let r = img.pixels[index];
-          let g = img.pixels[index + 1];
-          let b = img.pixels[index + 2];
+    pixelSizeH = randomValue(30, 40);
+    pixelSizeW = randomValue(20, 30);
+    
+    for (let x = 0; x < img.width; x += pixelSizeW) {
+      let index = (x + y * img.width) * 4;
+      let r = img.pixels[index];
+      let g = img.pixels[index + 1];
+      let b = img.pixels[index + 2];
 
-
-          for (let i = 0; i < pixelSizeW; i++) {
-            for (let j = 0; j < pixelSizeH; j++) {
-              let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
-              targetImg.pixels[pixelIndex] = r;
-              targetImg.pixels[pixelIndex + 1] = g;
-              targetImg.pixels[pixelIndex + 2] = b;
-              targetImg.pixels[pixelIndex + 3] = 255; // 투명도 설정
-            }
-          }
+      for (let i = 0; i < pixelSizeW; i++) {
+        for (let j = 0; j < pixelSizeH; j++) {
+          let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
+          targetImg.pixels[pixelIndex] = r;
+          targetImg.pixels[pixelIndex + 1] = g;
+          targetImg.pixels[pixelIndex + 2] = b;
+          targetImg.pixels[pixelIndex + 3] = 255; // 투명도 설정
         }
       }
     }
-
+  }
 }
 
 function windowResized() {
