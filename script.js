@@ -4,7 +4,7 @@
 // }
 
 let img;
-let pixelSize = 20; // 픽셀 크기
+let pixelSize = 22; // 픽셀 크기
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
