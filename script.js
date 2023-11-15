@@ -8,12 +8,13 @@ let pixelSize = 20; // 픽셀 크기
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
-  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa.png?v=1700027376384');
+  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa_resize.png?v=1700030059878');
 }
 
 function setup() {
-  let canvasWidth = windowWidth > img.width ? img.width : windowWidth;
+  let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   let canvasHeight = canvasWidth * (img.height / img.width);
+  
   createCanvas(canvasWidth, canvasHeight);
 
   pixelatedImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
