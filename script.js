@@ -9,13 +9,15 @@ let pixelSizeH;
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
-  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/popart.png?v=1700033404069');
+  // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/popart.png?v=1700033404069');
+  img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/image.png?v=1700034296042');
   // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa_resize.png?v=1700030059878');
 }
 
 function setup() {
-  let canvasWidth = windowWidth > img.width ? img.width : windowWidth;
+  let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   let canvasHeight = canvasWidth * (img.height / img.width);
+  pixelSizeH = 20;
   
   createCanvas(canvasWidth, canvasHeight);
 
@@ -27,6 +29,8 @@ function setup() {
 
   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
   console.log(img.width, width, height);
+  
+  
 }
 
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
@@ -34,7 +38,7 @@ function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   
   for (let y = 0; y < img.height; y += pixelSizeH) {
     
-    // pixelSizeW = Math.round(Math.random() * 101 + 20, 0)
+    pixelSizeW = Math.round(Math.random() * 101 + 20, 0)
     // console.log(pixelSizeW);
     for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
