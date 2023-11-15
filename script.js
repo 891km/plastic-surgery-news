@@ -4,19 +4,27 @@
 // }
 
 let img;
-let pixelSize;
+let pixelSize = 20; // 픽셀 크기
+let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
   img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa.png?v=1700027376384');
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  pixelSizeW = 20;
-  pixelateImage(img, pixelSize); // Pixelate 함수 호출 (이미지, 픽셀 크기)
+  let canvasWidth = windowWidth > img.width ? img.width : windowWidth;
+  let canvasHeight = canvasWidth * (img.height / img.width);
+  createCanvas(canvasWidth, canvasHeight);
+
+  pixelatedImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
+  pixelatedImg.loadPixels();
+  pixelateImage(img, pixelSize, pixelatedImg); // 픽셀 화된 이미지 생성
+  pixelatedImg.updatePixels();
+
+  image(pixelatedImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
 
-function pixelateImage(img, pixelSize) {
+function pixelateImage(img, pixelSize, targetImg) {
   img.loadPixels();
   for (let y = 0; y < img.height; y += pixelSize) {
     for (let x = 0; x < img.width; x += pixelSize) {
@@ -27,44 +35,16 @@ function pixelateImage(img, pixelSize) {
       for (let i = 0; i < pixelSize; i++) {
         for (let j = 0; j < pixelSize; j++) {
           let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
-          img.pixels[pixelIndex] = r;
-          img.pixels[pixelIndex + 1] = g;
-          img.pixels[pixelIndex + 2] = b;
+          targetImg.pixels[pixelIndex] = r;
+          targetImg.pixels[pixelIndex + 1] = g;
+          targetImg.pixels[pixelIndex + 2] = b;
+          targetImg.pixels[pixelIndex + 3] = 255; // 투명도 설정
         }
       }
     }
   }
-  img.updatePixels();
-  image(img, 0, 0);
 }
 
-// let img;
-// let pixelation_level = 10;
-
-// function preload() {
-//   img = loadImage("https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/MonaLisa.png?v=1700027376384");
-// }
-
-// function setup() {
-//   createCanvas(window.width, window.height);
-//   pixelDensity(1);
-//   image(img, 0, 0, window.width, window.height);
-//   loadPixels();
-//   noStroke();
-  
-  
-//   for (let x = 0; x < window.width; x += pixelation_level) {
-//     for (let y = 0; y < window.height; y += pixelation_level) {
-      
-//       let i = (x + y * width) * 4;
-
-//       let r = pixels[i + 0];
-//       let g = pixels[i + 1];
-//       let b = pixels[i + 2];
-//       let a = pixels[i + 3];
-
-//       fill(r, g, b, a);
-//       square(x, y, pixelation_level);
-//     }
-//   }
-// }
+function windowResized() {
+  setup();
+}

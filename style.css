@@ -3,8 +3,27 @@ html, body {
   padding: 0;
 }
 
-canvas {
+/* canvas {
   width: 100%;
   heihgt: 100%;
+  display: block;
+} */
+
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: yellow;
+}
+
+canvas {
+  position: relative;
+  top: 0;
+  margin: auto;
+/*   left: 0; */
+
   display: block;
 }
