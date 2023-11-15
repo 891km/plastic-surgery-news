@@ -4,7 +4,8 @@
 // }
 
 let img;
-let pixelSize = 22; // 픽셀 크기
+let pixelSizeW = 22;
+let pixelSizeH = 22;
 let pixelatedImg; // 픽셀 화된 이미지 변수
 
 function preload() {
@@ -17,24 +18,29 @@ function setup() {
   
   createCanvas(canvasWidth, canvasHeight);
 
-  pixelatedImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
-  pixelatedImg.loadPixels();
-  pixelateImage(img, pixelSize, pixelatedImg); // 픽셀 화된 이미지 생성
-  pixelatedImg.updatePixels();
+  targetImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
+  targetImg.loadPixels();
+  
+  pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
+  targetImg.updatePixels();
 
-  image(pixelatedImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
+  image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
 
-function pixelateImage(img, pixelSize, targetImg) {
+function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
-  for (let y = 0; y < img.height; y += pixelSize) {
-    for (let x = 0; x < img.width; x += pixelSize) {
+  
+  for (let y = 0; y < img.height; y += pixelSizeH) {
+    
+    pixelSizeW = Math.random() * 10 + 5
+    for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
       let r = img.pixels[index];
       let g = img.pixels[index + 1];
       let b = img.pixels[index + 2];
-      for (let i = 0; i < pixelSize; i++) {
-        for (let j = 0; j < pixelSize; j++) {
+      
+      for (let i = 0; i < pixelSizeH; i++) {
+        for (let j = 0; j < pixelSizeW; j++) {
           let pixelIndex = ((x + i) + (y + j) * img.width) * 4;
           targetImg.pixels[pixelIndex] = r;
           targetImg.pixels[pixelIndex + 1] = g;
