@@ -18,7 +18,7 @@ function preload() {
 }
 
 function setup() {
-  frameRate(30);
+  frameRate(5);
   // let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   // let canvasHeight = canvasWidth * (img.height / img.width);
   let canvasHeight = windowHeight > img.height ? img.height : windowHeight;
@@ -34,18 +34,22 @@ function setup() {
 //   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
 
-// function windowResized() {
-//   setup();
-// }
+function windowResized() {
+  setup();
+}
 
 function draw() {
-  setup();
-  
+  // setup();
+  // pixelSizeW = (100 - frameCount) < 20 ? 20 : (100 - frameCount);
+  pixelSizeW = (20 + frameCount) > 120 ? 120 : (20 + frameCount);
+  // pixelSizeW = randomValue(100, 120);
+  pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
   pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
   targetImg.updatePixels();
 
   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
+
 
 function randomValue(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -54,11 +58,11 @@ function randomValue(min, max) {
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
-  widthSin = ((sin(frameCount * 0.5) + 1) / 2) * 100;
-  pixelSizeW = 20 + widthSin;
-  console.log("pixelSizeW: ", pixelSizeW);
+  // widthSin = ((sin(frameCount * 0.5) + 1) / 2) * 100;
+  // pixelSizeW = 20 + widthSin;
+  // console.log("pixelSizeW: ", pixelSizeW);
   // pixelSizeW = randomValue(100, 120);
-  pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
+  // pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
   
   for (let y = 0; y < img.height; y += pixelSizeH) {
     for (let x = 0; x < img.width; x += pixelSizeW) {
