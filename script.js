@@ -7,6 +7,7 @@ let img;
 let pixelSizeW; // random
 let pixelSizeH;
 let pixelatedImg; // 픽셀 화된 이미지 변수
+let widthSin;
 
 function preload() {
   // img = loadImage('https://cdn.glitch.global/323cb2ef-d05a-41b9-a4a1-2927c51cefbf/face.png?v=1700037781248');
@@ -15,8 +16,7 @@ function preload() {
 }
 
 function setup() {
-  frameRate(30);
-  
+  frameRate(10);
   // let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   // let canvasHeight = canvasWidth * (img.height / img.width);
   let canvasHeight = windowHeight > img.height ? img.height : windowHeight;
@@ -28,10 +28,10 @@ function setup() {
   targetImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
   targetImg.loadPixels();
   
-  pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
-  targetImg.updatePixels();
+//   pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
+//   targetImg.updatePixels();
 
-  image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
+//   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
 
 function randomValue(min, max) {
@@ -43,7 +43,8 @@ function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   
   for (let y = 0; y < img.height; y += pixelSizeH) {
 
-    pixelSizeW = randomValue(100, 120);
+    pixelSizeW = 20 + widthSin;
+    // pixelSizeW = randomValue(100, 120);
     pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
     
     for (let x = 0; x < img.width; x += pixelSizeW) {
@@ -67,4 +68,15 @@ function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
 
 function windowResized() {
   setup();
+}
+
+function draw() {
+  widthSin = ((sin(frameCount * 0.05) + 1) / 2) * 100;
+  console.log(widthSin);  
+  
+  pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
+  targetImg.updatePixels();
+
+  image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
+  
 }
