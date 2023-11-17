@@ -15,6 +15,8 @@ function preload() {
 }
 
 function setup() {
+  frameRate(30);
+  
   // let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   // let canvasHeight = canvasWidth * (img.height / img.width);
   let canvasHeight = windowHeight > img.height ? img.height : windowHeight;
@@ -39,12 +41,10 @@ function randomValue(min, max) {
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
-  // pixelSizeH = 0;
-  // console.log(pixelSizeH);
   for (let y = 0; y < img.height; y += pixelSizeH) {
 
-    pixelSizeH = randomValue(40, 70);
-    pixelSizeW = randomValue(30, 50);
+    pixelSizeW = randomValue(100, 120);
+    pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
     
     for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
