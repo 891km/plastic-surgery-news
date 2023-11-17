@@ -4,6 +4,8 @@
 // }
 
 let img;
+let targetImg;
+
 let pixelSizeW; // random
 let pixelSizeH;
 let pixelatedImg; // 픽셀 화된 이미지 변수
@@ -16,13 +18,11 @@ function preload() {
 }
 
 function setup() {
-  frameRate(10);
+  frameRate(30);
   // let canvasWidth = windowWidth > img.width ? windowWidth : img.width;
   // let canvasHeight = canvasWidth * (img.height / img.width);
   let canvasHeight = windowHeight > img.height ? img.height : windowHeight;
   let canvasWidth = canvasHeight  * (img.width / img.height);
-  
-  
   createCanvas(canvasWidth, canvasHeight);
 
   targetImg = createImage(img.width, img.height); // 원본 이미지와 동일한 크기의 픽셀 화된 이미지 생성
@@ -34,6 +34,19 @@ function setup() {
 //   image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
 }
 
+// function windowResized() {
+//   setup();
+// }
+
+function draw() {
+  setup();
+  
+  pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
+  targetImg.updatePixels();
+
+  image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
+}
+
 function randomValue(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -41,12 +54,13 @@ function randomValue(min, max) {
 function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
   img.loadPixels();
   
+  widthSin = ((sin(frameCount * 0.5) + 1) / 2) * 100;
+  pixelSizeW = 20 + widthSin;
+  console.log("pixelSizeW: ", pixelSizeW);
+  // pixelSizeW = randomValue(100, 120);
+  pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
+  
   for (let y = 0; y < img.height; y += pixelSizeH) {
-
-    pixelSizeW = 20 + widthSin;
-    // pixelSizeW = randomValue(100, 120);
-    pixelSizeH = randomValue(pixelSizeW, pixelSizeW * 2);
-    
     for (let x = 0; x < img.width; x += pixelSizeW) {
       let index = (x + y * img.width) * 4;
       let r = img.pixels[index];
@@ -64,19 +78,4 @@ function pixelateImage(img, pixelSizeW, pixelSizeH, targetImg) {
       }
     }
   }
-}
-
-function windowResized() {
-  setup();
-}
-
-function draw() {
-  widthSin = ((sin(frameCount * 0.05) + 1) / 2) * 100;
-  console.log(widthSin);  
-  
-  pixelateImage(img, pixelSizeW, pixelSizeH, targetImg); // 픽셀 화된 이미지 생성
-  targetImg.updatePixels();
-
-  image(targetImg, 0, 0, width, height); // 픽셀 화된 이미지를 캔버스에 그림
-  
 }
