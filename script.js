@@ -26,89 +26,106 @@ let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
-function preload() {
-  let img0 = loadImage(imgURLs[0]);
-  let img1 = loadImage(imgURLs[1]);
-  imgs = [img0, img1];
+function preloadImages(urls) {
+  return Promise.all(urls.map(url => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }));
+}
+
+async function preload() {
+  const loadedImages = await preloadImages(imgURLs);
+  imgs = loadedImages;
   
-  let randomIndex = Math.floor(Math.random() * (imgs.length));
+  const randomIndex = Math.floor(Math.random() * (imgs.length));
   img = imgs[randomIndex];
+  
+  setupCanvas();
 }
 
-
-function setup() {
+function setupCanvas() {
   window.scrollTo(0, 0);
-  canvasHeight = windowHeight;
+  canvasHeight = window.innerHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
-  createCanvas(canvasWidth, canvasHeight);
-  
-  image(img, 0, 0, canvasWidth, canvasHeight);
-  
-  textData = textDatas['1960'];
-  changeImage();
-  pixelToText();
+
+  const canvas = document.createElement('canvas');
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+
+  const imageData = ctx.getImageData(0, 0, canvasWidth, canvasHeight).data;
+  changeImage(imageData);
 }
 
-
-function changeImage(textData=textDatas['1960']) {
-  // pixelSize = 24;
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 20));
+function changeImage(imageData) {
+  pixelSize = Math.floor(mapValue(textData.length, 96, 1330, 34, 20));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
-      let pos = get(x,y);
-      let r = red(pos);
-      let g = green(pos);
-      let b = blue(pos);
-      let brightness = (r + g + b) / 3;
-      
-      var pixel = {
+      const index = (x + y * canvasWidth) * 4;
+      const r = imageData[index];
+      const g = imageData[index + 1];
+      const b = imageData[index + 2];
+      const brightness = (r + g + b) / 3;
+
+      const pixel = {
         x: x,
         y: y,
-        brightness : brightness
+        brightness: brightness
       }
-      
+
       pixelInfo.push(pixel);
     }
-  } 
+  }
 }
 
-
-function pixelToText(textData=textDatas['1960']) {
+function pixelToText(textData = textDatas['1960']) {
   document.body.innerHTML = '';
-  let canvasDiv = createDiv();
-  canvasDiv.id('canvasSpan');
-  
+  const canvasDiv = document.createElement('div');
+  canvasDiv.id = 'canvasSpan';
+  document.body.appendChild(canvasDiv);
+
   let textIndex = 0;
-  let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
-  let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
-  
-  for (let pixel of pixelInfo) {
-    let textPixel = textData.charAt(textIndex % textData.length);
-    let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
-    scrollY = window.scrollY;
-    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
-    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
-    
+  const adjustX = (window.innerWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
+  const adjustY = (window.innerHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+
+  for (const pixel of pixelInfo) {
+    const textPixel = textData.charAt(textIndex % textData.length);
+    const fontWeight = mapValue(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+    const scrollY = window.scrollY;
+    const mapScrollY = mapValue(scrollY, 0, maxScrollY, 0, 30);
+    const randFontSize = Math.random() * mapScrollY - mapScrollY / 2;
+
     if (pixel.brightness > 240) {
-
-      let span = createSpan(" ");
-      span.parent('canvasSpan');
-
+      const span = document.createElement('span');
+      span.textContent = ' ';
+      document.getElementById('canvasSpan').appendChild(span);
     } else {
-
-      let span = createSpan(textPixel);
-      span.id(textIndex);
-      span.style("font-variation-settings", "'wght' " + fontWeight);
-      span.style("font-size", (pixelSize + randFontSize) + "px");
-      span.position(pixel.x + adjustX, pixel.y + adjustY); 
-      span.parent('canvasSpan');
+      const span = document.createElement('span');
+      span.textContent = textPixel;
+      span.id = textIndex;
+      span.style.fontVariationSettings = `'wght' ${fontWeight}`;
+      span.style.fontSize = pixelSize + randFontSize + 'px';
+      span.style.position = 'absolute';
+      span.style.left = pixel.x + adjustX + 'px';
+      span.style.top = pixel.y + adjustY + 'px';
+      document.getElementById('canvasSpan').appendChild(span);
 
       textIndex++;
     }
   }
 }
 
+function mapValue(value, start1, stop1, start2, stop2) {
+  return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+}
 
 function windowResized() {
   pixelToText(textData);
@@ -116,6 +133,7 @@ function windowResized() {
 
 
 window.addEventListener('scroll', function() {
+   console.log(img);
   scrollY = window.scrollY;
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);

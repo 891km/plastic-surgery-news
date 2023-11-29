@@ -22,41 +22,37 @@ let imgURLs = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
-let randomIndex;
+let scrollY;
+let scrollCount = 4;
+let maxScrollY = window.innerHeight * scrollCount;
 
 function preload() {
   let img0 = loadImage(imgURLs[0]);
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  // randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[0];
-  
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
+  let randomIndex = Math.floor(Math.random() * (imgs.length));
+  img = imgs[randomIndex];
 }
 
 
 function setup() {
-  frameRate(4);
-//   canvasHeight = windowHeight;
-//   canvasWidth = canvasHeight * (img.width / img.height);
+  window.scrollTo(0, 0);
+  canvasHeight = windowHeight;
+  canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   textData = textDatas['1960'];
-  changeImage(0, textData);
-  pixelToText(textData);
+  changeImage();
+  pixelToText();
 }
 
 
-function changeImage(imageIndex, textData) {
+function changeImage(textData=textDatas['1960']) {
   // pixelSize = 24;
-  // img = imgs[imageIndex];
-  // image(img, 0, 0, canvasWidth, canvasHeight);
-  
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 20));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -78,35 +74,38 @@ function changeImage(imageIndex, textData) {
 }
 
 
-function pixelToText(textData) {
-  document.body.innerHTML = ''; 
-  let pageDiv = createDiv();
-  pageDiv.id('canvasSpan');
+function pixelToText(textData=textDatas['1960']) {
+  document.body.innerHTML = '';
+  let canvasDiv = createDiv();
+  canvasDiv.id('canvasSpan');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+  
   for (let pixel of pixelInfo) {
-      let textPixel = textData.charAt(textIndex % textData.length);
-      if (pixel.brightness > 240) {
-        
-        let span = createSpan(" ");
-        span.parent('canvasSpan');
-        
-      } else {
-        
-        let span = createSpan(textPixel);
-        span.id(textIndex);
-        let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
-        span.style("font-weight", fontWeight);
-        span.style("font-size", pixelSize + "px");
-        //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
-        span.position(pixel.x + adjustX, pixel.y + adjustY); 
-        span.parent('canvasSpan');
-        
-        textIndex++;
-        
-      }
+    let textPixel = textData.charAt(textIndex % textData.length);
+    let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+    scrollY = window.scrollY;
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
+    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
+    
+    if (pixel.brightness > 240) {
+
+      let span = createSpan(" ");
+      span.parent('canvasSpan');
+
+    } else {
+
+      let span = createSpan(textPixel);
+      span.id(textIndex);
+      span.style("font-variation-settings", "'wght' " + fontWeight);
+      span.style("font-size", (pixelSize + randFontSize) + "px");
+      span.position(pixel.x + adjustX, pixel.y + adjustY); 
+      span.parent('canvasSpan');
+
+      textIndex++;
+    }
   }
 }
 
@@ -115,44 +114,19 @@ function windowResized() {
   pixelToText(textData);
 }
 
-function draw() {
-  randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[randomIndex];
-  image(img, 0, 0, canvasWidth, canvasHeight);
-  
-  changeImage(0, textData);
-  pixelToText(textData); 
-}
-
 
 window.addEventListener('scroll', function() {
-  let scrollY = window.scrollY;
-  let count = 4;
-  let maxScrollY = windowHeight * count;
-  
-  if (scrollY < maxScrollY / count * 1) {
-    
-    textData = textDatas['1960'];
-    changeImage(0, textData);
-    pixelToText(textData);
-    
-  } else if (scrollY < maxScrollY / count * 2) {
-    
-    textData = textDatas['1970'];
-    changeImage(1, textData);
-    pixelToText(textData);
+  scrollY = window.scrollY;
+  let yearDataList = ['1960', '1970', '1980', '1990'];
+  let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
+  textData = textDatas[yearDataList[yearSection]];
+  changeImage(textData);
+  pixelToText(textData);
+});
 
-  } else if (scrollY < maxScrollY / count * 3) {
-    
-    textData = textDatas['1980'];
-    changeImage(0, textData);
-    pixelToText(textData);
-    
-  } else {
-    
-    textData = textDatas['1990'];
-    changeImage(1, textData);
-    pixelToText(textData);
-  
-  }
+
+window.addEventListener('DOMContentLoaded', function() {
+  // 로딩이 완료되면 컨텐츠를 보여줌
+  document.getElementById('loading').style.display = 'none';
+  document.body.style.display = 'block';
 });
