@@ -41,13 +41,13 @@ function setup() {
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
-  textData = textDatas['1960'];
-  changeImage(textData);
-  pixelToText(textData);
+  // textData = textDatas['1960'];
+  changeImage();
+  pixelToText();
 }
 
 
-function changeImage(textData) {
+function changeImage(textData=textDatas['1960']) {
   // pixelSize = 24;
   pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
   pixelInfo = [];
@@ -71,7 +71,7 @@ function changeImage(textData) {
 }
 
 
-function pixelToText(textData) {
+function pixelToText(textData=textDatas['1960'], randFontSize = 0) {
   document.body.innerHTML = ''; 
   let pageDiv = createDiv();
   pageDiv.id('canvasSpan');
@@ -90,10 +90,12 @@ function pixelToText(textData) {
         
         let span = createSpan(textPixel);
         span.id(textIndex);
-        let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+        let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
         // span.style("font-weight", fontWeight);
         span.style("font-variation-settings", "'wght' " + fontWeight);
-        span.style("font-size", pixelSize + "px");
+        span.style("font-size", (pixelSize + randFontSize) + "px");
+        console.log((pixelSize + randFontSize) + "px");
+        // span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
         span.parent('canvasSpan');
         
@@ -113,29 +115,32 @@ window.addEventListener('scroll', function() {
   let count = 4;
   let maxScrollY = windowHeight * count;
   
+  let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+  let randFontSize = Math.random() * mapScrollY - (mapScrollY/2);
+  
   if (scrollY < maxScrollY / count * 1) {
     
     textData = textDatas['1960'];
     changeImage(textData);
-    pixelToText(textData);
+    pixelToText(textData, randFontSize);
     
   } else if (scrollY < maxScrollY / count * 2) {
     
     textData = textDatas['1970'];
     changeImage(textData);
-    pixelToText(textData);
+    pixelToText(textData, randFontSize);
 
   } else if (scrollY < maxScrollY / count * 3) {
     
     textData = textDatas['1980'];
     changeImage(textData);
-    pixelToText(textData);
+    pixelToText(textData, randFontSize);
     
   } else {
     
     textData = textDatas['1990'];
     changeImage(textData);
-    pixelToText(textData);
+    pixelToText(textData, randFontSize);
   
   }
 });
