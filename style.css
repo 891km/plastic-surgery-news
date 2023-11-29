@@ -36,8 +36,7 @@ canvas {
 }
 
 span {
-  color: black;
+  color: #1E1E20;
 /*   font-family: 'Hahmlet', serif; */
   font-family: 'Noto Sans KR', sans-serif;
-/*   font-variation-settings: 'wght' 900; */
 }
