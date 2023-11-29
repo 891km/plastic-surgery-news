@@ -26,27 +26,20 @@ let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
-function preloadImages(urls) {
-  return Promise.all(urls.map(url => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = url;
-    });
-  }));
-}
-
-async function preload() {
-  const loadedImages = await preloadImages(imgURLs);
-  imgs = loadedImages;
-  
+window.addEventListener('load', function() {
   const randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[randomIndex];
-  
-  setupCanvas();
-}
+  img = new Image(); // Create new img element
+  img.crossOrigin = "Anonymous"; // Set crossOrigin attribute
+  img.src = imgURLs[randomIndex]; // Set source path  
+  img.onload = function() {
+    setupCanvas();
+  };
+});
+                        
+// async function preload() {
+// }
 
+let imageData;
 function setupCanvas() {
   window.scrollTo(0, 0);
   canvasHeight = window.innerHeight;
@@ -64,7 +57,7 @@ function setupCanvas() {
   changeImage(imageData);
 }
 
-function changeImage(imageData) {
+function changeImage(imageData, textData = textDatas['1960']) {
   pixelSize = Math.floor(mapValue(textData.length, 96, 1330, 34, 20));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -143,8 +136,8 @@ window.addEventListener('scroll', function() {
 });
 
 
-window.addEventListener('DOMContentLoaded', function() {
-  // 로딩이 완료되면 컨텐츠를 보여줌
-  document.getElementById('loading').style.display = 'none';
-  document.body.style.display = 'block';
-});
+// window.addEventListener('DOMContentLoaded', function() {
+//   // 로딩이 완료되면 컨텐츠를 보여줌
+//   document.getElementById('loading').style.display = 'none';
+//   document.body.style.display = 'block';
+// });
