@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +10,6 @@ body {
   width: 100vw;
   height: calc(100vh * 5);
   background-color: #FDFDFD;
-/*   background-color: yellow; */
 /*   overflow: hidden; */
 }
 
@@ -36,8 +33,10 @@ canvas {
   
   overflow: hidden;
   touch-action: none;
-  
+}
+
+span {
   color: black;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 900;
+  font-family: 'Hahmlet', serif;
+  font-weight : 900;
 }
