@@ -42,6 +42,8 @@ function setup() {
 
 function pixelToText() {
   document.body.innerHTML = ''; 
+  let pageDiv = document.createElement('div');
+  pageDiv.id = 'page';
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -49,8 +51,12 @@ function pixelToText() {
   for (let pixel of pixelInfo) {
       let textPixel = textData.charAt(textIndex % textData.length);
       if (pixel.brightness > 240) {
+        
         let span = createSpan(" ");
+        pageDiv.appendChild(span);
+        
       } else {
+        
         let span = createSpan(textPixel);
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
@@ -58,7 +64,10 @@ function pixelToText() {
         span.style("font-size", pixelSize + "px");
         //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
+        pageDiv.appendChild(span);
+        
         textIndex++;
+        
       }
   }
 }
@@ -67,15 +76,15 @@ function windowResized() {
   pixelToText();
 }
 
-window.addEventListener('scroll', function() {
-  var scrollable = document.getElementById('scrollable');
-  var scrollPosition = window.scrollY;
+// window.addEventListener('scroll', function() {
+//   var scrollable = document.getElementById('scrollable');
+//   var scrollPosition = window.scrollY;
 
-  if (scrollPosition > 500) { /* 스크롤 위치 조건에 따라 변경 */
-    scrollable.classList.add('background2');
-    scrollable.classList.remove('background1');
-  } else {
-    scrollable.classList.add('background1');
-    scrollable.classList.remove('background2');
-  }
-});
+//   if (scrollPosition > 500) { /* 스크롤 위치 조건에 따라 변경 */
+//     scrollable.classList.add('background2');
+//     scrollable.classList.remove('background1');
+//   } else {
+//     scrollable.classList.add('background1');
+//     scrollable.classList.remove('background2');
+//   }
+// });
