@@ -82,31 +82,32 @@ function pixelToText(textData=textDatas['1960']) {
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+  
   for (let pixel of pixelInfo) {
-      let textPixel = textData.charAt(textIndex % textData.length);
-      if (pixel.brightness > 240) {
-        
-        let span = createSpan(" ");
-        span.parent('canvasSpan');
-        
-      } else {
-        
-        let span = createSpan(textPixel);
-        span.id(textIndex);
-        let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
-        scrollY = window.scrollY;
-        let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
-        let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
-        
-        span.style("font-variation-settings", "'wght' " + fontWeight);
-        span.style("font-size", (pixelSize + randFontSize) + "px");
-        console.log((pixelSize + randFontSize) + "px");
-        // span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
-        span.position(pixel.x + adjustX, pixel.y + adjustY); 
-        span.parent('canvasSpan');
-        
-        textIndex++;
-      }
+    let textPixel = textData.charAt(textIndex % textData.length);
+    let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+    scrollY = window.scrollY;
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
+    
+    if (pixel.brightness > 240) {
+
+      let span = createSpan(" ");
+      span.parent('canvasSpan');
+
+    } else {
+
+      let span = createSpan(textPixel);
+      span.id(textIndex);
+      span.style("font-variation-settings", "'wght' " + fontWeight);
+      span.style("font-size", (pixelSize + randFontSize) + "px");
+      console.log((pixelSize + randFontSize) + "px");
+      // span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
+      span.position(pixel.x + adjustX, pixel.y + adjustY); 
+      span.parent('canvasSpan');
+
+      textIndex++;
+    }
   }
 }
 
@@ -118,35 +119,16 @@ function windowResized() {
 
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  
-  if (scrollY < maxScrollY / scrollCount * 1) {
-    textData = textDatas['1960'];
-    changeImage(textData);
-    pixelToText(textData);
-    
-  } else if (scrollY < maxScrollY / scrollCount * 2) {
-    
-    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
-    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
-    textData = textDatas['1970'];
-    changeImage(textData);
-    pixelToText(textData);
+  let yearDataList = ['1960', '1970', '1980', '1990'];
+  let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
+  textData = textDatas[yearDataList[yearSection]];
+  changeImage(textData);
+  pixelToText(textData);
+});
 
-  } else if (scrollY < maxScrollY / scrollCount * 3) {
-    
-    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
-    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
-    textData = textDatas['1980'];
-    changeImage(textData);
-    pixelToText(textData);
-    
-  } else {
-    
-    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
-    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
-    textData = textDatas['1990'];
-    changeImage(textData);
-    pixelToText(textData);
-  
-  }
+
+window.addEventListener('load', function() {
+  // 로딩이 완료되면 컨텐츠를 보여줌
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('canvasSpan').style.display = 'block';
 });
