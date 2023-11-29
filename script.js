@@ -30,17 +30,17 @@ function preload() {
 }
 
 
-function setup(windowWidth, windowHeight) {
+function setup() {
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
   
   textData = textDatas['main'];
-  changeImage(windowWidth, windowHeight, 0, textData);
+  changeImage(0, textData);
   pixelToText(textData);
 }
 
-function changeImage(windowWidth, windowHeight, imageIndex, textData) {
+function changeImage(imageIndex, textData) {
   img = imgs[imageIndex];
   
   canvasHeight = windowHeight;
@@ -71,7 +71,7 @@ function changeImage(windowWidth, windowHeight, imageIndex, textData) {
 }
 
 
-function pixelToText(windowWidth, windowHeight, textData) {
+function pixelToText(textData) {
   document.body.innerHTML = ''; 
   let pageDiv = createDiv();
   pageDiv.id('canvasSpan');
@@ -105,19 +105,19 @@ function pixelToText(windowWidth, windowHeight, textData) {
 
 
 function windowResized() {
-  pixelToText();
+  pixelToText(textData);
 }
 
 window.addEventListener('scroll', function() {
   var scrollPosition = window.scrollY;
   if (scrollPosition > 1000) {
     textData = textDatas['1960'];
-    changeImage(1);
+    changeImage(1, textData);
     pixelToText(textData);
     
   } else {
     textData = textDatas['main'];
-    changeImage(0);
+    changeImage(0, textData);
     pixelToText(textData);
   }
   console.log(scrollPosition);
