@@ -29,8 +29,8 @@ function preload() {
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[randomIndex];
+  // randomIndex = Math.floor(Math.random() * (imgs.length));
+  img = imgs[0];
   
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
@@ -38,6 +38,7 @@ function preload() {
 
 
 function setup() {
+  frameRate(4);
 //   canvasHeight = windowHeight;
 //   canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
@@ -45,13 +46,16 @@ function setup() {
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   textData = textDatas['1960'];
-  changeImage(textData);
+  changeImage(0, textData);
   pixelToText(textData);
 }
 
 
-function changeImage(textData) {
+function changeImage(imageIndex, textData) {
   // pixelSize = 24;
+  // img = imgs[imageIndex];
+  // image(img, 0, 0, canvasWidth, canvasHeight);
+  
   pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -111,6 +115,15 @@ function windowResized() {
   pixelToText(textData);
 }
 
+function draw() {
+  randomIndex = Math.floor(Math.random() * (imgs.length));
+  img = imgs[randomIndex];
+  image(img, 0, 0, canvasWidth, canvasHeight);
+  
+  changeImage(0, textData);
+  pixelToText(textData); 
+}
+
 
 window.addEventListener('scroll', function() {
   let scrollY = window.scrollY;
@@ -120,25 +133,25 @@ window.addEventListener('scroll', function() {
   if (scrollY < maxScrollY / count * 1) {
     
     textData = textDatas['1960'];
-    changeImage(textData);
+    changeImage(0, textData);
     pixelToText(textData);
     
   } else if (scrollY < maxScrollY / count * 2) {
     
     textData = textDatas['1970'];
-    changeImage(textData);
+    changeImage(1, textData);
     pixelToText(textData);
 
   } else if (scrollY < maxScrollY / count * 3) {
     
     textData = textDatas['1980'];
-    changeImage(textData);
+    changeImage(0, textData);
     pixelToText(textData);
     
   } else {
     
     textData = textDatas['1990'];
-    changeImage(textData);
+    changeImage(1, textData);
     pixelToText(textData);
   
   }

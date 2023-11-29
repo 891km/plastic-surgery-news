@@ -31,12 +31,15 @@ function preload() {
   
   randomIndex = Math.floor(Math.random() * (imgs.length));
   img = imgs[randomIndex];
+  
+  canvasHeight = windowHeight;
+  canvasWidth = canvasHeight * (img.width / img.height);
 }
 
 
 function setup() {
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
+//   canvasHeight = windowHeight;
+//   canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
   
   image(img, 0, 0, canvasWidth, canvasHeight);
@@ -50,8 +53,6 @@ function setup() {
 function changeImage(textData) {
   // pixelSize = 24;
   pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
-  console.log("pixelSize:", pixelSize);
-  // pixelSize = Math.floor(canvasWidth * canvasHeight / textData.length * 0.04);
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -112,21 +113,23 @@ function windowResized() {
 
 
 window.addEventListener('scroll', function() {
-  let scrollPosition = window.scrollY;
+  let scrollY = window.scrollY;
+  let count = 4;
+  let maxScrollY = windowHeight * count;
   
-  if (scrollPosition < 500) {
+  if (scrollY < maxScrollY / count * 1) {
     
     textData = textDatas['1960'];
     changeImage(textData);
     pixelToText(textData);
     
-  } else if (scrollPosition < 1000) {
+  } else if (scrollY < maxScrollY / count * 2) {
     
     textData = textDatas['1970'];
     changeImage(textData);
     pixelToText(textData);
 
-  } else if (scrollPosition < 1500) {
+  } else if (scrollY < maxScrollY / count * 3) {
     
     textData = textDatas['1980'];
     changeImage(textData);
