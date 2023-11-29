@@ -36,6 +36,7 @@ canvas {
 }
 
 span {
+  justify-content: center;
   color: #1E1E20;
 /*   font-family: 'Hahmlet', serif; */
   font-family: 'Noto Sans KR', sans-serif;

@@ -24,6 +24,10 @@ let imgURLs = [
 
 let randomIndex;
 
+let scrollY = window.scrollY;
+let scrollCount = 4;
+let maxScrollY = window.innerHeight * scrollCount;
+
 function preload() {
   let img0 = loadImage(imgURLs[0]);
   let img1 = loadImage(imgURLs[1]);
@@ -41,7 +45,7 @@ function setup() {
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
-  // textData = textDatas['1960'];
+  textData = textDatas['1960'];
   changeImage();
   pixelToText();
 }
@@ -71,8 +75,9 @@ function changeImage(textData=textDatas['1960']) {
 }
 
 
-function pixelToText(textData=textDatas['1960'], randFontSize = 0) {
-  document.body.innerHTML = ''; 
+function pixelToText(textData=textDatas['1960']) {
+  document.body.innerHTML = '';
+  scrollY = 0;
   let pageDiv = createDiv();
   pageDiv.id('canvasSpan');
   
@@ -91,6 +96,10 @@ function pixelToText(textData=textDatas['1960'], randFontSize = 0) {
         let span = createSpan(textPixel);
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+        scrollY = window.scrollY;
+        let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
+        let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
+        
         // span.style("font-weight", fontWeight);
         span.style("font-variation-settings", "'wght' " + fontWeight);
         span.style("font-size", (pixelSize + randFontSize) + "px");
@@ -111,36 +120,36 @@ function windowResized() {
 
 
 window.addEventListener('scroll', function() {
-  let scrollY = window.scrollY;
-  let count = 4;
-  let maxScrollY = windowHeight * count;
+  scrollY = window.scrollY;
   
-  let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
-  let randFontSize = Math.random() * mapScrollY - (mapScrollY/2);
-  
-  if (scrollY < maxScrollY / count * 1) {
-    
+  if (scrollY < maxScrollY / scrollCount * 1) {
     textData = textDatas['1960'];
     changeImage(textData);
-    pixelToText(textData, randFontSize);
+    pixelToText(textData);
     
-  } else if (scrollY < maxScrollY / count * 2) {
+  } else if (scrollY < maxScrollY / scrollCount * 2) {
     
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
     textData = textDatas['1970'];
     changeImage(textData);
-    pixelToText(textData, randFontSize);
+    pixelToText(textData);
 
-  } else if (scrollY < maxScrollY / count * 3) {
+  } else if (scrollY < maxScrollY / scrollCount * 3) {
     
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
     textData = textDatas['1980'];
     changeImage(textData);
-    pixelToText(textData, randFontSize);
+    pixelToText(textData);
     
   } else {
     
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+    let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
     textData = textDatas['1990'];
     changeImage(textData);
-    pixelToText(textData, randFontSize);
+    pixelToText(textData);
   
   }
 });
