@@ -24,7 +24,7 @@ let imgURLs = [
 
 let randomIndex;
 
-let scrollY = window.scrollY;
+let scrollY = 0;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
@@ -77,7 +77,6 @@ function changeImage(textData=textDatas['1960']) {
 
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
-  scrollY = 0;
   let pageDiv = createDiv();
   pageDiv.id('canvasSpan');
   
@@ -97,10 +96,10 @@ function pixelToText(textData=textDatas['1960']) {
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
         scrollY = window.scrollY;
-        let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
+        console.log(scrollY);
+        let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
         let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
         
-        // span.style("font-weight", fontWeight);
         span.style("font-variation-settings", "'wght' " + fontWeight);
         span.style("font-size", (pixelSize + randFontSize) + "px");
         console.log((pixelSize + randFontSize) + "px");
@@ -118,6 +117,9 @@ function windowResized() {
   pixelToText(textData);
 }
 
+window.onload = function() {
+  window.scrollTo(0, 0);
+};
 
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;

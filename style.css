@@ -36,7 +36,11 @@ canvas {
 }
 
 span {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 10px;
   color: #1E1E20;
 /*   font-family: 'Hahmlet', serif; */
   font-family: 'Noto Sans KR', sans-serif;
