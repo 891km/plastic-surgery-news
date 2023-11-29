@@ -10,42 +10,17 @@ let canvasHeight;
 //let imgIndex = 0;
 let img;
 let imgs = [];
-let imgUrls = [
+let imgURLs = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549",
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
 function preload() {
-  img0 = loadImage(imgs[0]);
-  img1 = loadImage(imgs[1]);
+  img0 = loadImage(imgURLs[0]);
+  img1 = loadImage(imgURLs[1]);
+  imgs = [img0, img1];
   
-  loadedImgs = [img0, img1];
-}
-
-function changeImage(index) {
-  img = loadedImgs[index];
-  image(img, 0, 0, canvasWidth, canvasHeight);
-  // img.willReadFrequently = true;
-  // console.log("img:", imgs[0]);
-  
-  pixelInfo = [];
-  for (let y = 0; y < canvasHeight; y += pixelSize) {
-    for (let x = 0; x < canvasWidth; x += pixelSize) {
-      let pos = get(x,y);
-      let r = red(pos);
-      let g = green(pos);
-      let b = blue(pos);
-      let brightness = (r + g + b) / 3;
-      
-      var pixel = {
-        x: x,
-        y: y,
-        brightness : brightness
-      }
-      
-      pixelInfo.push(pixel);
-    }
-  } 
+  img = imgs[0];
 }
 
 function setup() {
@@ -55,7 +30,6 @@ function setup() {
 
   changeImage(0);
   pixelToText();
-  // console.log(pixelInfo);
 }
 
 function pixelToText() {
@@ -90,19 +64,44 @@ function pixelToText() {
   }
 }
 
+function changeImage(imageIndex) {
+  img = imgs[imageIndex];
+  image(img, 0, 0, canvasWidth, canvasHeight);
+  // img.willReadFrequently = true;
+  // console.log("img:", imgs[0]);
+  
+  pixelInfo = [];
+  for (let y = 0; y < canvasHeight; y += pixelSize) {
+    for (let x = 0; x < canvasWidth; x += pixelSize) {
+      let pos = get(x,y);
+      let r = red(pos);
+      let g = green(pos);
+      let b = blue(pos);
+      let brightness = (r + g + b) / 3;
+      
+      var pixel = {
+        x: x,
+        y: y,
+        brightness : brightness
+      }
+      
+      pixelInfo.push(pixel);
+    }
+  } 
+}
+
 function windowResized() {
   pixelToText();
 }
 
-// window.addEventListener('scroll', function() {
-//   var scrollable = document.getElementById('scrollable');
-//   var scrollPosition = window.scrollY;
+window.addEventListener('scroll', function() {
+  var scrollPosition = window.scrollY;
 
-//   if (scrollPosition > 500) { /* 스크롤 위치 조건에 따라 변경 */
-//     scrollable.classList.add('background2');
-//     scrollable.classList.remove('background1');
-//   } else {
-//     scrollable.classList.add('background1');
-//     scrollable.classList.remove('background2');
-//   }
-// });
+  if (scrollPosition > 500) {
+    changeImage(1); // 스크롤 위치에 따라 이미지 변경
+  } else {
+    changeImage(0);
+  }
+  
+  console.log("scrollY:", scrollPosition);
+});
