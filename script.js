@@ -76,8 +76,8 @@ function changeImage(textData=textDatas['1960']) {
 
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
-  let pageDiv = createDiv();
-  pageDiv.id('canvasSpan');
+  let canvasDiv = createDiv();
+  canvasDiv.id('canvasSpan');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -101,8 +101,6 @@ function pixelToText(textData=textDatas['1960']) {
       span.id(textIndex);
       span.style("font-variation-settings", "'wght' " + fontWeight);
       span.style("font-size", (pixelSize + randFontSize) + "px");
-      console.log((pixelSize + randFontSize) + "px");
-      // span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
       span.position(pixel.x + adjustX, pixel.y + adjustY); 
       span.parent('canvasSpan');
 
@@ -127,8 +125,8 @@ window.addEventListener('scroll', function() {
 });
 
 
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
   // 로딩이 완료되면 컨텐츠를 보여줌
   document.getElementById('loading').style.display = 'none';
-  document.getElementById('canvasSpan').style.display = 'block';
+  document.body.style.display = 'block';
 });

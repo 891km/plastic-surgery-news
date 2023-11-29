@@ -4,6 +4,7 @@ html, body {
 }
 
 body {
+  display: none;
   margin: 0;
   display: relative;
   justify-content: center;
@@ -11,6 +12,7 @@ body {
   height: calc(100vh * 5);
   background-color: #FDFDFD;
 /*   overflow: hidden; */
+  overflow-y: scroll;
 }
 
 canvas {
@@ -21,8 +23,21 @@ canvas {
   transform: translate(-50%, 0);
 }
 
+#loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  
+  font-size: 100px;
+}
+
 #canvasSpan {
-  margin: 0;
   display: block;
   position: fixed;
   left: 0;
@@ -36,8 +51,7 @@ canvas {
 }
 
 span {
-  display: none;
-/*   display: flex; */
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 10px;
