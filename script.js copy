@@ -27,7 +27,7 @@ function preload() {
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  randomIndex = Math.floor(Math.random() * (imgs.length + 1));
+  randomIndex = Math.round(Math.random() * imgs.length, 0);
   img = imgs[randomIndex];
 }
 
@@ -42,8 +42,12 @@ function setup() {
   pixelToText(textData);
 }
 
-function changeImage(textData) {
-  pixelSize = Math.floor(canvasWidth * canvasHeight / textData.length * 0.04, 0);
+function changeImage(imageIndex, textData) {
+  img = imgs[randomIndex];
+  console.log(randomIndex);
+  image(img, 0, 0, canvasWidth, canvasHeight);
+
+  pixelSize = Math.round(canvasWidth * canvasHeight / textData.length * 0.04, 0);
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -106,12 +110,12 @@ window.addEventListener('scroll', function() {
   var scrollPosition = window.scrollY;
   if (scrollPosition > 1000) {
     textData = textDatas['main'];
-    changeImage(textData);
+    changeImage(1, textData);
     pixelToText(textData);
     
   } else {
     textData = textDatas['main'];
-    changeImage(textData);
+    changeImage(0, textData);
     pixelToText(textData);
   }
   // console.log(scrollPosition);
