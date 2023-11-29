@@ -29,10 +29,39 @@ function setup() {
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
-
+  
   changeImage(0);
   pixelToText();
-  console.log("pixelSize:", pixelSize);
+}
+
+function changeImage(imageIndex) {
+  img = imgs[imageIndex];
+  
+  canvasHeight = windowHeight;
+  canvasWidth = canvasHeight * (img.width / img.height);
+  resizeCanvas(canvasWidth, canvasHeight);
+  
+  image(img, 0, 0, canvasWidth, canvasHeight);
+
+  pixelSize = Math.round(windowWidth * windowHeight / textData.length * 0.03, 0);
+  pixelInfo = [];
+  for (let y = 0; y < canvasHeight; y += pixelSize) {
+    for (let x = 0; x < canvasWidth; x += pixelSize) {
+      let pos = get(x,y);
+      let r = red(pos);
+      let g = green(pos);
+      let b = blue(pos);
+      let brightness = (r + g + b) / 3;
+      
+      var pixel = {
+        x: x,
+        y: y,
+        brightness : brightness
+      }
+      
+      pixelInfo.push(pixel);
+    }
+  } 
 }
 
 
@@ -69,46 +98,15 @@ function pixelToText() {
 }
 
 
-function changeImage(imageIndex) {
-  img = imgs[imageIndex];
-  image(img, 0, 0, canvasWidth, canvasHeight);
-  
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
-  resizeCanvas(canvasWidth, canvasHeight);
-
-  pixelSize = Math.round(windowWidth * windowHeight / textData.length * 0.03, 0);
-  pixelInfo = [];
-  for (let y = 0; y < canvasHeight; y += pixelSize) {
-    for (let x = 0; x < canvasWidth; x += pixelSize) {
-      let pos = get(x,y);
-      let r = red(pos);
-      let g = green(pos);
-      let b = blue(pos);
-      let brightness = (r + g + b) / 3;
-      
-      var pixel = {
-        x: x,
-        y: y,
-        brightness : brightness
-      }
-      
-      pixelInfo.push(pixel);
-    }
-  } 
-}
-
-
 function windowResized() {
   pixelToText();
 }
 
 window.addEventListener('wheel', function(event) {
-
+  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   if (event.deltaY < 0) {
-    console.log("스크롤 위로");
+    console.log("스크롤 위로", scrollTop);
   } else {
-    wheelValue += 1;
-    console.log("스크롤 아래로");
+    console.log("스크롤 아래로", scrollTop);
   }
 });
