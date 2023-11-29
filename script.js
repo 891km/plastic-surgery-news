@@ -22,9 +22,7 @@ let imgURLs = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
-let randomIndex;
-
-let scrollY = 0;
+let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
@@ -33,12 +31,13 @@ function preload() {
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  randomIndex = Math.floor(Math.random() * (imgs.length));
+  let randomIndex = Math.floor(Math.random() * (imgs.length));
   img = imgs[randomIndex];
 }
 
 
 function setup() {
+  window.scrollTo(0, 0);
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
@@ -53,7 +52,7 @@ function setup() {
 
 function changeImage(textData=textDatas['1960']) {
   // pixelSize = 24;
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 38, 24));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -96,7 +95,6 @@ function pixelToText(textData=textDatas['1960']) {
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
         scrollY = window.scrollY;
-        console.log(scrollY);
         let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
         let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
         
@@ -117,9 +115,6 @@ function windowResized() {
   pixelToText(textData);
 }
 
-window.onload = function() {
-  window.scrollTo(0, 0);
-};
 
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
