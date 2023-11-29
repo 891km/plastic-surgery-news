@@ -9,24 +9,26 @@ let canvasHeight;
 
 //let imgIndex = 0;
 let img;
-let imgs = [
+let imgs = [];
+let imgUrls = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549",
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
 function preload() {
-  img = loadImage(imgs[0]);
+  img0 = loadImage(imgs[0]);
+  img1 = loadImage(imgs[1]);
+  
+  loadedImgs = [img0, img1];
 }
 
 function changeImage(index) {
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
-  createCanvas(canvasWidth, canvasHeight);
-  
-  img = loadImage(imgs[index]);
-  // console.log("img:", imgs[0]);
+  img = loadedImgs[index];
   image(img, 0, 0, canvasWidth, canvasHeight);
-
+  // img.willReadFrequently = true;
+  // console.log("img:", imgs[0]);
+  
+  pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
       let pos = get(x,y);
@@ -47,9 +49,13 @@ function changeImage(index) {
 }
 
 function setup() {
+  canvasHeight = windowHeight;
+  canvasWidth = canvasHeight * (img.width / img.height);
+  createCanvas(canvasWidth, canvasHeight);
 
   changeImage(0);
   pixelToText();
+  // console.log(pixelInfo);
 }
 
 function pixelToText() {
