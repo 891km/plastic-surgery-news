@@ -42,17 +42,15 @@ function setup() {
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
-  textData = textDatas['main'];
+  textData = textDatas['1960'];
   changeImage(textData);
   pixelToText(textData);
-  
-  console.log("textLength :", textDatas['main'].length);
 }
 
 function changeImage(textData) {
   // pixelSize = 24;
-  pixelSize = map(textData.length, 96, 1059, 48, 24);
-  console.log(pixelSize)
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 48, 24));
+  console.log("pixelSize:", pixelSize);
   // pixelSize = Math.floor(canvasWidth * canvasHeight / textData.length * 0.04);
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -114,36 +112,35 @@ function windowResized() {
 
 window.addEventListener('scroll', function() {
   var scrollPosition = window.scrollY;
+  console.log("scrollY:", scrollPosition);
+  
   if (scrollPosition > 500) {
     
     textData = textDatas['1960'];
     changeImage(textData);
     pixelToText(textData);
+    // console.log(Object.keys(textData));
     
   } else if (scrollPosition > 1000) {
-    
-    textData = textDatas['1960'];
-    changeImage(textData);
-    pixelToText(textData);
-    
-  } else if (scrollPosition > 1500) {
     
     textData = textDatas['1970'];
     changeImage(textData);
     pixelToText(textData);
-    
-  } else if (scrollPosition > 2000) {
+    // console.log(Object.keys(textData));
+
+  } else if (scrollPosition > 1500) {
     
     textData = textDatas['1980'];
     changeImage(textData);
     pixelToText(textData);
+    // console.log(Object.keys(textData));
     
   } else {
     
     textData = textDatas['1990'];
     changeImage(textData);
     pixelToText(textData);
-    
+    console.log("textData:", Object.key(textData));
+  
   }
-  // console.log(scrollPosition);
 });
