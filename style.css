@@ -37,6 +37,7 @@ canvas {
 
 span {
   color: black;
-  font-family: 'Hahmlet', serif;
-  font-weight : 900;
+/*   font-family: 'Hahmlet', serif; */
+  font-family: 'Noto Sans KR', sans-serif;
+/*   font-variation-settings: 'wght' 900; */
 }

@@ -92,6 +92,7 @@ function pixelToText(textData) {
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
         // span.style("font-weight", fontWeight);
+        span.style("font-variation-settings", 'wght' + fontWeight);
         span.style("font-size", pixelSize + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
         span.parent('canvasSpan');
