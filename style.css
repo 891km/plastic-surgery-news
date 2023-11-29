@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
@@ -34,11 +36,8 @@ canvas {
   
   overflow: hidden;
   touch-action: none;
-}
-
-span {
-  color: black;
   
-/*   font-family: 'Noto Sans KR', sans-serif; */
-  font-size: 24px;
+  color: black;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
 }

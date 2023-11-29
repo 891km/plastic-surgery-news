@@ -29,33 +29,26 @@ function preload() {
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  // randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[0];
-  
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
+  randomIndex = Math.floor(Math.random() * (imgs.length));
+  img = imgs[randomIndex];
 }
 
 
 function setup() {
-  frameRate(4);
-//   canvasHeight = windowHeight;
-//   canvasWidth = canvasHeight * (img.width / img.height);
+  canvasHeight = windowHeight;
+  canvasWidth = canvasHeight * (img.width / img.height);
   createCanvas(canvasWidth, canvasHeight);
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   textData = textDatas['1960'];
-  changeImage(0, textData);
+  changeImage(textData);
   pixelToText(textData);
 }
 
 
-function changeImage(imageIndex, textData) {
+function changeImage(textData) {
   // pixelSize = 24;
-  // img = imgs[imageIndex];
-  // image(img, 0, 0, canvasWidth, canvasHeight);
-  
   pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -98,14 +91,13 @@ function pixelToText(textData) {
         let span = createSpan(textPixel);
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
-        span.style("font-weight", fontWeight);
+        // span.style("font-weight", fontWeight);
         span.style("font-size", pixelSize + "px");
         //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
         span.parent('canvasSpan');
         
         textIndex++;
-        
       }
   }
 }
@@ -113,15 +105,6 @@ function pixelToText(textData) {
 
 function windowResized() {
   pixelToText(textData);
-}
-
-function draw() {
-  randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[randomIndex];
-  image(img, 0, 0, canvasWidth, canvasHeight);
-  
-  changeImage(0, textData);
-  pixelToText(textData); 
 }
 
 
@@ -133,25 +116,25 @@ window.addEventListener('scroll', function() {
   if (scrollY < maxScrollY / count * 1) {
     
     textData = textDatas['1960'];
-    changeImage(0, textData);
+    changeImage(textData);
     pixelToText(textData);
     
   } else if (scrollY < maxScrollY / count * 2) {
     
     textData = textDatas['1970'];
-    changeImage(1, textData);
+    changeImage(textData);
     pixelToText(textData);
 
   } else if (scrollY < maxScrollY / count * 3) {
     
     textData = textDatas['1980'];
-    changeImage(0, textData);
+    changeImage(textData);
     pixelToText(textData);
     
   } else {
     
     textData = textDatas['1990'];
-    changeImage(1, textData);
+    changeImage(textData);
     pixelToText(textData);
   
   }
