@@ -31,9 +31,10 @@ function preload() {
 
 
 function setup() {
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
-  createCanvas(canvasWidth, canvasHeight);
+  // canvasHeight = windowHeight;
+  // canvasWidth = canvasHeight * (img.width / img.height);
+  // createCanvas(canvasWidth, canvasHeight);
+  createCanvas(windowWidth, windowHeight);
   
   textData = textDatas['main'];
   changeImage(0, textData);
@@ -43,11 +44,13 @@ function setup() {
 function changeImage(imageIndex, textData) {
   img = imgs[imageIndex];
   
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
-  resizeCanvas(canvasWidth, canvasHeight);
+  // canvasHeight = windowHeight;
+  // cnavasWidth = windowWidth;
+  // canvasWidth = canvasHeight * (img.width / img.height);
+  // resizeCanvas(canvasWidth, canvasHeight);
   
-  image(img, 0, 0, canvasWidth, canvasHeight);
+  // image(img, 0, 0, canvasWidth, canvasHeight);
+  image(img, 0, 0, windowWidth, windowHeight);
 
   pixelSize = Math.round(windowWidth * windowHeight / textData.length * 0.03, 0);
   pixelInfo = [];
@@ -111,7 +114,7 @@ function windowResized() {
 window.addEventListener('scroll', function() {
   var scrollPosition = window.scrollY;
   if (scrollPosition > 1000) {
-    textData = textDatas['1960'];
+    textData = textDatas['main'];
     changeImage(1, textData);
     pixelToText(textData);
     
@@ -120,14 +123,5 @@ window.addEventListener('scroll', function() {
     changeImage(0, textData);
     pixelToText(textData);
   }
-  console.log(scrollPosition);
+  // console.log(scrollPosition);
 });
-
-// window.addEventListener('wheel', function(event) {
-//   let scrollTop = document.body.scrollTop;
-//   if (event.deltaY < 0) {
-//     console.log("스크롤 위로", scrollTop);
-//   } else {
-//     console.log("스크롤 아래로", scrollTop);
-//   }
-// });
