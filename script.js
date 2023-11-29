@@ -102,11 +102,24 @@ function windowResized() {
   pixelToText();
 }
 
-window.addEventListener('wheel', function(event) {
-  let scrollTop = document.body.scrollTop;
-  if (event.deltaY < 0) {
-    console.log("스크롤 위로", scrollTop);
+window.addEventListener('scroll', function() {
+  var scrollPosition = window.scrollY;
+  if (scrollPosition > 1000) {
+    changeImage(1);
+    pixelToText();
+    
   } else {
-    console.log("스크롤 아래로", scrollTop);
+    changeImage(0);
+    pixelToText();
   }
+  console.log(scrollPosition);
 });
+
+// window.addEventListener('wheel', function(event) {
+//   let scrollTop = document.body.scrollTop;
+//   if (event.deltaY < 0) {
+//     console.log("스크롤 위로", scrollTop);
+//   } else {
+//     console.log("스크롤 아래로", scrollTop);
+//   }
+// });

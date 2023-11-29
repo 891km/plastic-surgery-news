@@ -8,8 +8,9 @@ body {
   display: relative;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
-  background-color: yellow;
+  height: calc(100vh * 5);
+  background-color: white;
+/*   background-color: yellow; */
 /*   overflow: hidden; */
 }
 
@@ -21,7 +22,7 @@ canvas {
   transform: translate(-50%, 0);
 }
 
-page {
+#canvasSpan {
   margin: 0;
   display: block;
   position: fixed;
