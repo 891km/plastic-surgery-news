@@ -9,9 +9,7 @@ let canvasWidth;
 let canvasHeight;
 
 function preload() {
-  img = loadImage(
-    "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549"
-  );
+  img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549");
 }
 
 function setup() {
@@ -68,3 +66,16 @@ function pixelToText() {
 function windowResized() {
   pixelToText();
 }
+
+window.addEventListener('scroll', function() {
+  var scrollable = document.getElementById('scrollable');
+  var scrollPosition = window.scrollY;
+
+  if (scrollPosition > 500) { /* 스크롤 위치 조건에 따라 변경 */
+    scrollable.classList.add('background2');
+    scrollable.classList.remove('background1');
+  } else {
+    scrollable.classList.add('background1');
+    scrollable.classList.remove('background2');
+  }
+});
