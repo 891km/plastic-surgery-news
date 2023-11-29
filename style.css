@@ -10,13 +10,21 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: white;
+  
+  overflow: hidden;
 }
 
 canvas {
   display: block;
   position: absolute;
   top: 0;
-/*   right: 2vw; */
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+span {
+  color: black;
+  
+/*   font-family: 'Noto Sans KR', sans-serif; */
+  font-size: 24px;
 }
