@@ -68,7 +68,7 @@ function changeImage(imageIndex) {
 function pixelToText() {
   document.body.innerHTML = ''; 
   let pageDiv = createDiv();
-  pageDiv.id('page');
+  pageDiv.id('canvasSpan');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -78,7 +78,7 @@ function pixelToText() {
       if (pixel.brightness > 240) {
         
         let span = createSpan(" ");
-        span.parent('page');
+        span.parent('canvasSpan');
         
       } else {
         
@@ -89,7 +89,7 @@ function pixelToText() {
         span.style("font-size", pixelSize + "px");
         //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
-        span.parent('page');
+        span.parent('canvasSpan');
         
         textIndex++;
         
@@ -103,7 +103,7 @@ function windowResized() {
 }
 
 window.addEventListener('wheel', function(event) {
-  let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  let scrollTop = document.body.scrollTop;
   if (event.deltaY < 0) {
     console.log("스크롤 위로", scrollTop);
   } else {

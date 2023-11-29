@@ -5,13 +5,12 @@ html, body {
 
 body {
   margin: 0;
-  display: flex;
+  display: relative;
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: white;
-  
-  overflow: hidden;
+  background-color: yellow;
+/*   overflow: hidden; */
 }
 
 canvas {
@@ -24,13 +23,16 @@ canvas {
 
 page {
   margin: 0;
-  display: flex;
-  justify-content: center;
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: yellow;
   
-/*   overflow: hidden; */
+  overflow: hidden;
+  touch-action: none;
 }
 
 span {
