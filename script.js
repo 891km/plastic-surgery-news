@@ -94,25 +94,25 @@ function windowResized() {
   pixelToText();
 }
 
-$(window).bind('wheel', function(event){
-    if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-        // scroll up
-        console.log("스크롤 위로", offsetY);
-    }
-    else {
-        // scroll down
-        console.log("스크롤 아래로", offsetY);
-    }
-});
-
-// window.addEventListener('scroll', function() {
-//   var scrollPosition = window.scrollY;
-
-//   if (scrollPosition > 500) {
-//     changeImage(1); // 스크롤 위치에 따라 이미지 변경
-//   } else {
-//     changeImage(0);
-//   }
-  
-//   console.log("scrollY:", scrollPosition);
+// $(window).bind('wheel', function(event){
+//     if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+//         // scroll up
+//         console.log("스크롤 위로");
+//     }
+//     else {
+//         // scroll down
+//         console.log("스크롤 아래로";
+//     }
 // });
+
+window.addEventListener('wheel', function(event) {
+
+  let wheelValue = 0;
+  if (event.deltaY < 0) {
+    wheelValue -= 1;
+    console.log("스크롤 위로", wheelValue);
+  } else {
+    wheelValue += 1;
+    console.log("스크롤 아래로", wheelValue);
+  }
+});
