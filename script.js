@@ -52,7 +52,7 @@ function setup() {
 
 function changeImage(textData=textDatas['1960']) {
   // pixelSize = 24;
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 38, 24));
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 20));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -87,7 +87,7 @@ function pixelToText(textData=textDatas['1960']) {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     scrollY = window.scrollY;
-    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 20);
+    let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
     let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
     
     if (pixel.brightness > 240) {

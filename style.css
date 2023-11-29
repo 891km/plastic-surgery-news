@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
 }
 
 body {
@@ -12,7 +13,6 @@ body {
   height: calc(100vh * 5);
   background-color: #FDFDFD;
 /*   overflow: hidden; */
-  overflow-y: scroll;
 }
 
 canvas {
