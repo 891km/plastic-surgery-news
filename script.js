@@ -8,8 +8,25 @@ let adjustY;
 let canvasWidth;
 let canvasHeight;
 
+let imgs = [
+  "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549",
+  
+  
+  
+];
+
 function preload() {
   img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549");
+}
+
+function changeImage() {
+  currentImgIndex = (currentImgIndex + 1) % imgs.length;
+  img = loadImage(imgs[currentImgIndex], function() {
+    image(img, 0, 0, canvasWidth, canvasHeight);
+    pixelInfo = []; // 이미지가 바뀔 때마다 픽셀 정보 초기화
+    // 픽셀 정보 다시 생성하는 로직 실행
+    // ...
+  });
 }
 
 function setup() {
@@ -42,8 +59,8 @@ function setup() {
 
 function pixelToText() {
   document.body.innerHTML = ''; 
-  let pageDiv = document.createElement('div');
-  pageDiv.id = 'page';
+  let pageDiv = createDiv();
+  pageDiv.id('page');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -53,7 +70,7 @@ function pixelToText() {
       if (pixel.brightness > 240) {
         
         let span = createSpan(" ");
-        pageDiv.appendChild(span);
+        span.parent('page');
         
       } else {
         
@@ -64,7 +81,7 @@ function pixelToText() {
         span.style("font-size", pixelSize + "px");
         //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
-        pageDiv.appendChild(span);
+        span.parent('page');
         
         textIndex++;
         
