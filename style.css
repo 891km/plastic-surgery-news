@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-  display: none;
+/*   display: none; */
   margin: 0;
   display: relative;
   justify-content: center;
@@ -16,7 +16,8 @@ body {
 }
 
 canvas {
-  display: block;
+  display: none;
+/*   display: block; */
   position: absolute;
   top: 0;
   left: 50%;
