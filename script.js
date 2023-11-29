@@ -53,11 +53,12 @@ function pixelToText() {
       if (pixel.brightness > 240) {
         let span = createSpan(" ");
       } else {
-        let span = createImage(textPixel);
+        let span = createSpan(textPixel);
         span.id(textIndex);
         let fontWeight = map(pixel.brightness, 0, 255, 900, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
         span.style("font-weight", fontWeight);
-        span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
+        span.style("font-size", pixelSize + "px");
+        //span.style("font-size", Math.floor(Math.random() * (41 - 20) + 20) + "px");
         span.position(pixel.x + adjustX, pixel.y + adjustY); 
         textIndex++;
       }
