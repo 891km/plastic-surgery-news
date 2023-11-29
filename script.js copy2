@@ -50,6 +50,8 @@ function setup() {
 function changeImage(textData) {
   // pixelSize = 24;
   pixelSize = Math.floor(map(textData.length, 96, 1330, 42, 22));
+  console.log("pixelSize:", pixelSize);
+  // pixelSize = Math.floor(canvasWidth * canvasHeight / textData.length * 0.04);
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
@@ -137,5 +139,4 @@ window.addEventListener('scroll', function() {
     pixelToText(textData);
   
   }
-  console.log()
 });
