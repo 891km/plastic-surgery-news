@@ -95,8 +95,22 @@ function pixelToText(textData=textDatas['1960']) {
       let span = createSpan(" ");
       span.parent('canvasSpan');
 
-    } else {
+    } else if (pixel.brightness < 10) {
 
+      let span = createSpan(textPixel);
+      span.id(textIndex);
+      span.style("font-variation-settings", "'wght' " + fontWeight);
+      span.style("font-size", pixelSize + "px");
+      span.style("background-color", "#000000");
+      span.style("color", "#FFFFFF");
+      // span.style("font-size", (pixelSize + randFontSize) + "px");
+      span.position(pixel.x + adjustX, pixel.y + adjustY); 
+      span.parent('canvasSpan');
+
+      textIndex++;
+      
+    } else {
+      
       let span = createSpan(textPixel);
       span.id(textIndex);
       span.style("font-variation-settings", "'wght' " + fontWeight);
@@ -106,6 +120,7 @@ function pixelToText(textData=textDatas['1960']) {
       span.parent('canvasSpan');
 
       textIndex++;
+      
     }
   }
 }
