@@ -84,7 +84,8 @@ function pixelToText(textData=textDatas['1960']) {
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
   let spans = [];
   
-  for (let [i, pixel] of pixelInfo) {
+  pixelInfo.forEach((pixel, i) => {
+  // for (let [i, pixel] of pixelInfo) {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     // scrollY = window.scrollY;
@@ -109,16 +110,18 @@ function pixelToText(textData=textDatas['1960']) {
 
       textIndex++;
     }
-  }
+  })
   
-  let randomIndex = floor(random(textIndex)); // 무작위로 스팬 선택
-  let selectedSpan = select('#'+ randomIndex); // 선택한 스팬 선택
-
-  if (selectedSpan) {
-    selectedSpan.style('background-color', '#000000'); // 선택한 스팬의 스타일 변경
-  }
+  console.log(spans);
   
-
+  for (let i = 0; i <spans.length; i += Math.floor(Math.roandom()) {
+    let i = Math.floor(Math.random() * spans.length);
+    console.log(randomIndex);
+    let selectedSpan = spans[i];
+    if (selectedSpan) {
+      selectedSpan.style('background-color', '#000000');
+    }
+  
 }
 
 // function randomColor() {
@@ -146,8 +149,8 @@ window.addEventListener('scroll', function() {
 });
 
 
-window.addEventListener('DOMContentLoaded', function() {
-  // 로딩이 완료되면 컨텐츠를 보여줌
-  document.getElementById('loading').style.display = 'none';
-  document.body.style.display = 'block';
-});
+// window.addEventListener('DOMContentLoaded', function() {
+//   // 로딩이 완료되면 컨텐츠를 보여줌
+//   document.getElementById('loading').style.display = 'none';
+//   document.body.style.display = 'block';
+// });
