@@ -82,6 +82,7 @@ function pixelToText(textData=textDatas['1960']) {
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+  let spans = [];
   
   for (let pixel of pixelInfo) {
     let textPixel = textData.charAt(textIndex % textData.length);
@@ -110,12 +111,12 @@ function pixelToText(textData=textDatas['1960']) {
     }
   }
   
-  for (let i = 0; i <= textIndex; i += Math.random() * 10) {
-    
-    let selectedSpan = select('#1');
-    selectedSpan.style("background-color", "#000000");
-    selectedSpan.style("color", "#FFFFFF");
-    console.log(selectedSpan);
+  let randomIndex = floor(random(textIndex)); // 무작위로 스팬 선택
+  let selectedSpan = select('#'+ randomIndex); // 선택한 스팬 선택
+
+  if (selectedSpan) {
+    selectedSpan.style('background-color', '#000000'); // 선택한 스팬의 스타일 변경
+  }
   }
   
 
