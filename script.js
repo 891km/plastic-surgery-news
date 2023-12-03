@@ -110,10 +110,11 @@ function pixelToText(textData=textDatas['1960']) {
     }
   }
   
-  for (let i; i <= textIndex; i += Math.random() * 10) {
-    let selectedSpan = select('#' + i);
+  for (let i = 0; i <= textIndex; i += Math.random() * 10) {
+    
+    let selectedSpan = select('#1');
     selectedSpan.style("background-color", "#000000");
-    selectedSpan.style("background-color", "#000000");
+    selectedSpan.style("color", "#FFFFFF");
     console.log(selectedSpan);
   }
   

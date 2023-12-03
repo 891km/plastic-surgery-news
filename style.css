@@ -24,7 +24,7 @@ canvas {
   transform: translate(-50%, 0);
 }
 
-#loading {
+/* #loading {
   position: fixed;
   left: 0;
   top: 0;
@@ -36,7 +36,7 @@ canvas {
   height: 100vh;
   
   font-size: 100px;
-}
+} */
 
 #canvasSpan {
   display: block;
