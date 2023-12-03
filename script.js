@@ -84,7 +84,7 @@ function pixelToText(textData=textDatas['1960']) {
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
   let spans = [];
   
-  for (let pixel of pixelInfo) {
+  for (let [i, pixel] of pixelInfo) {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     // scrollY = window.scrollY;
@@ -93,19 +93,19 @@ function pixelToText(textData=textDatas['1960']) {
     
     if (pixel.brightness > 240) {
 
-      let span = createSpan(" ");
-      span.parent('canvasSpan');
+      spans[i] = createSpan(" ");
+      spans[i].parent('canvasSpan');
 
     } else {
 
-      let span = createSpan(textPixel);
-      span.id(textIndex);
-      span.style("font-variation-settings", "'wght' " + fontWeight);
-      span.style("font-size", pixelSize + "px");
-      span.style('width', pixelSize + "px");
-      span.style('height', pixelSize + "px");
-      span.position(pixel.x + adjustX, pixel.y + adjustY); 
-      span.parent('canvasSpan');
+      spans[i] = createSpan(textPixel);
+      spans[i].id(textIndex);
+      spans[i].style("font-variation-settings", "'wght' " + fontWeight);
+      spans[i].style("font-size", pixelSize + "px");
+      spans[i].style('width', pixelSize + "px");
+      spans[i].style('height', pixelSize + "px");
+      spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
+      spans[i].parent('canvasSpan');
 
       textIndex++;
     }
@@ -116,7 +116,6 @@ function pixelToText(textData=textDatas['1960']) {
 
   if (selectedSpan) {
     selectedSpan.style('background-color', '#000000'); // 선택한 스팬의 스타일 변경
-  }
   }
   
 
