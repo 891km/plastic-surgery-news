@@ -95,35 +95,39 @@ function pixelToText(textData=textDatas['1960']) {
       let span = createSpan(" ");
       span.parent('canvasSpan');
 
-    } else if (pixel.brightness < 10) {
-
-      let span = createSpan(textPixel);
-      span.id(textIndex);
-      span.style("font-variation-settings", "'wght' " + fontWeight);
-      span.style("font-size", pixelSize + "px");
-      span.style("background-color", "#000000");
-      span.style("color", "#FFFFFF");
-      // span.style("font-size", (pixelSize + randFontSize) + "px");
-      span.position(pixel.x + adjustX, pixel.y + adjustY); 
-      span.parent('canvasSpan');
-
-      textIndex++;
-      
     } else {
-      
+
       let span = createSpan(textPixel);
       span.id(textIndex);
       span.style("font-variation-settings", "'wght' " + fontWeight);
       span.style("font-size", pixelSize + "px");
-      // span.style("font-size", (pixelSize + randFontSize) + "px");
+      span.style('width', pixelSize + "px");
+      span.style('height', pixelSize + "px");
       span.position(pixel.x + adjustX, pixel.y + adjustY); 
       span.parent('canvasSpan');
 
       textIndex++;
-      
     }
   }
+  
+  for (let i; i <= textIndex; i += Math.random() * 10) {
+    let selectedSpan = select('#' + i);
+    selectedSpan.style("background-color", "#000000");
+    selectedSpan.style("background-color", "#000000");
+    console.log(selectedSpan);
+  }
+  
+
 }
+
+// function randomColor() {
+  
+//   console.log()
+  
+// // span.style("background-color", "#000000");
+// // span.style("color", "#FFFFFF");  
+// }
+
 
 
 function windowResized() {
