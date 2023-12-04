@@ -110,7 +110,7 @@ function pixelToText(textData=textDatas['1960']) {
 
       textIndex++;
     }
-  })
+  });
   
   console.log(spans);
   
@@ -121,6 +121,7 @@ function pixelToText(textData=textDatas['1960']) {
     if (selectedSpan) {
       selectedSpan.style('background-color', '#000000');
     }
+  }
   
 }
 
