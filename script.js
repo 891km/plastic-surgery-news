@@ -39,20 +39,32 @@ function preload() {
 
 
 function setup() {
-  window.scrollTo(0, 0);
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
-  createCanvas(canvasWidth, canvasHeight);
+  let p5Canvas = createCanvas(canvasWidth, canvasHeight);
+  p5Canvas.parent('canvasContainer');
   // canvas.position(0, 0);
   // canvas.style('z-index', '-1');
   // canvas.id('p5Canvas');
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
+  window.scrollTo(0, 0);
+  // textData = textDatas['1960'];
+  // changeImage();
+  // pixelToText();
+}
+
+function draw() {
   textData = textDatas['1960'];
   changeImage();
   pixelToText();
 }
+
+function windowResized() {
+  pixelToText(textData);
+}
+
 
 
 function changeImage(textData=textDatas['1960']) {
@@ -81,8 +93,9 @@ function changeImage(textData=textDatas['1960']) {
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
   // let canvasDiv = document.getElementsById('canvasSpan');
-  let canvasDiv = createDiv();
-  canvasDiv.id('canvasSpan');
+  let spanDiv = createDiv();
+  spanDiv.id('spanDiv');
+  spanDiv.parent('canvasContainer');
   // canvasDiv.position(0, 0);
   // canvasDiv.style('z-index', '-1');
   
@@ -101,7 +114,7 @@ function pixelToText(textData=textDatas['1960']) {
     if (pixel.brightness > 240) {
 
       spans[i] = createSpan(" ");
-      spans[i].parent('canvasSpan');
+      spans[i].parent('spanDiv');
 
     } else {
 
@@ -112,7 +125,7 @@ function pixelToText(textData=textDatas['1960']) {
       spans[i].style('width', pixelSize + "px");
       spans[i].style('height', pixelSize + "px");
       spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
-      spans[i].parent('canvasSpan');
+      spans[i].parent('spanDiv');
 
       textIndex++;
     }
@@ -135,12 +148,6 @@ function pixelToText(textData=textDatas['1960']) {
 // // span.style("background-color", "#000000");
 // // span.style("color", "#FFFFFF");  
 // }
-
-
-
-function windowResized() {
-  pixelToText(textData);
-}
 
 
 window.addEventListener('scroll', function() {
