@@ -26,7 +26,7 @@ let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
-let canvasDiv;
+let spanDiv;
 
 function preload() {
   let img0 = loadImage(imgURLs[0]);
@@ -91,15 +91,14 @@ function changeImage(textData=textDatas['1960']) {
 }
 
 function pixelToText(textData=textDatas['1960']) {
-  // document.body.innerHTML = '';
-  
   let container = document.getElementById('canvasContainer');
-  // container = "";
+  container.innerHTML = '';
   
   let spanDiv = createDiv();
   spanDiv.id('spanDiv');
-  spanDiv.parent('container');
-  // container.appendChild(spanDiv);
+  spanDiv.parent('canvasContainer');
+  
+  spanDiv.html('');
 
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치

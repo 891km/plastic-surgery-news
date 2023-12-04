@@ -59,7 +59,7 @@ canvas {
   font-size: 100px;
 } */
 
-#canvasSpan {
+#canvasContainer {
   display: block;
   position: fixed;
   left: 0;
@@ -67,6 +67,7 @@ canvas {
   width: 100vw;
   height: 100vh;
   background-color: #FDFDFD;
+  z-index: -1000;
   
   overflow: hidden;
   touch-action: none;
