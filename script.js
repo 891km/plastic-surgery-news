@@ -175,14 +175,13 @@ function titleHighlight(years='1960') {
   
   for (let i = 0; i < spanByTitle.length; i++) {
     if(trueData[i]) {
-      finalTitle = spanByTitle[i];
       
-      if (!mySet.has('value1')) {
-        mySet.add('value1');
-      }
-      
-      titleSpans[years].add(finalTitle);
-      
+      spanByTitle[i].forEach(span => {
+        if (!titleSpans[years].has(span)) {
+          titleSpans[years].add(span);
+        }
+      });
+
       // spanByTitle[i].forEach(span => {
       //   span.style.backgroundColor = '#000000';
       //   span.style.color = '#ffffff';
