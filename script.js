@@ -48,10 +48,9 @@ function setup() {
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
-  textData = textDatas['1960'];
   changeImage();
   pixelToText();
-  titleHighlight('1960');
+  titleHighlight();
 }
 
 
@@ -185,6 +184,7 @@ function titleHighlight(years='1960') {
       start = end;
   }
   
+  
   for (let i = 0; i < textIndexByT.length; i++) {
     if(trueData[i]) {
       let start = textIndexByT[i]['start'];
@@ -194,9 +194,9 @@ function titleHighlight(years='1960') {
       for (let i = start; i < end; i++) {
         let titleSpan = document.getElementById(i.toString());
         if (titleSpan) {
-          titleSpans.push(titleSpan: titleSpan});
           titleSpan.style.backgroundColor = '#000000';
           titleSpan.style.color = '#ffffff';
+          console.log(titleSpan);
         }
       }
     }
@@ -212,6 +212,8 @@ window.addEventListener('scroll', function() {
   
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
-  changeImage(yearDataList[yearSection]);
-  pixelToText(yearDataList[yearSection]);
+  let years = yearDataList[yearSection];
+  changeImage(years);
+  pixelToText(years);
+  titleHighlight(years);
 });
