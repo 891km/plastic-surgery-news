@@ -168,6 +168,41 @@ let titleSpans = {
   '1990' : []
 };
 
+// function titleHighlight(years='1960') {
+  
+//   let textData = textDatas[years];
+//   let lenData = lenDatas[years];
+//   let trueData = trueDatas[years];
+  
+//   let textIndexByT = [];
+//   let start = 0;
+  
+//   for (let i = 0; i < lenData.length; i++) {
+//       let length = lenData[i];
+//       let end = start + length;
+//       textIndexByT.push({ start: start, end: end });
+//       start = end;
+//   }
+  
+  
+//   for (let i = 0; i < textIndexByT.length; i++) {
+//     if(trueData[i]) {
+//       let start = textIndexByT[i]['start'];
+//       let end = textIndexByT[i]['end'];
+//       // let titleSpans = spans.slice(start, end);
+      
+//       for (let i = start; i < end; i++) {
+//         let titleSpan = document.getElementById(i.toString());
+//         if (titleSpan) {
+//           titleSpan.style.backgroundColor = '#000000';
+//           titleSpan.style.color = '#ffffff';
+//           console.log(titleSpan);
+//         }
+//       }
+//     }
+//   }
+// }
+
 function titleHighlight(years='1960') {
   
   let textData = textDatas[years];
@@ -177,11 +212,22 @@ function titleHighlight(years='1960') {
   let textIndexByT = [];
   let start = 0;
   
-  for (let i = 0; i < lenData.length; i++) {
-      let length = lenData[i];
-      let end = start + length;
-      textIndexByT.push({ start: start, end: end });
-      start = end;
+  for (let i = 0; i < spans.length; i++) {
+      // let length = lenData[i];
+    let end = start + length;
+    textIndexByT.push({ start: start, end: end });
+    start = end;
+  }
+  
+  for (let j = start; j < end; i++) {
+    if(trueData[i]) {
+      let titleSpan = document.getElementById(i.toString());
+      if (titleSpan) {
+        titleSpan.style.backgroundColor = '#000000';
+        titleSpan.style.color = '#ffffff';
+        console.log(titleSpan);
+      }
+    }
   }
   
   
