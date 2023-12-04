@@ -26,8 +26,7 @@ let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
-let canvasDiv = createDiv();
-canvasDiv.id('canvasSpan');
+let canvasDiv;
 
 function preload() {
   let img0 = loadImage(imgURLs[0]);
@@ -78,6 +77,8 @@ function changeImage(textData=textDatas['1960']) {
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
   // let canvasDiv = document.getElementsById('canvasSpan');
+  let canvasDiv = createDiv();
+  canvasDiv.id('canvasSpan');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -85,7 +86,6 @@ function pixelToText(textData=textDatas['1960']) {
   let spans = [];
   
   pixelInfo.forEach((pixel, i) => {
-  // for (let [i, pixel] of pixelInfo) {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     // scrollY = window.scrollY;
