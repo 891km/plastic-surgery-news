@@ -162,6 +162,13 @@ let trueDatas = {
   '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9]
 };
 
+let titleSpans = {
+  '1960' : [],
+  '1970' : [],
+  '1980' : [],
+  '1990' : []
+};
+
 function titleHighlight(years='1960') {
   
   let textData = textDatas[years];
@@ -170,25 +177,24 @@ function titleHighlight(years='1960') {
   
   let textIndexByT = [];
   let start = 0;
+  
   for (let i = 0; i < lenData.length; i++) {
       let length = lenData[i];
       let end = start + length;
       textIndexByT.push({ start: start, end: end });
-      // textIndexByTitles.push(textData.substring(start, end));
       start = end;
   }
   
   for (let i = 0; i < textIndexByT.length; i++) {
     if(trueData[i]) {
-      // console.log(textIndexByT[i]);
       let start = textIndexByT[i]['start'];
       let end = textIndexByT[i]['end'];
       // let titleSpans = spans.slice(start, end);
       
-      for (let i = start; i <= end; i++) {
+      for (let i = start; i < end; i++) {
         let titleSpan = document.getElementById(i.toString());
-        console.log(titleSpan);
         if (titleSpan) {
+          titleSpans.push(titleSpan: titleSpan});
           titleSpan.style.backgroundColor = '#000000';
           titleSpan.style.color = '#ffffff';
         }
@@ -197,7 +203,9 @@ function titleHighlight(years='1960') {
   }
 }
 
+
 let yearList = document.getElementById('yearList');
+
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   // yearList.scrollTop = scrollY;
