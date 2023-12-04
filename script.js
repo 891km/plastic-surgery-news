@@ -38,21 +38,21 @@ function preload() {
 }
 
 function setup() {
+  window.scrollTo(0, 0);
+  
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
   let canvas = createCanvas(canvasWidth, canvasHeight);
   canvas.id('canvas');
-  // canvas.parent('canvasContainer');
-  // background(210);
-  // noStroke();
+  canvas.parent('canvasContainer');
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
-  window.scrollTo(0, 0);
   textData = textDatas['1960'];
   changeImage();
   pixelToText();
 }
+
 
 // function draw() {
 //   textData = textDatas['1960'];
@@ -60,10 +60,11 @@ function setup() {
 //   pixelToText();
 // }
 
+
 function windowResized() {
   pixelToText(textData);
+  resizeCanvas(canvasWidth, canvasHeight);
 }
-
 
 
 function changeImage(textData=textDatas['1960']) {
@@ -90,15 +91,16 @@ function changeImage(textData=textDatas['1960']) {
 }
 
 function pixelToText(textData=textDatas['1960']) {
-  document.body.innerHTML = '';
-  // let canvasDiv = document.getElementsById('canvasSpan');
+  // document.body.innerHTML = '';
+  
   let container = document.getElementById('canvasContainer');
+  // container = "";
+  
   let spanDiv = createDiv();
   spanDiv.id('spanDiv');
-  container.appendChild(spanDiv);
-  // canvasDiv.position(0, 0);
-  // canvasDiv.style('z-index', '-1');
-  
+  spanDiv.parent('container');
+  // container.appendChild(spanDiv);
+
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
@@ -114,8 +116,7 @@ function pixelToText(textData=textDatas['1960']) {
     if (pixel.brightness > 240) {
 
       spans[i] = createSpan(" ");
-      // spans[i].parent('spanDiv');
-      spanDiv.appendChild(spans[i]);
+      spans[i].parent('spanDiv');
 
     } else {
 
@@ -126,8 +127,7 @@ function pixelToText(textData=textDatas['1960']) {
       spans[i].style('width', pixelSize + "px");
       spans[i].style('height', pixelSize + "px");
       spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
-      // spans[i].parent('spanDiv');
-      spanDiv.appendChild(spans[i]);
+      spans[i].parent('spanDiv');
 
       textIndex++;
     }
