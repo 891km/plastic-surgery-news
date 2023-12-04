@@ -83,7 +83,8 @@ function changeImage(years='1960') {
   } 
 }
 
-let spans;
+
+let textSpans = [];
 function pixelToText(years='1960') {
   textData = textDatas[years];
   
@@ -103,8 +104,7 @@ function pixelToText(years='1960') {
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
   
-  spans = [];
-  
+
   pixelInfo.forEach((pixel, i) => {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
@@ -114,9 +114,9 @@ function pixelToText(years='1960') {
       // spans[i] = createSpan(" ");
       // spans[i].parent('spanDiv');
       
-      spans[i] = document.createElement('span');
-      spans[i].innerText = ' '; // 텍스트 없는 span 추가
-      spanDiv.appendChild(spans[i]);
+      let span = document.createElement('span');
+      span.innerText = ' '; // 텍스트 없는 span 추가
+      spanDiv.appendChild(span);
 
     } else {
 
@@ -129,17 +129,17 @@ function pixelToText(years='1960') {
       // spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
       // spans[i].parent('spanDiv');
       
-      spans[i] = document.createElement('span');
-      spans[i].id = textIndex;
-      spans[i].innerText = textPixel; // 텍스트가 있는 span 추가
-      spans[i].style.fontVariationSettings = "'wght' " + fontWeight;
-      spans[i].style.fontSize = pixelSize + "px";
-      spans[i].style.width = pixelSize + "px";
-      spans[i].style.height = pixelSize + "px";
-      spans[i].style.position = 'absolute';
-      spans[i].style.left = pixel.x + adjustX + 'px';
-      spans[i].style.top = pixel.y + adjustY + 'px';
-      spanDiv.appendChild(spans[i]);
+      textSpans[textIndex] = document.createElement('span');
+      textSpans[textIndex].id = textIndex;
+      textSpans[textIndex].innerText = textPixel; // 텍스트가 있는 span 추가
+      textSpans[textIndex].style.fontVariationSettings = "'wght' " + fontWeight;
+      textSpans[textIndex].style.fontSize = pixelSize + "px";
+      textSpans[textIndex].style.width = pixelSize + "px";
+      textSpans[textIndex].style.height = pixelSize + "px";
+      textSpans[textIndex].style.position = 'absolute';
+      textSpans[textIndex].style.left = pixel.x + adjustX + 'px';
+      textSpans[textIndex].style.top = pixel.y + adjustY + 'px';
+      spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
     }
@@ -210,47 +210,29 @@ function titleHighlight(years='1960') {
   let trueData = trueDatas[years];
   
   let spanByTitle = [];
-  let start = 0;
-  // [18, 20, 16, 15, 27]
-  for (let i = 1; i < lenData.length+1; i++) {
+  let start = 1;
+  for (let i = 0; i < lenData.length; i++) {
     
     let end = start + (lenData[i]);
     console.log(start, end);
-    spanByTitle.push(textData.slice(start-1, end));
-    // textIndexByT.push({ start: start, end: end });
-    start += (lenData[i]+1);
+    spanByTitle.push(spans.slice(start-1, end-1));
+    start += (lenData[i]);
   }
   console.log("spanByTitle:", spanByTitle);
   console.log("textData:", textData.length);
+  console.log(spans);
   
-//   for (let j = 0; j < textIndexByT.length; j++) {
-//     if(trueData[j]) {
-//       let titleSpan = document.getElementById(i.toString());
-//       if (titleSpan) {
-//         titleSpan.style.backgroundColor = '#000000';
-//         titleSpan.style.color = '#ffffff';
-//         console.log(titleSpan);
-//       }
+  
+//   for (let i = 0; i < spanByTitle.length; i++) {
+//     if(trueData[i]) {
+//       spanByTitle[i]
+//       console.log(spanByTitle[i]);
+//         // let titleSpan = document.getElementById(i.toString());
+//           spanByTitle[i].style.backgroundColor = '#000000';
+//           spanByTitle[i].style.color = '#ffffff';
+          
 //     }
 //   }
-  
-  
-  for (let i = 0; i < spanByTitle.length; i++) {
-    if(trueData[i]) {
-      let start = spanByTitle[i]['start'];
-      let end = spanByTitle[i]['end'];
-      // let titleSpans = spans.slice(start, end);
-      
-      for (let i = start; i < end; i++) {
-        let titleSpan = document.getElementById(i.toString());
-        if (titleSpan) {
-          titleSpan.style.backgroundColor = '#000000';
-          titleSpan.style.color = '#ffffff';
-          console.log(titleSpan);
-        }
-      }
-    }
-  }
 }
 
 
