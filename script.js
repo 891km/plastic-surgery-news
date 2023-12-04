@@ -91,6 +91,7 @@ function changeImage(textData=textDatas['1960']) {
   } 
 }
 
+l
 function pixelToText(textData=textDatas['1960']) {
   let container = document.getElementById('canvasContainer');
   container.innerHTML = '';
@@ -154,23 +155,35 @@ function titleHighlight(year='1960') {
   lenData = lenDatas[year];
   trueData = trueDatas[year];
   
-  textIndexByTitles = [];
+  textIndexByT = [];
   let start = 0;
   for (let i = 0; i < lenData.length; i++) {
       let length = lenData[i];
       let end = start + length;
-      textIndexByTitles.push({ start: start, end: end });
+      textIndexByT.push({ start: start, end: end });
       // textIndexByTitles.push(textData.substring(start, end));
       start = end;
   }
   
-  for (let i = 0; i < textIndexByTitles.length; i++) {
+  for (let i = 0; i < textIndexByT.length; i++) {
     if(trueData[i]) {
-      console.log(textIndexByTitles[i]);
-      console.log(textData[textIndexByTitles[i].start : textIndexByTitles[i].end]);
+      console.log(textIndexByT[i]);
+      start = textIndexByT[i]['start'];
+      end = textIndexByT[i]['end'];
+      
+//       let titleSpan = select()
+      
+//       let titleSpans = spans[i];
+
+      // console.log(start, end);
+      console.log(spans.slice(start, end));
     }
   }
   
+    // if (titleSpans) {
+    //   selectedSpan.style('background-color', '#000000');
+    //   selectedSpan.style("color", "#FFFFFF"); 
+    // }
   
   
 }
