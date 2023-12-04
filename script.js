@@ -92,9 +92,10 @@ function changeImage(textData=textDatas['1960']) {
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
   // let canvasDiv = document.getElementsById('canvasSpan');
+  let container = document.getElementById('canvasContainer');
   let spanDiv = createDiv();
   spanDiv.id('spanDiv');
-  // spanDiv.parent('canvas');
+  container.appendChild(spanDiv);
   // canvasDiv.position(0, 0);
   // canvasDiv.style('z-index', '-1');
   
@@ -113,7 +114,8 @@ function pixelToText(textData=textDatas['1960']) {
     if (pixel.brightness > 240) {
 
       spans[i] = createSpan(" ");
-      spans[i].parent('spanDiv');
+      // spans[i].parent('spanDiv');
+      spanDiv.appendChild(spans[i]);
 
     } else {
 
@@ -124,7 +126,8 @@ function pixelToText(textData=textDatas['1960']) {
       spans[i].style('width', pixelSize + "px");
       spans[i].style('height', pixelSize + "px");
       spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
-      spans[i].parent('spanDiv');
+      // spans[i].parent('spanDiv');
+      spanDiv.appendChild(spans[i]);
 
       textIndex++;
     }
@@ -135,18 +138,11 @@ function pixelToText(textData=textDatas['1960']) {
   //   let selectedSpan = spans[i];
   //   if (selectedSpan) {
   //     selectedSpan.style('background-color', '#000000');
+  //     selectedSpan.style("color", "#FFFFFF"); 
   //   }
   // }
   
 }
-
-// function randomColor() {
-  
-//   console.log()
-  
-// // span.style("background-color", "#000000");
-// // span.style("color", "#FFFFFF");  
-// }
 
 
 window.addEventListener('scroll', function() {
@@ -157,10 +153,3 @@ window.addEventListener('scroll', function() {
   changeImage(textData);
   pixelToText(textData);
 });
-
-
-// window.addEventListener('DOMContentLoaded', function() {
-//   // 로딩이 완료되면 컨텐츠를 보여줌
-//   document.getElementById('loading').style.display = 'none';
-//   document.body.style.display = 'block';
-// });
