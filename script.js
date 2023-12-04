@@ -51,7 +51,7 @@ function setup() {
   textData = textDatas['1960'];
   changeImage();
   pixelToText();
-  titleHighlight('1960')
+  titleHighlight('1960');
 }
 
 
@@ -91,7 +91,7 @@ function changeImage(textData=textDatas['1960']) {
   } 
 }
 
-l
+let spans;
 function pixelToText(textData=textDatas['1960']) {
   let container = document.getElementById('canvasContainer');
   container.innerHTML = '';
@@ -105,7 +105,7 @@ function pixelToText(textData=textDatas['1960']) {
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
-  let spans = [];
+  spans = [];
   
   pixelInfo.forEach((pixel, i) => {
     let textPixel = textData.charAt(textIndex % textData.length);
@@ -149,11 +149,11 @@ let trueDatas = {
   '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9]
 };
 
-function titleHighlight(year='1960') {
+function titleHighlight(years='1960') {
   
-  textData = textDatas[year];
-  lenData = lenDatas[year];
-  trueData = trueDatas[year];
+  textData = textDatas[years];
+  lenData = lenDatas[years];
+  trueData = trueDatas[years];
   
   textIndexByT = [];
   let start = 0;
@@ -167,25 +167,18 @@ function titleHighlight(year='1960') {
   
   for (let i = 0; i < textIndexByT.length; i++) {
     if(trueData[i]) {
-      console.log(textIndexByT[i]);
-      start = textIndexByT[i]['start'];
-      end = textIndexByT[i]['end'];
-      
-//       let titleSpan = select()
-      
-//       let titleSpans = spans[i];
-
-      // console.log(start, end);
-      console.log(spans.slice(start, end));
+      // console.log(textIndexByT[i]);
+      let start = textIndexByT[i]['start'];
+      let end = textIndexByT[i]['end'];
+      let titleSpans = spans.slice(start, end);
+      titleSpans[0].style("background-color", '#000000');
+      // for (let i = 0; i < titleSpans; i++) {
+      //   titleSpans[i].style('background-color', '#000000');
+      //   titleSpans[i].style("color", "#FFFFFF"); 
+      //   console.log(titleSpans[i]);
+      // }
     }
   }
-  
-    // if (titleSpans) {
-    //   selectedSpan.style('background-color', '#000000');
-    //   selectedSpan.style("color", "#FFFFFF"); 
-    // }
-  
-  
 }
 
 
