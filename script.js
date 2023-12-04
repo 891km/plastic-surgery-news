@@ -144,11 +144,22 @@ function pixelToText(textData=textDatas['1960']) {
 }
 
 
+let yearList = document.getElementById('yearList');
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
+  yearList.scrollTop = scrollY;
+  
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
   textData = textDatas[yearDataList[yearSection]];
   changeImage(textData);
   pixelToText(textData);
 });
+
+// parent.addEventListener('scroll', function() {
+//   // 부모 요소의 스크롤 위치를 얻어옵니다.
+//   let scrollPosition = parent.scrollTop;
+
+//   // 자식 요소의 스크롤 위치를 부모와 동기화합니다.
+//   child.scrollTop = scrollPosition;
+// });

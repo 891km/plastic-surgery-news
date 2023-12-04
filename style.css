@@ -36,15 +36,17 @@ canvas {
   background-color: yellow;
 }
 
-.yearList {
+#yearList {
   position: fixed;
   top: 0;
   left: 0;
   width: 200px;
   height: 100vh;
+  padding-top: 34vh;
+  padding-bottom: 34vh;
 /*   background-color: yellow; */
   overflow: scroll;
-  padding-top: 34vh;
+  touch-action: none;
 }
 
 
