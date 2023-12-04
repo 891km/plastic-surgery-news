@@ -26,6 +26,9 @@ let scrollY;
 let scrollCount = 4;
 let maxScrollY = window.innerHeight * scrollCount;
 
+let canvasDiv = createDiv();
+canvasDiv.id('canvasSpan');
+
 function preload() {
   let img0 = loadImage(imgURLs[0]);
   let img1 = loadImage(imgURLs[1]);
@@ -34,7 +37,6 @@ function preload() {
   let randomIndex = Math.floor(Math.random() * (imgs.length));
   img = imgs[randomIndex];
 }
-
 
 function setup() {
   window.scrollTo(0, 0);
@@ -73,11 +75,9 @@ function changeImage(textData=textDatas['1960']) {
   } 
 }
 
-
 function pixelToText(textData=textDatas['1960']) {
   document.body.innerHTML = '';
-  let canvasDiv = createDiv();
-  canvasDiv.id('canvasSpan');
+  // let canvasDiv = document.getElementsById('canvasSpan');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
