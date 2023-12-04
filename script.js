@@ -149,15 +149,17 @@ let trueDatas = {
   '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]
 };
 
-// let titleSpans = {
-//   '1960' : [],
-//   '1970' : [],
-//   '1980' : [],
-//   '1990' : []
-// };
+let titleSpans = {
+  '1960' : new Set(),
+  '1970' : new Set(),
+  '1980' : new Set(),
+  '1990' : new Set()
+};
 
+
+let finalTitle;
 function titleHighlight(years='1960') {
-  
+  // console.log(titleSpans[years]);
   let textData = textDatas[years];
   let lenData = lenDatas[years];
   let trueData = trueDatas[years];
@@ -173,13 +175,21 @@ function titleHighlight(years='1960') {
   
   for (let i = 0; i < spanByTitle.length; i++) {
     if(trueData[i]) {
-      console.log(spanByTitle[i]);
-      spanByTitle[i].forEach(span => {
-        span.style.backgroundColor = '#000000';
-        span.style.color = '#ffffff';
-      });   
+      finalTitle = spanByTitle[i];
+      
+      if (!mySet.has('value1')) {
+        mySet.add('value1');
+      }
+      
+      titleSpans[years].add(finalTitle);
+      
+      // spanByTitle[i].forEach(span => {
+      //   span.style.backgroundColor = '#000000';
+      //   span.style.color = '#ffffff';
+      // });   
     }
   }
+  console.log(years, titleSpans[years]);
 }
 
 
