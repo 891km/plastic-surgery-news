@@ -40,17 +40,13 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 150px;
+  width: 200px;
   height: 100vh;
-  background-color: yellow;
+/*   background-color: yellow; */
   overflow: scroll;
+  padding-top: 34vh;
 }
 
-ul {
-  position:relative;
-  widht
-  
-}
 
 li {
   position: relative;
@@ -59,11 +55,11 @@ li {
   display: flex;
 /*   justify-content: center; */
   align-items: center;
-  height: 100px;
-  background-color: green;
+  height: 180px;
+/*   background-color: green; */
   font-family: 'Noto Sans KR', sans-serif;
   font-variation-settings: 'wght' 900;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #canvasContainer {
