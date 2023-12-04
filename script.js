@@ -131,6 +131,7 @@ function pixelToText(years='1960') {
       // spans[i].parent('spanDiv');
       
       spans[i] = document.createElement('span');
+      spans[i].id = textIndex;
       spans[i].innerText = textPixel; // 텍스트가 있는 span 추가
       spans[i].style.fontVariationSettings = "'wght' " + fontWeight;
       spans[i].style.fontSize = pixelSize + "px";
@@ -185,9 +186,11 @@ function titleHighlight(years='1960') {
       // let titleSpans = spans.slice(start, end);
       
       for (let i = start; i <= end; i++) {
-        let span = document.getElementById(i.toString());
-        if (span) {
-          span.style.backgroundColor = '#000000';
+        let titleSpan = document.getElementById(i.toString());
+        console.log(titleSpan);
+        if (titleSpan) {
+          titleSpan.style.backgroundColor = '#000000';
+          titleSpan.style.color = '#ffffff';
         }
       }
     }
