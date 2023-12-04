@@ -43,21 +43,28 @@ canvas {
   width: 150px;
   height: 100vh;
   background-color: yellow;
+  overflow: scroll;
 }
 
-/* #loading {
-  position: fixed;
+ul {
+  position:relative;
+  widht
+  
+}
+
+li {
+  position: relative;
   left: 0;
   top: 0;
-  
   display: flex;
-  justify-content: center;
+/*   justify-content: center; */
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  
-  font-size: 100px;
-} */
+  height: 100px;
+  background-color: green;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-variation-settings: 'wght' 900;
+  font-size: 50px;
+}
 
 #canvasContainer {
   display: block;
