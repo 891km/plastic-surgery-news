@@ -111,17 +111,15 @@ function pixelToText(textData=textDatas['1960']) {
       textIndex++;
     }
   });
+
   
-  console.log(spans);
-  
-  for (let i = 0; i <spans.length; i += Math.floor(Math.roandom()) {
-    let i = Math.floor(Math.random() * spans.length);
-    console.log(randomIndex);
-    let selectedSpan = spans[i];
-    if (selectedSpan) {
-      selectedSpan.style('background-color', '#000000');
-    }
-  }
+  // for (let i = 0; i < spans.length; i += Math.floor(Math.random())) {
+  //   let i = Math.floor(Math.random() * spans.length);
+  //   let selectedSpan = spans[i];
+  //   if (selectedSpan) {
+  //     selectedSpan.style('background-color', '#000000');
+  //   }
+  // }
   
 }
 
