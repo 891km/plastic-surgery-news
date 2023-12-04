@@ -41,7 +41,20 @@ function setup() {
   window.scrollTo(0, 0);
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
-  createCanvas(canvasWidth, canvasHeight);
+  
+  let canvas = function(p) {
+    p.setup = function(){
+      p.createCanvas(canvasWidth, canvasHeight);
+      p.background(0);
+    }
+  };
+  new p5(canvas, window.document.getElementById('container'));
+
+
+  // createCanvas(canvasWidth, canvasHeight);
+  // canvas.position(0, 0);
+  // canvas.style('z-index', '-1');
+  // canvas.id('p5Canvas');
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
@@ -79,6 +92,8 @@ function pixelToText(textData=textDatas['1960']) {
   // let canvasDiv = document.getElementsById('canvasSpan');
   let canvasDiv = createDiv();
   canvasDiv.id('canvasSpan');
+  // canvasDiv.position(0, 0);
+  // canvasDiv.style('z-index', '-1');
   
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
@@ -111,7 +126,6 @@ function pixelToText(textData=textDatas['1960']) {
       textIndex++;
     }
   });
-
   
   // for (let i = 0; i < spans.length; i += Math.floor(Math.random())) {
   //   let i = Math.floor(Math.random() * spans.length);
