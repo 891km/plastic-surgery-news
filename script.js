@@ -51,6 +51,7 @@ function setup() {
   textData = textDatas['1960'];
   changeImage();
   pixelToText();
+  titleHighlight('1960')
 }
 
 
@@ -140,7 +141,7 @@ let lenDatas = {
   '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9]
 };
 
-let TrueDatas = {
+let trueDatas = {
   '1960' : [1, 0, 0, 0, 0],
   '1970' : [18, 9, 20, 17, 19, 28, 9, 8, 20, 23, 8, 12, 18, 21, 26, 4, 41, 22, 10, 20, 22],
   '1980' : [20, 10, 18, 11, 22, 17, 19, 18, 15, 10, 29, 13, 10, 8, 29, 29, 15, 13, 14, 14, 20, 17, 9, 12, 19, 15, 9, 10, 10, 9, 13],
@@ -153,12 +154,25 @@ function titleHighlight(year='1960') {
   lenData = lenDatas[year];
   trueData = trueDatas[year];
   
-  textByTitles = [];
-  let indexSum = 0;
-  for length in lengths:
-      end = start + length
-      result.append(textDatas[start:end])
-      start = end
+  textIndexByTitles = [];
+  let start = 0;
+  for (let i = 0; i < lenData.length; i++) {
+      let length = lenData[i];
+      let end = start + length;
+      textIndexByTitles.push({ start: start, end: end });
+      // textIndexByTitles.push(textData.substring(start, end));
+      start = end;
+  }
+  
+  for (let i = 0; i < textIndexByTitles.length; i++) {
+    if(trueData[i]) {
+      console.log(textIndexByTitles[i]);
+      console.log(textData[textIndexByTitles[i].start : textIndexByTitles[i].end]);
+    }
+  }
+  
+  
+  
 }
 
 
@@ -174,11 +188,3 @@ window.addEventListener('scroll', function() {
   changeImage(textData);
   pixelToText(textData);
 });
-
-// parent.addEventListener('scroll', function() {
-//   // 부모 요소의 스크롤 위치를 얻어옵니다.
-//   let scrollPosition = parent.scrollTop;
-
-//   // 자식 요소의 스크롤 위치를 부모와 동기화합니다.
-//   child.scrollTop = scrollPosition;
-// });
