@@ -37,29 +37,28 @@ function preload() {
   img = imgs[randomIndex];
 }
 
-
 function setup() {
   canvasHeight = windowHeight;
   canvasWidth = canvasHeight * (img.width / img.height);
-  let p5Canvas = createCanvas(canvasWidth, canvasHeight);
-  p5Canvas.parent('canvasContainer');
-  // canvas.position(0, 0);
-  // canvas.style('z-index', '-1');
-  // canvas.id('p5Canvas');
+  let canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.id('canvas');
+  // canvas.parent('canvasContainer');
+  // background(210);
+  // noStroke();
   
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   window.scrollTo(0, 0);
-  // textData = textDatas['1960'];
-  // changeImage();
-  // pixelToText();
-}
-
-function draw() {
   textData = textDatas['1960'];
   changeImage();
   pixelToText();
 }
+
+// function draw() {
+//   textData = textDatas['1960'];
+//   changeImage();
+//   pixelToText();
+// }
 
 function windowResized() {
   pixelToText(textData);
@@ -95,7 +94,7 @@ function pixelToText(textData=textDatas['1960']) {
   // let canvasDiv = document.getElementsById('canvasSpan');
   let spanDiv = createDiv();
   spanDiv.id('spanDiv');
-  spanDiv.parent('canvasContainer');
+  // spanDiv.parent('canvas');
   // canvasDiv.position(0, 0);
   // canvasDiv.style('z-index', '-1');
   
