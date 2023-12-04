@@ -91,43 +91,60 @@ function pixelToText(years='1960') {
   let container = document.getElementById('canvasContainer');
   container.innerHTML = '';
   
-  spanDiv = createDiv();
-  spanDiv.id('spanDiv');
-  spanDiv.parent('canvasContainer');
+  // spanDiv = createDiv();
+  // spanDiv.id('spanDiv');
+  // spanDiv.parent('canvasContainer');
   
-  spanDiv.html('');
+  spanDiv = document.createElement('div');
+  spanDiv.id = 'spanDiv';
+  container.appendChild(spanDiv);
+  
 
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
   let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+  
   spans = [];
   
   pixelInfo.forEach((pixel, i) => {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
-    // scrollY = window.scrollY;
-    // let mapScrollY = map(scrollY, 0, maxScrollY, 0, 30);
-    // let randFontSize = (Math.random() * mapScrollY) - (mapScrollY / 2);
     
     if (pixel.brightness > 240) {
 
-      spans[i] = createSpan(" ");
-      spans[i].parent('spanDiv');
+      // spans[i] = createSpan(" ");
+      // spans[i].parent('spanDiv');
+      
+      spans[i] = document.createElement('span');
+      spans[i].innerText = ' '; // 텍스트 없는 span 추가
+      spanDiv.appendChild(spans[i]);
 
     } else {
 
-      spans[i] = createSpan(textPixel);
-      spans[i].id(textIndex);
-      spans[i].style("font-variation-settings", "'wght' " + fontWeight);
-      spans[i].style("font-size", pixelSize + "px");
-      spans[i].style('width', pixelSize + "px");
-      spans[i].style('height', pixelSize + "px");
-      spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
-      spans[i].parent('spanDiv');
+      // spans[i] = createSpan(textPixel);
+      // spans[i].id(textIndex);
+      // spans[i].style("font-variation-settings", "'wght' " + fontWeight);
+      // spans[i].style("font-size", pixelSize + "px");
+      // spans[i].style('width', pixelSize + "px");
+      // spans[i].style('height', pixelSize + "px");
+      // spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
+      // spans[i].parent('spanDiv');
+      
+      spans[i] = document.createElement('span');
+      spans[i].innerText = textPixel; // 텍스트가 있는 span 추가
+      spans[i].style.fontVariationSettings = "'wght' " + fontWeight;
+      spans[i].style.fontSize = pixelSize + "px";
+      spans[i].style.width = pixelSize + "px";
+      spans[i].style.height = pixelSize + "px";
+      spans[i].style.position = 'absolute';
+      spans[i].style.left = pixel.x + adjustX + 'px';
+      spans[i].style.top = pixel.y + adjustY + 'px';
+      spanDiv.appendChild(spans[i]);
 
       textIndex++;
     }
   });
+  
 }
 
 let lenDatas = {
@@ -146,11 +163,11 @@ let trueDatas = {
 
 function titleHighlight(years='1960') {
   
-  textData = textDatas[years];
-  lenData = lenDatas[years];
-  trueData = trueDatas[years];
+  let textData = textDatas[years];
+  let lenData = lenDatas[years];
+  let trueData = trueDatas[years];
   
-  textIndexByT = [];
+  let textIndexByT = [];
   let start = 0;
   for (let i = 0; i < lenData.length; i++) {
       let length = lenData[i];
@@ -165,9 +182,14 @@ function titleHighlight(years='1960') {
       // console.log(textIndexByT[i]);
       let start = textIndexByT[i]['start'];
       let end = textIndexByT[i]['end'];
-      let titleSpans = spans.slice(start, end);
-      // titleSpans[0].style("background-color", '#000000');
-      console.log(titleSpans);
+      // let titleSpans = spans.slice(start, end);
+      
+      for (let i = start; i <= end; i++) {
+        let span = document.getElementById(i.toString());
+        if (span) {
+          span.style.backgroundColor = '#000000';
+        }
+      }
     }
   }
 }
@@ -179,7 +201,6 @@ window.addEventListener('scroll', function() {
   
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
-  textData = textDatas[yearDataList[yearSection]];
-  changeImage(textData);
-  pixelToText(textData);
+  changeImage(yearDataList[yearSection]);
+  pixelToText(yearDataList[yearSection]);
 });
