@@ -210,15 +210,15 @@ function titleHighlight(years='1960') {
   let trueData = trueDatas[years];
   
   let spanByTitle = [];
-  // let start = 0;
-  
+  let start = 0;
   // [18, 20, 16, 15, 27]
-  for (let i = 0; i < lenData.length+1; i++) {
-    let start = lenData[i];
-    let end = lenData[i+1];
-    spanByTitle.push(textData.slice(start, end));
+  for (let i = 1; i < lenData.length+1; i++) {
+    
+    let end = start + (lenData[i]);
+    console.log(start, end);
+    spanByTitle.push(textData.slice(start-1, end));
     // textIndexByT.push({ start: start, end: end });
-    // start = end;
+    start += (lenData[i]+1);
   }
   console.log("spanByTitle:", spanByTitle);
   console.log("textData:", textData.length);
