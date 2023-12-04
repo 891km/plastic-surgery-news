@@ -132,16 +132,34 @@ function pixelToText(textData=textDatas['1960']) {
     }
   });
   
-  // for (let i = 0; i < spans.length; i += Math.floor(Math.random())) {
-  //   let i = Math.floor(Math.random() * spans.length);
-  //   let selectedSpan = spans[i];
-  //   if (selectedSpan) {
-  //     selectedSpan.style('background-color', '#000000');
-  //     selectedSpan.style("color", "#FFFFFF"); 
-  //   }
-  // }
+  for (let i = 0; i < spans.length; i += Math.floor(Math.random())) {
+    let i = Math.floor(Math.random() * spans.length);
+    let selectedSpan = spans[i];
+    if (selectedSpan) {
+      selectedSpan.style('background-color', '#000000');
+      selectedSpan.style("color", "#FFFFFF"); 
+    }
+  }
   
 }
+
+let len_1960 = [18, 20, 16, 15, 27];
+let len_1970 = [18, 9, 20, 17, 19, 28, 9, 8, 20, 23, 8, 12, 18, 21, 26, 4, 41, 22, 10, 20, 22];
+let len_1980 = [20, 10, 18, 11, 22, 17, 19, 18, 15, 10, 29, 13, 10, 8, 29, 29, 15, 13, 14, 14, 20, 17, 9, 12, 19, 15, 9, 10, 10, 9, 13];
+let len_1990 = [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9];
+function titleHighlight() {
+  
+  for (let i = 0; i < spans.length; i += Math.floor(Math.random())) {
+    let i = Math.floor(Math.random() * spans.length);
+    let selectedSpan = spans[i];
+    if (selectedSpan) {
+      selectedSpan.style('background-color', '#000000');
+      selectedSpan.style("color", "#FFFFFF"); 
+    }  
+  
+  
+}
+
 
 
 let yearList = document.getElementById('yearList');
