@@ -110,24 +110,12 @@ function pixelToText(years='1960') {
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness > 240) {
-
-      // spans[i] = createSpan(" ");
-      // spans[i].parent('spanDiv');
       
       let span = document.createElement('span');
       span.innerText = ' '; // 텍스트 없는 span 추가
       spanDiv.appendChild(span);
 
     } else {
-
-      // spans[i] = createSpan(textPixel);
-      // spans[i].id(textIndex);
-      // spans[i].style("font-variation-settings", "'wght' " + fontWeight);
-      // spans[i].style("font-size", pixelSize + "px");
-      // spans[i].style('width', pixelSize + "px");
-      // spans[i].style('height', pixelSize + "px");
-      // spans[i].position(pixel.x + adjustX, pixel.y + adjustY); 
-      // spans[i].parent('spanDiv');
       
       textSpans[textIndex] = document.createElement('span');
       textSpans[textIndex].id = textIndex;
@@ -156,52 +144,17 @@ let lenDatas = {
 
 let trueDatas = {
   '1960' : [1, 0, 0, 0, 0],
-  '1970' : [18, 9, 20, 17, 19, 28, 9, 8, 20, 23, 8, 12, 18, 21, 26, 4, 41, 22, 10, 20, 22],
-  '1980' : [20, 10, 18, 11, 22, 17, 19, 18, 15, 10, 29, 13, 10, 8, 29, 29, 15, 13, 14, 14, 20, 17, 9, 12, 19, 15, 9, 10, 10, 9, 13],
-  '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9]
+  '1970' : [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1],
+  '1980' : [1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
+  '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]
 };
 
-let titleSpans = {
-  '1960' : [],
-  '1970' : [],
-  '1980' : [],
-  '1990' : []
-};
-
-// function titleHighlight(years='1960') {
-  
-//   let textData = textDatas[years];
-//   let lenData = lenDatas[years];
-//   let trueData = trueDatas[years];
-  
-//   let textIndexByT = [];
-//   let start = 0;
-  
-//   for (let i = 0; i < lenData.length; i++) {
-//       let length = lenData[i];
-//       let end = start + length;
-//       textIndexByT.push({ start: start, end: end });
-//       start = end;
-//   }
-  
-  
-//   for (let i = 0; i < textIndexByT.length; i++) {
-//     if(trueData[i]) {
-//       let start = textIndexByT[i]['start'];
-//       let end = textIndexByT[i]['end'];
-//       // let titleSpans = spans.slice(start, end);
-      
-//       for (let i = start; i < end; i++) {
-//         let titleSpan = document.getElementById(i.toString());
-//         if (titleSpan) {
-//           titleSpan.style.backgroundColor = '#000000';
-//           titleSpan.style.color = '#ffffff';
-//           console.log(titleSpan);
-//         }
-//       }
-//     }
-//   }
-// }
+// let titleSpans = {
+//   '1960' : [],
+//   '1970' : [],
+//   '1980' : [],
+//   '1990' : []
+// };
 
 function titleHighlight(years='1960') {
   
@@ -214,25 +167,19 @@ function titleHighlight(years='1960') {
   for (let i = 0; i < lenData.length; i++) {
     
     let end = start + (lenData[i]);
-    console.log(start, end);
-    spanByTitle.push(spans.slice(start-1, end-1));
-    start += (lenData[i]);
+    spanByTitle.push(textSpans.slice(start-1, end-1));
+    start += lenData[i];
   }
-  console.log("spanByTitle:", spanByTitle);
-  console.log("textData:", textData.length);
-  console.log(spans);
   
-  
-//   for (let i = 0; i < spanByTitle.length; i++) {
-//     if(trueData[i]) {
-//       spanByTitle[i]
-//       console.log(spanByTitle[i]);
-//         // let titleSpan = document.getElementById(i.toString());
-//           spanByTitle[i].style.backgroundColor = '#000000';
-//           spanByTitle[i].style.color = '#ffffff';
-          
-//     }
-//   }
+  for (let i = 0; i < spanByTitle.length; i++) {
+    if(trueData[i]) {
+      console.log(spanByTitle[i]);
+      spanByTitle[i].forEach(span => {
+        span.style.backgroundColor = '#000000';
+        span.style.color = '#ffffff';
+      });   
+    }
+  }
 }
 
 
