@@ -55,21 +55,14 @@ function setup() {
 }
 
 
-// function draw() {
-//   textData = textDatas['1960'];
-//   changeImage();
-//   pixelToText();
-// }
-
-
 function windowResized() {
   pixelToText(textData);
   resizeCanvas(canvasWidth, canvasHeight);
 }
 
 
-function changeImage(textData=textDatas['1960']) {
-  // pixelSize = 24;
+function changeImage(years='1960') {
+  textData = textDatas[years];
   pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 20));
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -92,11 +85,13 @@ function changeImage(textData=textDatas['1960']) {
 }
 
 let spans;
-function pixelToText(textData=textDatas['1960']) {
+function pixelToText(years='1960') {
+  textData = textDatas[years];
+  
   let container = document.getElementById('canvasContainer');
   container.innerHTML = '';
   
-  let spanDiv = createDiv();
+  spanDiv = createDiv();
   spanDiv.id('spanDiv');
   spanDiv.parent('canvasContainer');
   
@@ -171,22 +166,16 @@ function titleHighlight(years='1960') {
       let start = textIndexByT[i]['start'];
       let end = textIndexByT[i]['end'];
       let titleSpans = spans.slice(start, end);
-      titleSpans[0].style("background-color", '#000000');
-      // for (let i = 0; i < titleSpans; i++) {
-      //   titleSpans[i].style('background-color', '#000000');
-      //   titleSpans[i].style("color", "#FFFFFF"); 
-      //   console.log(titleSpans[i]);
-      // }
+      // titleSpans[0].style("background-color", '#000000');
+      console.log(titleSpans);
     }
   }
 }
 
-
-
 let yearList = document.getElementById('yearList');
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  yearList.scrollTop = scrollY;
+  // yearList.scrollTop = scrollY;
   
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
