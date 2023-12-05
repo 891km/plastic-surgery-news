@@ -177,8 +177,10 @@ function titleHighlight(years='1960') {
     if(trueData[i]) {
       
       spanByTitle[i].forEach(span => {
-        if (!titleSpans[years].has(span)) {
-          titleSpans[years].add(span);
+        if (span instanceof HTMLElement) {
+          if (!titleSpans[years].has(span)) {
+            titleSpans[years].add(span);
+          }
         }
       });
 
