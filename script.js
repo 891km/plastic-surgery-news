@@ -24,7 +24,6 @@ let imgURLs = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
-
 function preload() {
   let img0 = loadImage(imgURLs[0]);
   let img1 = loadImage(imgURLs[1]);
@@ -32,7 +31,7 @@ function preload() {
   
   // let randomIndex = Math.floor(Math.random() * (imgs.length));
   // img = imgs[randomIndex];
-  img = imgs[1];
+  img = imgs[1];  
 }
 
 
@@ -173,6 +172,28 @@ let trueSpans = {
   '1980' : [[emptySpan]],
   '1990' : [[emptySpan]]
   };
+let yearTitles = {
+  'main' : [''],
+  '1960' : ['', '1965'],
+  '1970' : ['', '1972', '1974', '1975', '1977', '1978', '1978', '1979', '1979'],
+  '1980' : ['', '1980', '1981', '1981', '1982', '1983', '1983', '1984', '1985', '1985', '1985', '1985', '1986', '1987', '1987', '1988', '1988', '1988', '1989', '1989'],
+  '1990' : ['', '1990', '1990', '1990', '1991', '1991', '1991', '1992', '1992', '1992', '1992', '1992', '1992', '1993', '1993', '1993', '1993', '1994', '1994', '1994', '1995', '1995', '1995', '1995', '1996', '1996', '1996', '1997', '1997', '1998', '1998', '1998', '1998', '1999', '1999', '1999', '1999', '1999', '1999']
+  };
+let newsImgs = {
+  'main' : [''],
+  '1960' : ['', '0'],
+  '1970' : ['1', '2', '3', '4', '5', '6'],
+  '1980' : [''],
+  '1990' : ['']
+}
+
+  let start = 1;
+  for (let i = 0; i < lenData.length; i+=trueDatas[years].filter(e => 1 === e).length) {
+    let end = start + (lenData[i]);
+    spanByLen.push(textSpans.slice(start-1, end-1));
+    start += lenData[i];
+  }
+  "newsImage/" + index + ".png"
 
 function titleHighlight(years='main') {
   
@@ -224,14 +245,6 @@ function titleHighlight(years='main') {
   prevSpans = trueSpans[years].slice(0, currentTitle + 1);
 }
 
-let yearTitles = {
-  'main' : [''],
-  '1960' : ['', '1965'],
-  '1970' : ['', '1972', '1974', '1975', '1977', '1978', '1978', '1979', '1979'],
-  '1980' : ['', '1980', '1981', '1981', '1982', '1983', '1983', '1984', '1985', '1985', '1985', '1985', '1986', '1987', '1987', '1988', '1988', '1988', '1989', '1989'],
-  '1990' : ['', '1990', '1990', '1990', '1991', '1991', '1991', '1992', '1992', '1992', '1992', '1992', '1992', '1993', '1993', '1993', '1993', '1994', '1994', '1994', '1995', '1995', '1995', '1995', '1996', '1996', '1996', '1997', '1997', '1998', '1998', '1998', '1998', '1999', '1999', '1999', '1999', '1999', '1999']
-  };
-
 
 let scrollY = window.scrollY;
 let yearIndex;
@@ -260,10 +273,10 @@ window.addEventListener('scroll', function() {
 });
 
 // 스크롤 속도 조절
-$(function() {  
-    console.log('실행');
-    // Default
-    jQuery.scrollSpeed(10, 20000);
+// $(function() {  
+//     console.log('실행');
+//     // Default
+//     jQuery.scrollSpeed(10, 20000);
     
-});
+// });
 
