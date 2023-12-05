@@ -210,6 +210,7 @@ function titleHighlight(years='main') {
   });
   
   for (let i = 0; i < currentTitle + 1; i++) {
+    yearTitle.textContent = years;
     trueSpans[years][i].forEach(span => {
       span.style.backgroundColor = '#1E1E20';
       span.style.color = '#FDFDFD';
@@ -218,6 +219,15 @@ function titleHighlight(years='main') {
   
   prevSpans = trueSpans[years].slice(0, currentTitle + 1);
 }
+
+let yearTitles = {
+  'main' : [''],
+  '1960' : ['1965'],
+  '1970' : [],
+  '1980' : [],
+  '1990' : []
+  };
+
 
 let scrollY = window.scrollY;
 let yearIndex;
@@ -228,7 +238,7 @@ let titleSection;
 
 let prevYear = 'main';
 let currentYear = 'main';
-let yearList = document.getElementById('yearList');
+let yearTitle = document.getElementById('year');
 
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;

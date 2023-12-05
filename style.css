@@ -107,6 +107,7 @@ span {
   width: 10px;
   height: 10px;
   color: #1E1E20;
+  overflow: visible;
 /*   font-family: 'Hahmlet', serif; */
   font-family: 'Noto Sans KR', sans-serif;
   
