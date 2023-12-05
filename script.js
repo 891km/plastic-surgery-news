@@ -213,41 +213,31 @@ let currentYear = 'main';
 // let years = currentYear;
 window.addEventListener('scroll', function() {
   let scrollY = window.scrollY;
-  let sectionCount = 6;
+  let sectionCount = 12;
   let maxScrollY = window.innerHeight * (sectionCount);
-  let scrollPercentage = (scrollY / maxScrollY) * 66;
-  // console.log(scrollPercentage);
-  
-  let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount-2);
+  let yearIndex = Math.min(Math.floor(scrollY / window.innerHeight * 2), sectionCount-2);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
-  currentYear = yearDataList[yearSection];
-  // console.log(scrollY);
-  // console.log(Math.floor(scrollY / trueSpans[currentYear].length));
-  console.log(Math.floor((scrollY % (window.innerHeight / trueSpans[currentYear].length))));
+  currentYear = yearDataList[yearIndex];
+
+  
+  console.log(scrollY, Math.floor(((scrollY % window.innerHeight) / (window.innerHeight / trueSpans[currentYear].length))));
   
   
   
   if (currentYear !== prevYear) {
-    // let currentY = window.scrollY;
-    // console.log(scrollY, window.innerHeight, maxScrollY);
-    prevYear = currentYear;
-    
     changeImage(currentYear);
-    pixelToText(currentYear);
+    pixelToText(currentYear); 
   
-    // console.log(Math.floor(((scrollY % window.innerHeight)) / trueSpans[currentYear].length));
-    // Math.floor(yearSection * window.innerHeight + (window.innerHeight / trueSpans[currentYear].length));
-    // console.log(scrollY / yearSection - window.innerHeight);
-    
-    
-  //   let currentTitle; // 0~trueSpans[currentYear].length-1
-  //   trueSpans[currentYear][currentTitle].forEach(span => {
-  //     span.style.backgroundColor = '#1E1E20';
-  //     span.style.color = '#FDFDFD';
-  //   });  
-  
-  
+    prevYear = currentYear;
   }
+  
+  let yearSection = (scrollY % (window.innerHeight * 2));
+  let titleSection = (window.innerHeight * 2) / (trueSpans[currentYear].length);
+  let currentTitle = Math.floor(yearSection / titleSection);
+  trueSpans[currentYear][currentTitle].forEach(span => {
+    span.style.backgroundColor = '#1E1E20';
+    span.style.color = '#FDFDFD';
+  }); 
   
 });
 

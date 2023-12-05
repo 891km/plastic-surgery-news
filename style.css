@@ -10,7 +10,7 @@ body {
   display: relative;
   justify-content: center;
   width: 100vw;
-  height: calc(100vh * 6);
+  height: calc(100vh * 12);
   background-color: #FDFDFD;
 /*   overflow: hidden; */
 }
@@ -110,5 +110,5 @@ span {
 /*   font-family: 'Hahmlet', serif; */
   font-family: 'Noto Sans KR', sans-serif;
   
-  transition: all 2s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
