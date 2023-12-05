@@ -145,7 +145,7 @@ function pixelToText(years='main') {
     }
   });
   
-  titleHighlight(years);
+  titleHighlight(years);  
 }
 
 
@@ -194,12 +194,12 @@ function titleHighlight(years='main') {
     }  
   }
   
-  // for (let i = 0; i < trueSpans[years].length; i++) {
-  //   trueSpans[years][i].forEach(span => {
-  //     span.style.backgroundColor = '#1E1E20';
-  //     span.style.color = '#FDFDFD';
-  //   });  
-  // }
+  for (let i = 0; i < trueSpans['main'].length; i++) {
+    trueSpans['main'][i].forEach(span => {
+      span.style.backgroundColor = '#1E1E20';
+      span.style.color = '#FDFDFD';
+    });  
+  }
 }
 
 
@@ -221,10 +221,12 @@ window.addEventListener('scroll', function() {
   let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount-2);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearSection];
+  // console.log(scrollY);
   
   if (currentYear !== prevYear) {
+    console.log(scrollY);
     prevYear = currentYear;
-  
+    
     changeImage(currentYear);
     pixelToText(currentYear);
     
