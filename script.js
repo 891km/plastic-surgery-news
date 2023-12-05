@@ -48,7 +48,11 @@ function setup() {
   changeImage();
   pixelToText();
   
-  console.log(trueDatas['main']);
+  // console.log("1960", textDatas['1960'].length);
+  // console.log("1970", textDatas['1970'].length);
+  // console.log("1980", textDatas['1980'].length);
+  // console.log("1990", textDatas['1990'].length);
+  
 }
 
 
@@ -57,16 +61,29 @@ function windowResized() {
   pixelToText(currentYear);
 }
 
-
-
 let pixelSize;
 let pixelInfo = [];
 // let pixelInfo = [];
 function changeImage(years='main') {
   textData = textDatas[years];
   // pixelSize = Math.floor(map(textData.length, 12, 1330, 38, 16));
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
+  let value = textData.length;
+  if (value <= 96) {
+      pixelSize =  80 - ((value - 12) * (80 - 34)) / (96 - 12);
+    } else if (value <= 375) {
+      pixelSize =  34 - ((value - 96) * (34 - 29)) / (375 - 96);
+    } else if (value <= 477) {
+      pixelSize =  29 - ((value - 375) * (29 - 22)) / (477 - 375);
+    } else {
+      pixelSize =  22 - ((value - 477) * (22 - 16)) / (1330 - 477);
+    }
+  
+  
+  
   console.log(pixelSize);
+
+  // pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
+  // console.log(pixelSize);
   
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
