@@ -29,7 +29,8 @@ canvas {
 
 .newsGrid {
   display: grid;
-  grid-template-rows: 45% 55%;
+  grid-template-rows: 40% auto;
+/*   row-gap: 20px; */
   position: fixed;
   top: 0;
   right: 0;
@@ -46,16 +47,16 @@ canvas {
   right: 0;
   width: 100%;
 /*   margin-bottom: 10px; */
-  height: calc(100% - 10px);
+  height: calc(100% - 20px);
   background-color: yellow;
 }
 
 #newsText {
   position: relative;
-/*   top: 0; */
+  bottom: 0;
   right: 0;
   width: 100%;
-  height: calc(100% - 10px);
+  height: calc(100% - 40px);
   background-color: red;
 }
 
