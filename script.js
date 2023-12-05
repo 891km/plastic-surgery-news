@@ -69,7 +69,7 @@ function changeImage(years='main') {
   // pixelSize = Math.floor(map(textData.length, 12, 1330, 38, 16));
   let value = textData.length;
   if (value <= 96) {
-      pixelSize =  80 - ((value - 12) * (80 - 34)) / (96 - 12);
+      pixelSize =  100 - ((value - 12) * (100 - 34)) / (96 - 12);
     } else if (value <= 375) {
       pixelSize =  34 - ((value - 96) * (34 - 29)) / (375 - 96);
     } else if (value <= 477) {
@@ -123,7 +123,13 @@ function pixelToText(years='main') {
   let adjustY = (windowHeight - canvasHeight) / 2;
   
   pixelInfo.forEach((pixel, i) => {
-    let textPixel = textData.charAt(textIndex % textData.length);
+    let textPixel;
+    if (years === 'main') {
+      textPixel = textData.charAt(textIndex);
+    } else {
+      textPixel = textData.charAt(textIndex % textData.length);
+    }
+    // let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness > 240) {
