@@ -20,7 +20,7 @@ let imgURLs = [
 ];
 
 let scrollY;
-let sectionCount = 4;
+let sectionCount = 5;
 let maxScrollY = window.innerHeight * (sectionCount);
 
 let spanDiv;
@@ -46,13 +46,7 @@ function setup() {
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   changeImage();
-  pixelToText();
-  
-  // console.log("1960", textDatas['1960'].length);
-  // console.log("1970", textDatas['1970'].length);
-  // console.log("1980", textDatas['1980'].length);
-  // console.log("1990", textDatas['1990'].length);
-  
+  pixelToText();  
 }
 
 
@@ -66,7 +60,6 @@ let pixelInfo = [];
 // let pixelInfo = [];
 function changeImage(years='main') {
   textData = textDatas[years];
-  // pixelSize = Math.floor(map(textData.length, 12, 1330, 38, 16));
   let value = textData.length;
   if (value <= 96) {
       pixelSize =  121 - ((value - 12) * (121 - 34)) / (96 - 12);
@@ -77,13 +70,6 @@ function changeImage(years='main') {
     } else {
       pixelSize =  26 - ((value - 477) * (26 - 16)) / (1330 - 477);
     }
-  
-  
-  
-  console.log(pixelSize);
-
-  // pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
-  // console.log(pixelSize);
   
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -129,7 +115,7 @@ function pixelToText(years='main') {
     } else {
       textPixel = textData.charAt(textIndex % textData.length);
     }
-    // let textPixel = textData.charAt(textIndex % textData.length);
+    
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness > 240) {
@@ -175,23 +161,22 @@ let trueDatas = {
   '1980' : [1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
   '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]
 };
-let trueSpans;
+let trueSpans = {
+  'main' : [],
+  '1960' : [],
+  '1970' : [],
+  '1980' : [],
+  '1990' : []
+  };
 
 function titleHighlight(years='main') {
   
-  trueSpans = {
-    'main' : [],
-    '1960' : [],
-    '1970' : [],
-    '1980' : [],
-    '1990' : []
-  };
+  trueSpans[years] = [];
+  let spanByLen = [];
   
   let textData = textDatas[years];
   let lenData = lenDatas[years];
   let trueData = trueDatas[years];
-  
-  let spanByLen = [];
   
   let start = 1;
   for (let i = 0; i < lenData.length; i++) {
@@ -233,6 +218,7 @@ window.addEventListener('scroll', function() {
   if (currentYear !== prevYear) {    
     changeImage(currentYear);
     pixelToText(currentYear);
+    console.log(trueSpans);
     
     prevYear = currentYear;
   }

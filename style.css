@@ -17,7 +17,6 @@ body {
 
 canvas {
   display: none;
-/*   display: block; */
   position: absolute;
   top: 0;
   left: 50%;
@@ -29,15 +28,13 @@ canvas {
 
 .newsGrid {
   display: grid;
-  grid-template-rows: 40% auto;
-/*   row-gap: 20px; */
+  grid-template-rows: 45% auto;
   position: fixed;
   top: 0;
   right: 0;
   width: 320px;
   height: 100vh;
   padding: 20px;
-  background-color: green;
   overflow: hidden;
 }
 
@@ -46,7 +43,6 @@ canvas {
   top: 0;
   right: 0;
   width: 100%;
-/*   margin-bottom: 10px; */
   height: calc(100% - 20px);
   background-color: yellow;
 }
@@ -57,15 +53,14 @@ canvas {
   right: 0;
   width: 100%;
   height: calc(100% - 40px);
-  background-color: red;
+  background-color: orange;
 }
 
 #year {
   position: fixed;
   top: 0;
-  left: 24px;
+  left: 30px;
   display: flex;
-/*   justify-content: center; */
   align-items: center;
 /*   padding-left: 10px; */
   width: 200px;
@@ -76,7 +71,7 @@ canvas {
 /*   background-color: yellow; */
   font-family: 'Noto Sans KR', sans-serif;
   font-variation-settings: 'wght' 900;
-  font-size: 60px;
+  font-size: 72px;
 }
 
 #progressContainer {
