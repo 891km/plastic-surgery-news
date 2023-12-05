@@ -27,36 +27,27 @@ canvas {
 }
 
 .newsGrid {
-  display: grid;
-  grid-template-rows: 45% auto;
+/*   display: block; */
   position: fixed;
   top: 0;
   right: 0;
-  width: 320px;
+  width: 400px;
   height: 100vh;
-  padding: 20px;
   overflow: hidden;
+  z-index: 500;
 }
 
 #newsImg {
   display: none;
-  position: relative;
-  top: 0;
-  right: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   width: 100%;
-  height: calc(100% - 20px);
+  height: auto;
   background-color: rgba(255, 255, 255, 0);
   overflow: visible;
-}
-
-#newsText {
-  display: none;
-  position: relative;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: calc(100% - 40px);
-  background-color: white;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.25);
+  z-index: 1000;
 }
 
 img {
@@ -66,6 +57,18 @@ img {
   width: 100%;
   height: auto;
 }
+
+#newsText {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  height: 50%;
+  background-color: green;
+}
+
+
 
 #year {
   position: fixed;

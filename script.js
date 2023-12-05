@@ -225,11 +225,11 @@ function titleHighlight(years='main') {
   });
   
   //
-  if (years != 'main') {
-    let newsImgDiv = document.getElementById('newsImg');
-    newsImgDiv.style.display = 'block';
-    console.log('실행');
-  }
+//   if (years != 'main') {
+//     let newsImgDiv = document.getElementById('newsImg');
+//     newsImgDiv.style.display = 'block';
+//     console.log('실행');
+//   }
   
   for (let i = 0; i < currentTitle + 1; i++) {
     // let randomIndex = Math.floor(Math.random() * randomColor.length);
@@ -240,6 +240,10 @@ function titleHighlight(years='main') {
       span.style.color = '#FDFDFD';
       
       if(newsImgs[years] && newsImgs[years][i]) {
+        let newsImgDiv = document.getElementById('newsImg');
+        newsImgDiv.style.display = 'block';
+        console.log('실행');
+        
         newsImg.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
       }
       console.log(years, newsImgs[years][i], "newsImage/" + newsImgs[years][i] + ".png");
