@@ -149,59 +149,39 @@ let trueDatas = {
   '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]
 };
 
-let titleSpans = {
+let trueSpans = {
   '1960' : [],
   '1970' : [],
   '1980' : [],
   '1990' : []
 };
 
-let finalTitle;
 function titleHighlight(years='1960') {
   // console.log(titleSpans[years]);
   let textData = textDatas[years];
   let lenData = lenDatas[years];
   let trueData = trueDatas[years];
   
-  let spanByTitle = [];
+  let spanByLen = [];
   let start = 1;
   for (let i = 0; i < lenData.length; i++) {
     
     let end = start + (lenData[i]);
-    spanByTitle.push(textSpans.slice(start-1, end-1));
+    spanByLen.push(textSpans.slice(start-1, end-1));
     start += lenData[i];
   }
   
   
   
-  for (let i = 0; i < spanByTitle.length; i++) {
-    
+  for (let i = 0; i < spanByLen.length; i++) { 
     if(trueData[i]) {
-      if(titleSpans[years].length <= trueDatas[years].length) {
-       titleSpans[years].push({ order: i, title: spanByTitle[i] });
+      
+      if(trueSpans[years].length < trueDatas[years].filter(e => 1 === e).length) {
+       trueSpans[years].push(spanByLen[i]);
       }
-    } 
-     console.log(titleSpans[years].length);
       
-//       spanByTitle[i].forEach(span => {
-//         if (titleSpans[years].length < spanByTitle[i].length) {
-//           yearTitles.push(span);
-//         }
-//       });
-      
-//       if (titleSpans[years].length < spanByTitle[i].length) {
-//         yearTitles.push(yearTitles);
-//       }
-//     }  
-  // }
-//   console.log(years, titleSpans[years]); 
-  
-  // spanByTitle[i].forEach(span => {
-  //   span.style.backgroundColor = '#000000';
-  //   span.style.color = '#ffffff';
-  // });   
-  
-}
+    }  
+  }
 }
 
 
@@ -214,8 +194,15 @@ window.addEventListener('scroll', function() {
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
   let years = yearDataList[yearSection];
+  
   changeImage(years);
   pixelToText(years);
   titleHighlight(years);
+  
+  // console.log(trueSpans[years]);
+  trueSpans[years].forEach(span => {
+    span.style.backgroundColor = '#000000';
+    span.style.color = '#ffffff';
+  });  
 
 });
