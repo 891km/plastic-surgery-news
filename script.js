@@ -222,7 +222,11 @@ window.addEventListener('scroll', function() {
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearSection];
   // console.log(scrollY);
-  console.log(Math.floor(scrollY / trueSpans[currentYear].length));
+  // console.log(Math.floor(scrollY / trueSpans[currentYear].length));
+  console.log(Math.floor((scrollY % (window.innerHeight / trueSpans[currentYear].length))));
+  
+  
+  
   if (currentYear !== prevYear) {
     // let currentY = window.scrollY;
     // console.log(scrollY, window.innerHeight, maxScrollY);
@@ -231,13 +235,18 @@ window.addEventListener('scroll', function() {
     changeImage(currentYear);
     pixelToText(currentYear);
   
+    // console.log(Math.floor(((scrollY % window.innerHeight)) / trueSpans[currentYear].length));
     // Math.floor(yearSection * window.innerHeight + (window.innerHeight / trueSpans[currentYear].length));
-    console.log(scrollY / yearSection - window.innerHeight);
-    let currentTitle; // 0~trueSpans[currentYear].length-1
-    trueSpans[currentYear][currentTitle].forEach(span => {
-      span.style.backgroundColor = '#1E1E20';
-      span.style.color = '#FDFDFD';
-    });  
+    // console.log(scrollY / yearSection - window.innerHeight);
+    
+    
+  //   let currentTitle; // 0~trueSpans[currentYear].length-1
+  //   trueSpans[currentYear][currentTitle].forEach(span => {
+  //     span.style.backgroundColor = '#1E1E20';
+  //     span.style.color = '#FDFDFD';
+  //   });  
+  
+  
   }
   
 });
