@@ -215,8 +215,7 @@ function titleHighlight(years='main') {
     // let randomIndex = Math.floor(Math.random() * randomColor.length);
     yearTitle.textContent = yearTitles[years][i];
     trueSpans[years][i].forEach(span => {
-      let colorIndex = Math.min(trueSpans[years].length % randomColor.length);
-      console.log(colorIndex);
+      let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
     }); 
@@ -262,12 +261,9 @@ window.addEventListener('scroll', function() {
 
 // 스크롤 속도 조절
 $(function() {  
-
+    console.log('실행');
     // Default
-    // jQuery.scrollSpeed(100, 800);
-    
-    // Custom Easing
-    jQuery.scrollSpeed(100, 1200, 'easeOutCubic');
+    jQuery.scrollSpeed(10, 20000);
     
 });
 
