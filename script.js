@@ -62,7 +62,7 @@ let pixelInfo = [];
 // let pixelInfo = [];
 function changeImage(years='1960') {
   textData = textDatas[years];
-  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 20));
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
   
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -171,19 +171,18 @@ function titleHighlight(years='1960') {
   for (let i = 0; i < spanByLen.length; i++) { 
     if(trueData[i]) {
       if(trueSpans[years].length < trueData.filter(e => 1 === e).length) {
-        trueSpans[years].push(spanByLen[i]);
-        console.log(years, i, spanByLen[i]);
+        trueSpans[years].push(spanByLen[i]);   
       }
     }  
   }
   
   
   for (let i = 0; i < trueSpans[years].length; i++) {
-    console.log(trueSpans[years][i]);
+    // console.log(trueSpans[years][i]);
     trueSpans[years][i].forEach(span => {
-      // console.log(span);
       span.style.backgroundColor = '#1E1E20';
       span.style.color = '#FDFDFD';
+      console.log(years, i, span);
       // console.log('실행');
     });  
   }
