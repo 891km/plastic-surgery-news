@@ -123,6 +123,8 @@ function pixelToText(years='1960') {
       textSpans[textIndex].style.position = 'absolute';
       textSpans[textIndex].style.left = pixel.x + adjustX + 'px';
       textSpans[textIndex].style.top = pixel.y + adjustY + 'px';
+      textSpans[textIndex].style.backgroundColor = '#FDFDFD';
+      textSpans[textIndex].style.color = '#1E1E20';
       spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
@@ -170,6 +172,7 @@ function titleHighlight(years='1960') {
     if(trueData[i]) {
       if(trueSpans[years].length < trueData.filter(e => 1 === e).length) {
         trueSpans[years].push(spanByLen[i]);
+        console.log(years, i, spanByLen[i]);
       }
     }  
   }
@@ -178,8 +181,10 @@ function titleHighlight(years='1960') {
   for (let i = 0; i < trueSpans[years].length; i++) {
     console.log(trueSpans[years][i]);
     trueSpans[years][i].forEach(span => {
-      span.style.backgroundColor = '#000000';
-      span.style.color = '#ffffff';
+      // console.log(span);
+      span.style.backgroundColor = '#1E1E20';
+      span.style.color = '#FDFDFD';
+      // console.log('실행');
     });  
   }
 }
@@ -198,8 +203,8 @@ window.addEventListener('scroll', function() {
   
   
   if (currentYear !== prevYear) {
-    console.log(currentYear);
-    console.log('실행');
+    // console.log(currentYear);
+    // console.log('실행');
     
     changeImage(currentYear);
     pixelToText(currentYear);
