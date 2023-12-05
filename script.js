@@ -133,6 +133,7 @@ function pixelToText(years='1960') {
     }
   });
   
+  titleHighlight(years);
 }
 
 let lenDatas = {
@@ -189,12 +190,12 @@ function titleHighlight(years='1960') {
 
 
 let yearList = document.getElementById('yearList');
-let changeSection = 0;
+let changeSection = false;
+let prevYears = '1960';
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  // yearList.scrollTop = scrollY;
+  console.log(changeSection);
   
-  let prevYears = '1960';
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
   let years = yearDataList[yearSection];
@@ -204,11 +205,10 @@ window.addEventListener('scroll', function() {
     prevYears = years;
   }
   
-  if (changeSection) {
-    pixelToText(years);
-    titleHighlight(years);
-
-    changeSection = false; // 함수 실행 후 changeSection을 다시 false로 설정
-  }
 });
 
+
+if (changeSection) {
+  pixelToText(years);
+  changeSection = false; // 함수 실행 후 changeSection을 다시 false로 설정
+}
