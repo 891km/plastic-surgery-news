@@ -231,14 +231,13 @@ window.addEventListener('scroll', function() {
     changeImage(currentYear);
     pixelToText(currentYear);
   
-    console.log(currentYear, scrollY, (yearSection * window.innerHeight / trueSpans[currentYear].length)) ;
-    
-    // for (let i = 0; i < trueSpans[currentYear].length; i++) {
-    //   trueSpans[currentYear][i].forEach(span => {
-    //     span.style.backgroundColor = '#1E1E20';
-    //     span.style.color = '#FDFDFD';
-    //   });  
-    // }
+    // Math.floor(yearSection * window.innerHeight + (window.innerHeight / trueSpans[currentYear].length));
+    console.log(scrollY, yearSection, scrollY / (yearSection+1));
+    let currentTitle; // 0~trueSpans[currentYear].length-1
+    trueSpans[currentYear][currentTitle].forEach(span => {
+      span.style.backgroundColor = '#1E1E20';
+      span.style.color = '#FDFDFD';
+    });  
   }
   
 });
