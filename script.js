@@ -216,14 +216,13 @@ window.addEventListener('scroll', function() {
   let sectionCount = 6;
   let maxScrollY = window.innerHeight * (sectionCount);
   let scrollPercentage = (scrollY / maxScrollY) * 66;
-  console.log(scrollPercentage);
+  // console.log(scrollPercentage);
   
   let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount-2);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearSection];
   
   if (currentYear !== prevYear) {
-    // console.log(scrollY, yearSection);
     prevYear = currentYear;
   
     changeImage(currentYear);
