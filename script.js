@@ -65,15 +65,18 @@ function changeImage(years='main') {
   textData = textDatas[years];
   
   let textLen = textData.length;
-  if (textLen <= 96) {
-      pixelSize =  118 - ((textLen - 12) * (118 - 34)) / (96 - 12);
-    } else if (textLen <= 375) {
-      pixelSize =  34 - ((textLen - 96) * (34 - 29)) / (375 - 96);
-    } else if (textLen <= 477) {
-      pixelSize =  29 - ((textLen - 375) * (29 - 26)) / (477 - 375);
-    } else {
-      pixelSize =  26 - ((textLen - 477) * (26 - 16)) / (1330 - 477);
-    }
+  
+  if (textLen <= 16) {
+    pixelSize = 118;
+  } else if (textLen <= 96) {
+    pixelSize = 34;
+  } else if (textLen <= 375) {
+    pixelSize = 29;
+  } else if (textLen <= 477) {
+    pixelSize = 22;
+  } else if (textLen <= 1330) {
+    pixelSize = 16;
+  }
   
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -234,9 +237,9 @@ function titleHighlight(years='main') {
       
       let newsImgDiv = document.getElementById('newsImg');
       let newsTextDiv = document.getElementById('newsText');
+      newsImgDiv.innerHTML = ' ';
+      newsTextDiv.innerHTML = ' ';
       if(newsImgs[years] && newsImgs[years][i]) {
-        newsImgDiv.innerHTML = ' ';
-        newsTextDiv.innerHTML = ' ';
         newsImgDiv.style.display = 'block';
         newsTextDiv.style.display = 'block';
         // console.log('실행');
