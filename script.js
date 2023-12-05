@@ -172,25 +172,36 @@ function titleHighlight(years='1960') {
     start += lenData[i];
   }
   
+  
+  
   for (let i = 0; i < spanByTitle.length; i++) {
     
     if(trueData[i]) {
-      let yearTitles = [];
+      if(titleSpans[years].length <= trueDatas[years].length) {
+       titleSpans[years].push({ order: i, title: spanByTitle[i] });
+      }
+    } 
+     console.log(titleSpans[years].length);
       
-      spanByTitle[i].forEach(span => {
-        if (titleSpans[years].length < spanByTitle[i].length) {
-          titleSpans[years].push(span);
-        }
-      });
-    }  
-  }
-  console.log(years, titleSpans[years]); 
+//       spanByTitle[i].forEach(span => {
+//         if (titleSpans[years].length < spanByTitle[i].length) {
+//           yearTitles.push(span);
+//         }
+//       });
+      
+//       if (titleSpans[years].length < spanByTitle[i].length) {
+//         yearTitles.push(yearTitles);
+//       }
+//     }  
+  // }
+//   console.log(years, titleSpans[years]); 
   
   // spanByTitle[i].forEach(span => {
   //   span.style.backgroundColor = '#000000';
   //   span.style.color = '#ffffff';
   // });   
   
+}
 }
 
 
@@ -206,4 +217,5 @@ window.addEventListener('scroll', function() {
   changeImage(years);
   pixelToText(years);
   titleHighlight(years);
+
 });
