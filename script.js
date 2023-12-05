@@ -69,13 +69,13 @@ function changeImage(years='main') {
   if (textLen <= 16) {
     pixelSize = 118;
   } else if (textLen <= 96) {
-    pixelSize = 34;
+    pixelSize = 40;
   } else if (textLen <= 375) {
-    pixelSize = 29;
+    pixelSize = 30;
   } else if (textLen <= 477) {
-    pixelSize = 22;
+    pixelSize = 28;
   } else if (textLen <= 1330) {
-    pixelSize = 16;
+    pixelSize = 17;
   }
   
   pixelInfo = [];
