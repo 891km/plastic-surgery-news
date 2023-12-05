@@ -206,38 +206,24 @@ function titleHighlight(years='main') {
 
 // let sectionCount = 6;
 // let maxScrollY = window.innerHeight * (sectionCount);
+let scrollY;
+let oneSection = window.innerHeight * 3;
+let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
+let yearSection = (scrollY % oneSection);
+let titleSection = oneSection / (trueSpans[currentYear].length);
+let currentTitle = Math.floor(yearSection / titleSection);
 
 let yearList = document.getElementById('yearList');
 let prevYear = 'main'; // default 값
 let currentYear = 'main';
-// let years = currentYear;
 window.addEventListener('scroll', function() {
-  let scrollY = window.scrollY;
-  let sectionCount = 12;
-  // let maxScrollY = window.innerHeight * (sectionCount);
-  let yearIndex = Math.min(Math.floor(scrollY / (window.innerHeight * 2)), sectionCount-4);
-  yearDataList = ['main', '1960', '1970', '1980', '1990'];
+  scrollY = window.scrollY;
   currentYear = yearDataList[yearIndex];
 
-  
-  
   if (currentYear !== prevYear) {
     changeImage(currentYear);
     pixelToText(currentYear); 
-  
     prevYear = currentYear;
   }
-  
-  
-  let yearSection = (scrollY % (window.innerHeight * 2));
-  let titleSection = (window.innerHeight * 2) / (trueSpans[currentYear].length);
-  let currentTitle = Math.floor(yearSection / titleSection);
-  trueSpans[currentYear][currentTitle].forEach(span => {
-    span.style.backgroundColor = '#1E1E20';
-    span.style.color = '#FDFDFD';
-  }); 
-  
-  console.log(trueSpans[currentYear]);
-  
 });
 
