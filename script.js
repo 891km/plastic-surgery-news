@@ -222,7 +222,7 @@ window.addEventListener('scroll', function() {
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearSection];
   // console.log(scrollY);
-  
+  console.log(Math.floor(scrollY / trueSpans[currentYear].length));
   if (currentYear !== prevYear) {
     // let currentY = window.scrollY;
     // console.log(scrollY, window.innerHeight, maxScrollY);
