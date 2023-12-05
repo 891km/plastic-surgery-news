@@ -39,21 +39,32 @@ canvas {
 }
 
 #newsImg {
+  display: none;
   position: relative;
   top: 0;
   right: 0;
   width: 100%;
   height: calc(100% - 20px);
-  background-color: yellow;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: visible;
 }
 
 #newsText {
+  display: none;
   position: relative;
   bottom: 0;
   right: 0;
   width: 100%;
   height: calc(100% - 40px);
-  background-color: orange;
+  background-color: white;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
 }
 
 #year {
