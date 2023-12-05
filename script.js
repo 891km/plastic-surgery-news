@@ -172,6 +172,7 @@ let trueSpans = {
   '1980' : [[emptySpan]],
   '1990' : [[emptySpan]]
   };
+let newsImg = document.getElementById('newsImg');
 let yearTitles = {
   'main' : [''],
   '1960' : ['', '1965'],
@@ -182,18 +183,10 @@ let yearTitles = {
 let newsImgs = {
   'main' : [''],
   '1960' : ['', '0'],
-  '1970' : ['1', '2', '3', '4', '5', '6'],
-  '1980' : [''],
-  '1990' : ['']
+  '1970' : ['', '1', '2', '3', '4', '5', '6', '7', '8'],
+  '1980' : ['', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
+  '1990' : ['', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65']
 }
-
-  let start = 1;
-  for (let i = 0; i < lenData.length; i+=trueDatas[years].filter(e => 1 === e).length) {
-    let end = start + (lenData[i]);
-    spanByLen.push(textSpans.slice(start-1, end-1));
-    start += lenData[i];
-  }
-  "newsImage/" + index + ".png"
 
 function titleHighlight(years='main') {
   
@@ -239,6 +232,10 @@ function titleHighlight(years='main') {
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
+      
+      // newsImg.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+      // newsImg.src = "newsImage/" + newsImgs[years][i] + ".png";
+      console.log(newsImgs['1960']);
     }); 
   }
   
