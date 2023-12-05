@@ -148,7 +148,7 @@ function pixelToText(years='main') {
   titleHighlight(years);  
 }
 
-
+let emptySpan = document.createElement('span');
 let lenDatas = {
   'main' : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   '1960' : [18, 20, 16, 15, 27],
@@ -165,14 +165,14 @@ let trueDatas = {
 };
 let trueSpans = {
   'main' : [],
-  '1960' : [],
-  '1970' : [],
-  '1980' : [],
-  '1990' : []
+  '1960' : [[emptySpan]],
+  '1970' : [[emptySpan]],
+  '1980' : [[emptySpan]],
+  '1990' : [[emptySpan]]
   };
 function titleHighlight(years='main') {
   
-  trueSpans[years] = [];
+  trueSpans[years] = [[emptySpan]];
   let spanByLen = [];
   
   let textData = textDatas[years];
@@ -188,13 +188,13 @@ function titleHighlight(years='main') {
   
   for (let i = 0; i < spanByLen.length; i++) { 
     if(trueData[i]) {
-      if(trueSpans[years].length < trueData.filter(e => 1 === e).length) {
+      if(trueSpans[years].length - 1 < trueData.filter(e => 1 === e).length) {
         trueSpans[years].push(spanByLen[i]);   
       }
     }  
   }
   
-  for (let i = 0; i < trueSpans['main'].length; i++) {
+  for (let i = 1; i < trueSpans['main'].length; i++) {
     trueSpans['main'][i].forEach(span => {
       span.style.backgroundColor = '#1E1E20';
       span.style.color = '#FDFDFD';
@@ -214,14 +214,11 @@ let currentYear = 'main';
 window.addEventListener('scroll', function() {
   let scrollY = window.scrollY;
   let sectionCount = 12;
-  let maxScrollY = window.innerHeight * (sectionCount);
-  let yearIndex = Math.min(Math.floor(scrollY / window.innerHeight * 2), sectionCount-2);
+  // let maxScrollY = window.innerHeight * (sectionCount);
+  let yearIndex = Math.min(Math.floor(scrollY / (window.innerHeight * 2)), sectionCount-4);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearIndex];
 
-  
-  console.log(scrollY, Math.floor(((scrollY % window.innerHeight) / (window.innerHeight / trueSpans[currentYear].length))));
-  
   
   
   if (currentYear !== prevYear) {
@@ -231,6 +228,7 @@ window.addEventListener('scroll', function() {
     prevYear = currentYear;
   }
   
+  
   let yearSection = (scrollY % (window.innerHeight * 2));
   let titleSection = (window.innerHeight * 2) / (trueSpans[currentYear].length);
   let currentTitle = Math.floor(yearSection / titleSection);
@@ -238,6 +236,8 @@ window.addEventListener('scroll', function() {
     span.style.backgroundColor = '#1E1E20';
     span.style.color = '#FDFDFD';
   }); 
+  
+  console.log(trueSpans[currentYear]);
   
 });
 
