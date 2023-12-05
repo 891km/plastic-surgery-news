@@ -157,30 +157,33 @@ let trueSpans = {
 };
 
 function titleHighlight(years='1960') {
-  // console.log(titleSpans[years]);
+  
   let textData = textDatas[years];
   let lenData = lenDatas[years];
   let trueData = trueDatas[years];
   
   let spanByLen = [];
+  
   let start = 1;
   for (let i = 0; i < lenData.length; i++) {
-    
     let end = start + (lenData[i]);
     spanByLen.push(textSpans.slice(start-1, end-1));
     start += lenData[i];
   }
   
-  
-  
   for (let i = 0; i < spanByLen.length; i++) { 
     if(trueData[i]) {
-      
-      if(trueSpans[years].length < trueDatas[years].filter(e => 1 === e).length) {
-       trueSpans[years].push(spanByLen[i]);
+      if(trueSpans[years].length < trueData.filter(e => 1 === e).length) {
+        trueSpans[years].push(spanByLen[i]);
       }
-      
     }  
+  }
+  
+  for (let i = 0; i < trueSpans[years].length; i++) {
+    trueSpans[years][i].forEach(span => {
+      span.style.backgroundColor = '#000000';
+      span.style.color = '#ffffff';
+    });  
   }
 }
 
@@ -199,10 +202,4 @@ window.addEventListener('scroll', function() {
   pixelToText(years);
   titleHighlight(years);
   
-  // console.log(trueSpans[years]);
-  trueSpans[years].forEach(span => {
-    span.style.backgroundColor = '#000000';
-    span.style.color = '#ffffff';
-  });  
-
 });
