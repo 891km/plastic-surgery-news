@@ -6,7 +6,7 @@ let canvasHeight;
 let titleColor = '1B1B1B';
 let textColor = '222222';
 let bgColor = 'FFFFFF';
-let randomColor = new Set('8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', '25A25C');
+let randomColor = (['8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', '25A25C']);
 
 let yearDataList = ['main', '1960', '1970', '1980', '1990'];
 
@@ -68,9 +68,6 @@ function changeImage(years='main') {
   textData = textDatas[years];
   
   let textLen = textData.length;
-  // let size_main = 130;
-  // let size_1960 = 34;
-  // let 
   if (textLen <= 96) {
       pixelSize =  118 - ((textLen - 12) * (118 - 34)) / (96 - 12);
     } else if (textLen <= 375) {
