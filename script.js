@@ -3,6 +3,11 @@ let adjustY;
 let canvasWidth;
 let canvasHeight;
 
+let titleColor = '1B1B1B';
+let textColor = '222222';
+let bgColor = 'FFFFFF';
+let randomColor = new Set('8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', '25A25C');
+
 let yearDataList = ['main', '1960', '1970', '1980', '1990'];
 
 let textData;
@@ -27,8 +32,9 @@ function preload() {
   let img1 = loadImage(imgURLs[1]);
   imgs = [img0, img1];
   
-  let randomIndex = Math.floor(Math.random() * (imgs.length));
-  img = imgs[randomIndex];
+  // let randomIndex = Math.floor(Math.random() * (imgs.length));
+  // img = imgs[randomIndex];
+  img = imgs[1];
 }
 
 
@@ -209,11 +215,13 @@ function titleHighlight(years='main') {
     });
   });
   
+  
   for (let i = 0; i < currentTitle + 1; i++) {
+    // let randomIndex = Math.floor(Math.random() * randomColor.length);
     yearTitle.textContent = yearTitles[years][i];
     trueSpans[years][i].forEach(span => {
-      span.style.backgroundColor = '#1E1E20';
-      span.style.color = '#FDFDFD';
+      span.style.backgroundColor = '#' + randomColor[trueSpans[years].length % i];
+      span.style.color = '#' + textColor;
     }); 
   }
   
