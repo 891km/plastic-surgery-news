@@ -214,13 +214,16 @@ let currentYear = 'main';
 // let years = currentYear;
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  
+
+  let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
-  let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / sectionCount)), sectionCount);
   currentYear = yearDataList[yearSection];
   
+  // console.log(scrollY, yearSection);
   
-  if (currentYear !== prevYear) {  
+  
+  if (currentYear !== prevYear) {
+    console.log(scrollY, yearSection);
     prevYear = currentYear;
   
     changeImage(currentYear);
@@ -233,7 +236,6 @@ window.addEventListener('scroll', function() {
         span.style.color = '#FDFDFD';
       });  
     }
-    
   }
   
 });
