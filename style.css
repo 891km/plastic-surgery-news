@@ -10,7 +10,7 @@ body {
   display: relative;
   justify-content: center;
   width: 100vw;
-  height: calc(100vh * 18);
+  height: calc(100vh * 15.99);
   background-color: #FDFDFD;
 /*   overflow: hidden; */
 }

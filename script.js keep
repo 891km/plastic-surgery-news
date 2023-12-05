@@ -246,5 +246,7 @@ window.addEventListener('scroll', function() {
   }
   
   prevSpans = trueSpans[currentYear].slice(0, currentTitle + 1);
+  
+  console.log(prevSpans);
 });
 
