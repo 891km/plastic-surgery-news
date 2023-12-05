@@ -1,3 +1,5 @@
+let yearDataList = ['main', '1960', '1970', '1980', '1990'];
+
 let textData;
 let textDatas = {
   'main' : '기사로보는과도한성형수술',
@@ -19,11 +21,6 @@ let imgURLs = [
   "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"
 ];
 
-let scrollY;
-let sectionCount = 5;
-let maxScrollY = window.innerHeight * (sectionCount);
-
-let spanDiv;
 
 function preload() {
   let img0 = loadImage(imgURLs[0]);
@@ -33,6 +30,7 @@ function preload() {
   let randomIndex = Math.floor(Math.random() * (imgs.length));
   img = imgs[randomIndex];
 }
+
 
 function setup() {
   window.scrollTo(0, 0);
@@ -46,7 +44,10 @@ function setup() {
   image(img, 0, 0, canvasWidth, canvasHeight);
   
   changeImage();
-  pixelToText();  
+  for (let year of yearDataList.reverse()) {
+    pixelToText(year);
+  }
+      console.log(trueSpans);
 }
 
 
@@ -55,9 +56,9 @@ function windowResized() {
   pixelToText(currentYear);
 }
 
+
 let pixelSize;
 let pixelInfo = [];
-// let pixelInfo = [];
 function changeImage(years='main') {
   textData = textDatas[years];
   let value = textData.length;
@@ -92,6 +93,7 @@ function changeImage(years='main') {
 }
 
 
+let spanDiv;
 let textSpans;
 function pixelToText(years='main') {
   textData = textDatas[years];
@@ -147,6 +149,7 @@ function pixelToText(years='main') {
   titleHighlight(years);
 }
 
+
 let lenDatas = {
   'main' : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   '1960' : [18, 20, 16, 15, 27],
@@ -168,7 +171,6 @@ let trueSpans = {
   '1980' : [],
   '1990' : []
   };
-
 function titleHighlight(years='main') {
   
   trueSpans[years] = [];
@@ -193,34 +195,45 @@ function titleHighlight(years='main') {
     }  
   }
   
-  
-  for (let i = 0; i < trueSpans[years].length; i++) {
-    trueSpans[years][i].forEach(span => {
-      span.style.backgroundColor = '#1E1E20';
-      span.style.color = '#FDFDFD';
-    });  
-  }
+  // for (let i = 0; i < trueSpans[years].length; i++) {
+  //   trueSpans[years][i].forEach(span => {
+  //     span.style.backgroundColor = '#1E1E20';
+  //     span.style.color = '#FDFDFD';
+  //   });  
+  // }
 }
 
+
+let scrollY;
+let sectionCount = 5;
+let maxScrollY = window.innerHeight * (sectionCount);
 
 let yearList = document.getElementById('yearList');
 let prevYear = 'main'; // default 값
 let currentYear = 'main';
-
+// let years = currentYear;
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   
-  let yearDataList = ['main', '1960', '1970', '1980', '1990'];
+  yearDataList = ['main', '1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / sectionCount)), sectionCount);
   currentYear = yearDataList[yearSection];
   
   
-  if (currentYear !== prevYear) {    
+  if (currentYear !== prevYear) {  
+    prevYear = currentYear;
+  
     changeImage(currentYear);
     pixelToText(currentYear);
-    console.log(trueSpans);
     
-    prevYear = currentYear;
+  
+    for (let i = 0; i < trueSpans[currentYear].length; i++) {
+      trueSpans[currentYear][i].forEach(span => {
+        span.style.backgroundColor = '#1E1E20';
+        span.style.color = '#FDFDFD';
+      });  
+    }
+    
   }
   
 });
