@@ -146,14 +146,16 @@ let trueDatas = {
   '1980' : [1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
   '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]
 };
-let trueSpans = {
-  '1960' : [],
-  '1970' : [],
-  '1980' : [],
-  '1990' : []
-};
+let trueSpans;
 
 function titleHighlight(years='1960') {
+  
+  trueSpans = {
+    '1960' : [],
+    '1970' : [],
+    '1980' : [],
+    '1990' : []
+  };
   
   let textData = textDatas[years];
   let lenData = lenDatas[years];
@@ -178,12 +180,9 @@ function titleHighlight(years='1960') {
   
   
   for (let i = 0; i < trueSpans[years].length; i++) {
-    // console.log(trueSpans[years][i]);
     trueSpans[years][i].forEach(span => {
       span.style.backgroundColor = '#1E1E20';
       span.style.color = '#FDFDFD';
-      console.log(years, i, span);
-      // console.log('실행');
     });  
   }
 }
@@ -201,10 +200,7 @@ window.addEventListener('scroll', function() {
   currentYear = yearDataList[yearSection];
   
   
-  if (currentYear !== prevYear) {
-    // console.log(currentYear);
-    // console.log('실행');
-    
+  if (currentYear !== prevYear) {    
     changeImage(currentYear);
     pixelToText(currentYear);
     
