@@ -31,7 +31,7 @@ function preload() {
   img = imgs[randomIndex];
 }
 
-let scrollY;
+
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -52,6 +52,7 @@ function setup() {
 function windowResized() {
   changeImage(currentYear);
   pixelToText(currentYear);
+  titleHighlight(currentYear); 
 }
 
 
@@ -142,9 +143,7 @@ function pixelToText(years='main') {
 
       textIndex++;
     }
-  });
-  
-  titleHighlight(years);  
+  }); 
 }
 
 
@@ -195,12 +194,13 @@ function titleHighlight(years='main') {
     }  
   }
   
-  scrollY = window.scrollY;
-  console.log(scrollY);
+  // scrollY = window.scrollY;
+  // console.log(scrollY);
   oneSection = window.innerHeight * 3;
   yearSection = (scrollY % oneSection);
   titleSection = oneSection / (trueSpans[years].length);
   let currentTitle = Math.floor(yearSection / titleSection);
+  console.log(trueSpans[years]);
   
   prevSpans.forEach(prevSpanGroup => {
     prevSpanGroup.forEach(span => {
@@ -219,7 +219,7 @@ function titleHighlight(years='main') {
   prevSpans = trueSpans[years].slice(0, currentTitle + 1);
 }
 
-
+let scrollY = window.scrollY;
 let yearIndex;
 let prevSpans = [];
 let oneSection = window.innerHeight * 3;
@@ -239,9 +239,9 @@ window.addEventListener('scroll', function() {
   if (currentYear !== prevYear) {
     changeImage(currentYear);
     pixelToText(currentYear); 
-    
     prevYear = currentYear;
   }
-  //
+  
+  titleHighlight(currentYear); 
 });
 
