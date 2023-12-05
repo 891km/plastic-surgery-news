@@ -73,9 +73,9 @@ function changeImage(years='main') {
     } else if (value <= 375) {
       pixelSize =  34 - ((value - 96) * (34 - 29)) / (375 - 96);
     } else if (value <= 477) {
-      pixelSize =  29 - ((value - 375) * (29 - 22)) / (477 - 375);
+      pixelSize =  29 - ((value - 375) * (29 - 26)) / (477 - 375);
     } else {
-      pixelSize =  22 - ((value - 477) * (22 - 16)) / (1330 - 477);
+      pixelSize =  26 - ((value - 477) * (26 - 16)) / (1330 - 477);
     }
   
   
