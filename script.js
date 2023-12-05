@@ -224,18 +224,21 @@ window.addEventListener('scroll', function() {
   // console.log(scrollY);
   
   if (currentYear !== prevYear) {
-    console.log(scrollY);
+    // let currentY = window.scrollY;
+    // console.log(scrollY, window.innerHeight, maxScrollY);
     prevYear = currentYear;
     
     changeImage(currentYear);
     pixelToText(currentYear);
+  
+    console.log(currentYear, scrollY, (yearSection * window.innerHeight / trueSpans[currentYear].length)) ;
     
-    for (let i = 0; i < trueSpans[currentYear].length; i++) {
-      trueSpans[currentYear][i].forEach(span => {
-        span.style.backgroundColor = '#1E1E20';
-        span.style.color = '#FDFDFD';
-      });  
-    }
+    // for (let i = 0; i < trueSpans[currentYear].length; i++) {
+    //   trueSpans[currentYear][i].forEach(span => {
+    //     span.style.backgroundColor = '#1E1E20';
+    //     span.style.color = '#FDFDFD';
+    //   });  
+    // }
   }
   
 });
