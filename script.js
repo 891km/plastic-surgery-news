@@ -204,26 +204,33 @@ function titleHighlight(years='main') {
 
 
 
-// let sectionCount = 6;
-// let maxScrollY = window.innerHeight * (sectionCount);
-let scrollY;
-let oneSection = window.innerHeight * 3;
-let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
-let yearSection = (scrollY % oneSection);
-let titleSection = oneSection / (trueSpans[currentYear].length);
-let currentTitle = Math.floor(yearSection / titleSection);
-
-let yearList = document.getElementById('yearList');
 let prevYear = 'main'; // default 값
 let currentYear = 'main';
+let yearList = document.getElementById('yearList');
 window.addEventListener('scroll', function() {
-  scrollY = window.scrollY;
+  let scrollY = window.scrollY;
+  let oneSection = window.innerHeight * 3;
+  let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
   currentYear = yearDataList[yearIndex];
 
+  
   if (currentYear !== prevYear) {
     changeImage(currentYear);
     pixelToText(currentYear); 
     prevYear = currentYear;
   }
+  
+  let yearSection = (scrollY % oneSection);
+  let titleSection = oneSection / (trueSpans[currentYear].length);
+  let currentTitle = Math.floor(yearSection / titleSection);
+  
+  for (let i = 0; i < currentTitle + 1; i++) {
+    trueSpans[currentYear][i].forEach(span => {
+      console.log(currentTitle, span);
+      span.style.backgroundColor = '#1E1E20';
+      span.style.color = '#FDFDFD';
+    }); 
+  }
+  
 });
 
