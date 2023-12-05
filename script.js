@@ -189,17 +189,26 @@ function titleHighlight(years='1960') {
 
 
 let yearList = document.getElementById('yearList');
-
+let changeSection = 0;
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   // yearList.scrollTop = scrollY;
   
+  let prevYears = '1960';
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
   let years = yearDataList[yearSection];
   
-  changeImage(years);
-  pixelToText(years);
-  titleHighlight(years);
+  if (years !== prevYears) {
+    changeSection = true;
+    prevYears = years;
+  }
   
+  if (changeSection) {
+    pixelToText(years);
+    titleHighlight(years);
+
+    changeSection = false; // 함수 실행 후 changeSection을 다시 false로 설정
+  }
 });
+
