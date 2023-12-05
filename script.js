@@ -50,7 +50,6 @@ function setup() {
   
   changeImage();
   pixelToText();
-  titleHighlight();
 }
 
 
@@ -89,18 +88,16 @@ function pixelToText(years='1960') {
   textData = textDatas[years];
   
   let container = document.getElementById('canvasContainer');
-  container.innerHTML = '';
+  container.innerHTML = ''; // 초기화
   
   spanDiv = document.createElement('div');
   spanDiv.id = 'spanDiv';
   container.appendChild(spanDiv);
   
-
   let textIndex = 0;
-  let adjustX = (windowWidth - canvasWidth) / 2; // 이미지의 시작 X 위치
-  let adjustY = (windowHeight - canvasHeight) / 2; // 이미지의 시작 Y 위치
+  let adjustX = (windowWidth - canvasWidth) / 2;
+  let adjustY = (windowHeight - canvasHeight) / 2;
   
-
   pixelInfo.forEach((pixel, i) => {
     let textPixel = textData.charAt(textIndex % textData.length);
     let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
@@ -199,12 +196,15 @@ window.addEventListener('scroll', function() {
   
   if (currentYear !== prevYear) {
     // console.log('before:', currentYear, prevYear);
-    prevYear = currentYear;
+    
+    
+    console.log(currentYear);
     console.log('실행');
+    
     changeImage(currentYear);
     pixelToText(currentYear);
     
-
+    prevYear = currentYear;
     // console.log('after:', currentYear, prevYear);
   }
   
