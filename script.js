@@ -232,7 +232,7 @@ window.addEventListener('scroll', function() {
     pixelToText(currentYear);
   
     // Math.floor(yearSection * window.innerHeight + (window.innerHeight / trueSpans[currentYear].length));
-    console.log(scrollY, yearSection, scrollY / (yearSection+1));
+    console.log(scrollY / yearSection - window.innerHeight);
     let currentTitle; // 0~trueSpans[currentYear].length-1
     trueSpans[currentYear][currentTitle].forEach(span => {
       span.style.backgroundColor = '#1E1E20';
