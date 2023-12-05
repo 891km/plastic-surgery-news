@@ -47,6 +47,8 @@ function setup() {
   
   changeImage();
   pixelToText();
+  
+  console.log(trueDatas['main']);
 }
 
 
@@ -62,9 +64,9 @@ let pixelInfo = [];
 // let pixelInfo = [];
 function changeImage(years='main') {
   textData = textDatas[years];
-  pixelSize = Math.floor(map(textData.length, 12, 1330, 50, 16));
-  console.log(pixeSize);
-  // pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
+  // pixelSize = Math.floor(map(textData.length, 12, 1330, 38, 16));
+  pixelSize = Math.floor(map(textData.length, 96, 1330, 34, 16));
+  console.log(pixelSize);
   
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
@@ -137,14 +139,14 @@ function pixelToText(years='main') {
 }
 
 let lenDatas = {
-  'main' : [Math.floor(Math.random() * 12)],
+  'main' : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   '1960' : [18, 20, 16, 15, 27],
   '1970' : [18, 9, 20, 17, 19, 28, 9, 8, 20, 23, 8, 12, 18, 21, 26, 4, 41, 22, 10, 20, 22],
   '1980' : [20, 10, 18, 11, 22, 17, 19, 18, 15, 10, 29, 13, 10, 8, 29, 29, 15, 13, 14, 14, 20, 17, 9, 12, 19, 15, 9, 10, 10, 9, 13],
   '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9]
 };
 let trueDatas = {
-  'main' : [1],
+  'main' : Array.from({ length: 12 }, () => Math.floor(Math.random() * 2)),
   '1960' : [1, 0, 0, 0, 0],
   '1970' : [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1],
   '1980' : [1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
@@ -201,7 +203,7 @@ window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   
   let yearDataList = ['main', '1960', '1970', '1980', '1990'];
-  let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / sectionCount)), sectionCount - 1);
+  let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / sectionCount)), sectionCount);
   currentYear = yearDataList[yearSection];
   
   
