@@ -72,6 +72,7 @@ canvas {
   font-family: 'Noto Sans KR', sans-serif;
   font-variation-settings: 'wght' 900;
   font-size: 72px;
+  color: #1B1B1B;
   
   transition: all 0.5s ease-in-out;
 }

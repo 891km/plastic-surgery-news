@@ -3,9 +3,7 @@ let adjustY;
 let canvasWidth;
 let canvasHeight;
 
-let titleColor = '1B1B1B';
 let textColor = '222222';
-let bgColor = 'FFFFFF';
 let randomColor = (['8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', '25A25C']);
 
 let yearDataList = ['main', '1960', '1970', '1980', '1990'];
@@ -217,8 +215,10 @@ function titleHighlight(years='main') {
     // let randomIndex = Math.floor(Math.random() * randomColor.length);
     yearTitle.textContent = yearTitles[years][i];
     trueSpans[years][i].forEach(span => {
-      span.style.backgroundColor = '#' + randomColor[trueSpans[years].length % i];
-      span.style.color = '#' + textColor;
+      let colorIndex = Math.min(trueSpans[years].length % randomColor.length);
+      console.log(colorIndex);
+      span.style.backgroundColor = '#' + randomColor[colorIndex];
+      span.style.color = '#FDFDFD';
     }); 
   }
   
@@ -258,5 +258,16 @@ window.addEventListener('scroll', function() {
   }
   
   titleHighlight(currentYear); 
+});
+
+// 스크롤 속도 조절
+$(function() {  
+
+    // Default
+    // jQuery.scrollSpeed(100, 800);
+    
+    // Custom Easing
+    jQuery.scrollSpeed(100, 1200, 'easeOutCubic');
+    
 });
 
