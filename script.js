@@ -47,7 +47,6 @@ function setup() {
   for (let year of yearDataList.reverse()) {
     pixelToText(year);
   }
-      console.log(trueSpans);
 }
 
 
@@ -204,32 +203,32 @@ function titleHighlight(years='main') {
 }
 
 
-let scrollY;
-let sectionCount = 5;
-let maxScrollY = window.innerHeight * (sectionCount);
+
+// let sectionCount = 6;
+// let maxScrollY = window.innerHeight * (sectionCount);
 
 let yearList = document.getElementById('yearList');
 let prevYear = 'main'; // default 값
 let currentYear = 'main';
 // let years = currentYear;
 window.addEventListener('scroll', function() {
-  scrollY = window.scrollY;
-
-  let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount);
+  let scrollY = window.scrollY;
+  let sectionCount = 6;
+  let maxScrollY = window.innerHeight * (sectionCount);
+  let scrollPercentage = (scrollY / maxScrollY) * 66;
+  console.log(scrollPercentage);
+  
+  let yearSection = Math.min(Math.floor(scrollY / window.innerHeight), sectionCount-2);
   yearDataList = ['main', '1960', '1970', '1980', '1990'];
   currentYear = yearDataList[yearSection];
   
-  // console.log(scrollY, yearSection);
-  
-  
   if (currentYear !== prevYear) {
-    console.log(scrollY, yearSection);
+    // console.log(scrollY, yearSection);
     prevYear = currentYear;
   
     changeImage(currentYear);
     pixelToText(currentYear);
     
-  
     for (let i = 0; i < trueSpans[currentYear].length; i++) {
       trueSpans[currentYear][i].forEach(span => {
         span.style.backgroundColor = '#1E1E20';
