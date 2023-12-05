@@ -51,8 +51,8 @@ function setup() {
 
 
 function windowResized() {
-  pixelToText(textData);
-  resizeCanvas(canvasWidth, canvasHeight);
+  changeImage(currentYear);
+  pixelToText(currentYear);
 }
 
 
