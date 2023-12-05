@@ -28,30 +28,34 @@ canvas {
 }
 
 .newsGrid {
+  display: grid;
+  grid-template-rows: 45% 55%;
   position: fixed;
   top: 0;
   right: 0;
-  width: 340px;
+  width: 320px;
   height: 100vh;
-  margin: 20px;
+  padding: 20px;
   background-color: green;
+  overflow: hidden;
 }
 
 #newsImg {
   position: relative;
   top: 0;
   right: 0;
-  width: 340px;
-  height: 300px;
+  width: 100%;
+/*   margin-bottom: 10px; */
+  height: calc(100% - 10px);
   background-color: yellow;
 }
 
 #newsText {
   position: relative;
-  bottom: 0;
+/*   top: 0; */
   right: 0;
-  width: 340px;
-  height: 300px;
+  width: 100%;
+  height: calc(100% - 10px);
   background-color: red;
 }
 
