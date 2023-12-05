@@ -31,10 +31,11 @@ canvas {
   position: fixed;
   top: 0;
   right: 0;
-  width: 400px;
+  width: 440px;
   height: 100vh;
   overflow: hidden;
   z-index: 500;
+/*   background-color: yellow; */
 }
 
 #newsImg {
@@ -42,20 +43,22 @@ canvas {
   position: absolute;
   top: 20px;
   right: 20px;
-  width: 100%;
+  width: 90%;
   height: auto;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 1);
   overflow: visible;
   box-shadow: 0 2px 14px rgba(0,0,0,0.25);
   z-index: 1000;
+/*   background-color: yellow; */
 }
 
 img {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   width: 100%;
   height: auto;
+/*   box-shadow: 0 2px 14px rgba(0,0,0,0.25); */
 }
 
 #newsText {

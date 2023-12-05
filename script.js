@@ -223,32 +223,26 @@ function titleHighlight(years='main') {
       span.style.color = 'initial';
     });
   });
-  
-  //
-//   if (years != 'main') {
-//     let newsImgDiv = document.getElementById('newsImg');
-//     newsImgDiv.style.display = 'block';
-//     console.log('실행');
-//   }
+
   
   for (let i = 0; i < currentTitle + 1; i++) {
-    // let randomIndex = Math.floor(Math.random() * randomColor.length);
     yearTitle.textContent = yearTitles[years][i];
     trueSpans[years][i].forEach(span => {
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
       
+      let newsImgDiv = document.getElementById('newsImg');
+      let newsTextDiv = document.getElementById('newsText');
       if(newsImgs[years] && newsImgs[years][i]) {
-        let newsImgDiv = document.getElementById('newsImg');
+        newsImgDiv.innerHTML = ' ';
+        newsTextDiv.innerHTML = ' ';
         newsImgDiv.style.display = 'block';
-        console.log('실행');
+        newsTextDiv.style.display = 'block';
+        // console.log('실행');
         
-        newsImg.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+        newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
       }
-      console.log(years, newsImgs[years][i], "newsImage/" + newsImgs[years][i] + ".png");
-      // newsImg.src = "newsImage/" + newsImgs[years][i] + ".png";
-      // console.log(years, newsImg);
     }); 
   }
   
