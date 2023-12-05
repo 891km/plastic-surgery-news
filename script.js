@@ -91,10 +91,6 @@ function pixelToText(years='1960') {
   let container = document.getElementById('canvasContainer');
   container.innerHTML = '';
   
-  // spanDiv = createDiv();
-  // spanDiv.id('spanDiv');
-  // spanDiv.parent('canvasContainer');
-  
   spanDiv = document.createElement('div');
   spanDiv.id = 'spanDiv';
   container.appendChild(spanDiv);
@@ -190,25 +186,27 @@ function titleHighlight(years='1960') {
 
 
 let yearList = document.getElementById('yearList');
-let changeSection = false;
-let prevYears = '1960';
+// let changeSection = false;
+let prevYear = '1960';
+let currentYear = '1960';
+
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  console.log(changeSection);
   
   let yearDataList = ['1960', '1970', '1980', '1990'];
   let yearSection = Math.min(Math.floor(scrollY / (maxScrollY / scrollCount)), scrollCount - 1);
-  let years = yearDataList[yearSection];
+  currentYear = yearDataList[yearSection];
   
-  if (years !== prevYears) {
-    changeSection = true;
-    prevYears = years;
+  if (currentYear !== prevYear) {
+    // console.log('before:', currentYear, prevYear);
+    prevYear = currentYear;
+    console.log('실행');
+    changeImage(currentYear);
+    pixelToText(currentYear);
+    
+
+    // console.log('after:', currentYear, prevYear);
   }
   
 });
 
-
-if (changeSection) {
-  pixelToText(years);
-  changeSection = false; // 함수 실행 후 changeSection을 다시 false로 설정
-}
