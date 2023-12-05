@@ -31,7 +31,7 @@ function preload() {
   img = imgs[randomIndex];
 }
 
-
+let scrollY;
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -46,9 +46,6 @@ function setup() {
   
   changeImage();
   pixelToText();
-  // for (let year of yearDataList.reverse()) {
-  //   pixelToText(year);
-  // }
 }
 
 
@@ -198,36 +195,11 @@ function titleHighlight(years='main') {
     }  
   }
   
-  // for (let i = 1; i < trueSpans['main'].length; i++) {
-  //   trueSpans['main'][i].forEach(span => {
-  //     span.style.backgroundColor = '#1E1E20';
-  //     span.style.color = '#FDFDFD';
-  //   });  
-  // }
-}
-
-
-let scrollY = 0;
-let prevYear = 'main'; // default 값
-let currentYear = 'main';
-let prevSpans = [];
-let yearList = document.getElementById('yearList');
-
-window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
-  let oneSection = window.innerHeight * 3;
-  let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
-  currentYear = yearDataList[yearIndex];
-
-  if (currentYear !== prevYear) {
-    changeImage(currentYear);
-    pixelToText(currentYear); 
-    prevYear = currentYear;
-  }
-  
-  //
-  let yearSection = (scrollY % oneSection);
-  let titleSection = oneSection / (trueSpans[currentYear].length);
+  console.log(scrollY);
+  oneSection = window.innerHeight * 3;
+  yearSection = (scrollY % oneSection);
+  titleSection = oneSection / (trueSpans[years].length);
   let currentTitle = Math.floor(yearSection / titleSection);
   
   prevSpans.forEach(prevSpanGroup => {
@@ -238,13 +210,38 @@ window.addEventListener('scroll', function() {
   });
   
   for (let i = 0; i < currentTitle + 1; i++) {
-    trueSpans[currentYear][i].forEach(span => {
-      console.log(currentTitle, span);
+    trueSpans[years][i].forEach(span => {
       span.style.backgroundColor = '#1E1E20';
       span.style.color = '#FDFDFD';
     }); 
   }
   
-  prevSpans = trueSpans[currentYear].slice(0, currentTitle + 1);
+  prevSpans = trueSpans[years].slice(0, currentTitle + 1);
+}
+
+
+let yearIndex;
+let prevSpans = [];
+let oneSection = window.innerHeight * 3;
+let yearSection;
+let titleSection;
+
+let prevYear = 'main';
+let currentYear = 'main';
+let yearList = document.getElementById('yearList');
+
+window.addEventListener('scroll', function() {
+  scrollY = window.scrollY;
+  
+  let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
+  currentYear = yearDataList[yearIndex];  
+  
+  if (currentYear !== prevYear) {
+    changeImage(currentYear);
+    pixelToText(currentYear); 
+    
+    prevYear = currentYear;
+  }
+  //
 });
 
