@@ -81,6 +81,7 @@ function changeImage(years='main') {
   pixelInfo = [];
   for (let y = 0; y < canvasHeight; y += pixelSize) {
     for (let x = 0; x < canvasWidth; x += pixelSize) {
+      pixelSize += (Math.random() * 4);
       let pos = get(x,y);
       let r = red(pos);
       let g = green(pos);

@@ -13,9 +13,11 @@ body {
   width: 100vw;
   height: calc(100vh * 15.99);
 /*   background-color: #FDFDFD; */
-  background-image: url("https://cdn.glitch.global/9804501c-6989-413e-9c64-74e41c0b157a/bgTexture.png?v=1701873657318");
-  background-size: 100vw auto;
-  mix-blend-mode: overlay;
+/*   background-image: url("https://cdn.glitch.global/9804501c-6989-413e-9c64-74e41c0b157a/bgTexture.png?v=1701873657318"); */
+/*   background-size: 100vw; */
+/*   background-position: center center; */
+/*   background-attachment: fixed; */
+  mix-blend-mode: multiply;
 }
 
 canvas {
@@ -38,7 +40,6 @@ canvas {
   height: 100vh;
   overflow: hidden;
   z-index: 500;
-/*   mix-blend-mode: multiply; */
 }
 
 #newsImg {
@@ -48,8 +49,6 @@ canvas {
   right: 20px;
   width: 90%;
   height: auto;
-/*   background-color : green; */
-/*   mix-blend-mode: multiply; */
 /*   background-color: rgba(255, 255, 255, 0); */
 /*   box-shadow: 0 2px 14px rgba(0,0,0,0.25); */
   overflow: visible;
@@ -87,10 +86,8 @@ img {
 /*   padding-left: 10px; */
   width: 200px;
   height: 100vh;
-/*   overflow: scroll; */
   touch-action: none;
   
-/*   background-color: yellow; */
   font-family: 'Noto Sans KR', sans-serif;
   font-variation-settings: 'wght' 900;
   font-size: 110px;
@@ -99,7 +96,7 @@ img {
   transition: all 0.5s ease-in-out;
 }
 
-#progressContainer {
+/* #progressContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -109,7 +106,7 @@ img {
   width: 10px;
   height: 100vh; 
   background-color: black;
-}
+} */
 
 #canvasContainer {
   display: block;
