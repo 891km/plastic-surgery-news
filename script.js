@@ -245,7 +245,8 @@ function titleHighlight(years='main') {
         newsTextDiv.style.display = 'block';
         // console.log('실행');
         
-        newsImgTag.src = "newsImage/" + newsImgs[years][i] + ".png";
+        console.log(`newsImage/${newsImgs[years][i]}.png`);
+        // newsImgTag.src = `newsImage/${newsImgs[years][i]}.png`;
         // newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
       }
     }); 
