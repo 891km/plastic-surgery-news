@@ -175,7 +175,6 @@ let trueSpans = {
   '1980' : [[emptySpan]],
   '1990' : [[emptySpan]]
   };
-let newsImg = document.getElementById('newsImg');
 let yearTitles = {
   'main' : [],
   '1960' : ['', '1965'],
@@ -236,15 +235,18 @@ function titleHighlight(years='main') {
       span.style.color = '#FDFDFD';
       
       let newsImgDiv = document.getElementById('newsImg');
+      let newsImgTag = document.getElementById('newImgTag');
       let newsTextDiv = document.getElementById('newsText');
-      newsImgDiv.innerHTML = ' ';
-      newsTextDiv.innerHTML = ' ';
+      newsImgTag.src = ' ';
+      // newsImgDiv.innerHTML = ' ';
+      // newsTextDiv.innerHTML = ' ';
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'block';
         newsTextDiv.style.display = 'block';
         // console.log('실행');
         
-        newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+        newsImgTag.src = "newsImage/" + newsImgs[years][i] + ".png";
+        // newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
       }
     }); 
   }
