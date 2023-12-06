@@ -7,15 +7,17 @@ html, body {
 
 body {
 /*   display: none; */
+  position: sticky;
   margin: 0;
   display: relative;
   justify-content: center;
   width: 100vw;
   height: calc(100vh * 15.99);
-/*   background-color: #FDFDFD; */
-/*   background-image: url("https://cdn.glitch.global/9804501c-6989-413e-9c64-74e41c0b157a/bgTexture.png?v=1701873657318"); */
-/*   background-size: 100vw; */
-/*   background-position: center center; */
+  background-color: #FDFDFD;
+  background-image: url("https://cdn.glitch.global/9804501c-6989-413e-9c64-74e41c0b157a/bgTexture.png?v=1701873657318");
+  background-size: 100vw;
+/*   background-repeat: no-repeat; */
+  background-position: top 0px;
 /*   background-attachment: fixed; */
   mix-blend-mode: multiply;
 }
@@ -32,7 +34,6 @@ canvas {
 }
 
 .newsGrid {
-/*   display: block; */
   position: fixed;
   top: 0;
   right: 0;
@@ -74,8 +75,6 @@ img {
   height: 50%;
   background-color: rgba(255, 255, 255, 0);
 }
-
-
 
 #year {
   position: fixed;
