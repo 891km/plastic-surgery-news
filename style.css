@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  mix-blend-mode: multiply;
+  
 }
 
 body {
@@ -12,9 +12,10 @@ body {
   justify-content: center;
   width: 100vw;
   height: calc(100vh * 15.99);
-  background-color: #FDFDFD;
-
-/*   overflow: hidden; */
+/*   background-color: #FDFDFD; */
+  background-image: url("https://cdn.glitch.global/9804501c-6989-413e-9c64-74e41c0b157a/bgTexture.png?v=1701873657318");
+  background-size: 100vw auto;
+  mix-blend-mode: overlay;
 }
 
 canvas {
@@ -37,7 +38,7 @@ canvas {
   height: 100vh;
   overflow: hidden;
   z-index: 500;
-  mix-blend-mode: multiply;
+/*   mix-blend-mode: multiply; */
 }
 
 #newsImg {
@@ -61,8 +62,8 @@ img {
   right: 0;
   width: 100%;
   height: auto;
-  background-color : black;
-  border: solid 2px b;
+  background-color : #1E1E20;
+  border: solid 2.2px #1E1E20;
 }
 
 #newsText {
