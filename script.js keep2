@@ -124,7 +124,7 @@ function pixelToText(years='main') {
       textPixel = textData.charAt(textIndex % textData.length);
     }
     
-    let fontWeight = map(pixel.brightness, 0, 255, 850, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+    let fontWeight = map(pixel.brightness, 0, 255, 800, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness > 240) {
       
