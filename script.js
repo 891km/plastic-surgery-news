@@ -138,7 +138,8 @@ function pixelToText(years='main') {
       textSpans[textIndex].id = textIndex;
       textSpans[textIndex].innerText = textPixel; // 텍스트가 있는 span 추가
       textSpans[textIndex].style.fontVariationSettings = "'wght' " + fontWeight;
-      textSpans[textIndex].style.fontSize = pixelSize + "px";
+      textSpans[textIndex].style.fontSize = (pixelSize - 5) + "px";
+      console.log(pixelSize, textSpans[textIndex].style.fontSize);
       textSpans[textIndex].style.width = pixelSize + "px";
       textSpans[textIndex].style.height = pixelSize + "px";
       textSpans[textIndex].style.position = 'absolute';
