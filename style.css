@@ -40,15 +40,18 @@ canvas {
   height: 100vh;
   overflow: hidden;
   z-index: 500;
+  
 }
 
 #newsImg {
   display: none;
-  position: absolute;
+  position: relative;
   top: 20px;
   right: 20px;
-  width: 90%;
+  width: calc(100% - 40px);
   height: auto;
+/*   background-color: yellow; */
+  
 /*   background-color: rgba(255, 255, 255, 0); */
 /*   box-shadow: 0 2px 14px rgba(0,0,0,0.25); */
   overflow: visible;
@@ -60,19 +63,19 @@ img {
   top: 0;
   right: 0;
   width: 100%;
-  height: auto;
-  background-color : #1E1E20;
+  height: 50%;
+  background-color: #1E1E20;
   border: solid 2.2px #1E1E20;
 }
 
 #newsText {
   display: none;
-  position: absolute;
-  bottom: 20px;
+  position: relative;
+  top: 20px;
   right: 20px;
   width: 320px;
   height: 50%;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #1E1E20;
 }
 
 #year {

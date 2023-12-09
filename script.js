@@ -246,24 +246,7 @@ function titleHighlight(years='main') {
         newsImgDiv.style.display = 'block';
         newsTextDiv.style.display = 'block';
         
-        // newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
-
-        let newsImg = new Image();
-        newsImg.src = `newsImage/${newsImgs[years][i]}.png`;
-        
-        newsImg.onload = function() {
-          if (newsImg.width > newsImg.height) {
-            // 이미지의 가로가 더 긴 경우
-            newsImg.style.width = '450px';
-            newsImg.style.height = 'auto';
-          } else {
-            // 이미지의 세로가 더 긴 경우
-            newsImg.style.height = '600px';
-            newsImg.style.width = 'auto';
-          }
-
-          newsImgDiv.appendChild(newsImg);
-        };
+        newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
       }
     }); 
   }
