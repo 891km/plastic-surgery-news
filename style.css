@@ -40,20 +40,22 @@ canvas {
   height: 100vh;
   overflow: hidden;
   z-index: 500;
+/*   background-color: green; */
+  text-align: right;
   
 }
 
 #newsImg {
   display: none;
   position: relative;
-  top: 20px;
-  right: 20px;
+  margin: 20px;
+/*   top: 20px; */
+/*   right: 0; */
+/*   right: 20px; */
   width: calc(100% - 40px);
   height: auto;
 /*   background-color: yellow; */
   
-/*   background-color: rgba(255, 255, 255, 0); */
-/*   box-shadow: 0 2px 14px rgba(0,0,0,0.25); */
   overflow: visible;
   z-index: 1000;
 }
@@ -71,10 +73,13 @@ img {
 #newsText {
   display: none;
   position: relative;
-  top: 20px;
-  right: 20px;
-  width: 320px;
-  height: 50%;
+  margin: 20px;
+  margin-top: -10px;
+  top: 0;
+  right: 0;
+  width: calc(100% - 40px);
+  height: auto;
+  color: #FDFDFD;
   background-color: #1E1E20;
 }
 

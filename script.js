@@ -247,6 +247,8 @@ function titleHighlight(years='main') {
         newsTextDiv.style.display = 'block';
         
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+        newsTextDiv.innerHTML = years;
+        newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
       }
     }); 
   }
