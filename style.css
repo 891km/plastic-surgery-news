@@ -49,9 +49,8 @@ canvas {
   display: none;
   position: relative;
   margin: 20px;
-/*   top: 20px; */
-/*   right: 0; */
-/*   right: 20px; */
+  top: 0;
+  right: 0;
   width: calc(100% - 40px);
   height: auto;
 /*   background-color: yellow; */
@@ -67,7 +66,7 @@ img {
   width: 100%;
   height: 50%;
   background-color: #1E1E20;
-  border: solid 2.2px #1E1E20;
+/*   border: solid 2.2px #1E1E20; */
 }
 
 #newsText {
@@ -79,8 +78,11 @@ img {
   right: 0;
   width: calc(100% - 40px);
   height: auto;
+  padding: 4px;
+  box-sizing: border-box !important;
+  font-size: 20px;
   color: #FDFDFD;
-  background-color: #1E1E20;
+/*   background-color: #1E1E20; */
 }
 
 #year {

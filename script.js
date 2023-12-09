@@ -246,9 +246,13 @@ function titleHighlight(years='main') {
         newsImgDiv.style.display = 'block';
         newsTextDiv.style.display = 'block';
         
+        
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+        newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex];
+        
         newsTextDiv.innerHTML = years;
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        newsTextDiv.style.border = '2.2px solid #' + randomColor[colorIndex];
       }
     }); 
   }
