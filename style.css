@@ -53,7 +53,7 @@ canvas {
   right: 0;
   width: calc(100% - 40px);
   height: auto;
-/*   background-color: yellow; */
+  background-color: #FDFDFD;
   
   overflow: visible;
   z-index: 1000;
@@ -76,13 +76,13 @@ img {
   margin-top: -10px;
   top: 0;
   right: 0;
-  width: calc(100% - 40px);
+  width: calc(100% - 36px);
   height: auto;
+  align-items: center;
   padding: 4px;
-  box-sizing: border-box !important;
-  font-size: 20px;
+  box-sizing: border-box;
+  font-size: 18px;
   color: #FDFDFD;
-/*   background-color: #1E1E20; */
 }
 
 #year {

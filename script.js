@@ -241,18 +241,19 @@ function titleHighlight(years='main') {
       let newsTextDiv = document.getElementById('newsText');
       newsImgDiv.innerHTML = ' ';
       newsTextDiv.innerHTML = ' ';
+      newsImgDiv.style.border = '0px solid';
+      newsTextDiv.style.backgroundColor = '#FFFFFF00';
+      
       
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'block';
         newsTextDiv.style.display = 'block';
         
-        
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
-        newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex];
+        newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
         
         newsTextDiv.innerHTML = years;
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
-        newsTextDiv.style.border = '2.2px solid #' + randomColor[colorIndex];
       }
     }); 
   }
