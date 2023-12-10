@@ -251,22 +251,24 @@ function titleHighlight(years='main') {
       
       newsImgDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
+      
       newsContentDiv.innerHTML = ' ';
-      newsContentDiv.style.backgroundColor = '#FFFFFF00';
+      // newsContentDiv.style.backgroundColor = '#FFFFFF00';
       
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'inline-block';
-        newsContentDiv.style.display = 'inline-block';
+        newsContentDiv.style.display = 'block';
+        newsContentDiv.appendChild(newsSourceDiv);
+        newsContentDiv.appendChild(newsTextDiv);
         
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
         newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
         newsImgDiv.style.opacity = 100;
         
-        newsContentDiv.innerHTML = newsSources[years][i];
         newsSourceDiv.innerHTML = newsSources[years][i];
         newsTextDiv.innerHTML = newsSources[years][i];
-        // console.log(newsSources[years][i]);
-        newsContentDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        newsSourceDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
       }
     }); 
   }
