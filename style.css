@@ -132,9 +132,9 @@ img {
   top: 0;
   width: 100vw;
   height: 100vh;
-/*   background-color: #FDFDFD; */
-  background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
-  background-size: 100vw 100vh;
+  background-color: #FDFDFD;
+/*   background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
+  background-size: 100vw 100vh; */
   z-index: -1000;
   
   overflow: hidden;
