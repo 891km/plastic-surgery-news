@@ -14,11 +14,7 @@ body {
   justify-content: center;
   width: 100vw;
   height: calc(100vh * 15.99);
-
-  background-color: #FDFDFD;
-  background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
-  background-size: 100vw 100vh;
-  mix-blend-mode: multiply;
+/*   background-color: #FDFDFD; */
 }
 
 canvas {
@@ -30,6 +26,7 @@ canvas {
   width: 100vw;
   height: 100vh;
   z-index:-1;
+  
 }
 
 .newsGrid {
@@ -57,7 +54,8 @@ canvas {
   max-height: 70vh;
   max-width: calc(100% - 40px);
   background-color: white;
-  
+  background-blend-mode: normal !important; 
+  mix-blend-mode: normal !important; 
   
   overflow: visible;
   z-index: 1000;
@@ -134,7 +132,9 @@ img {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #FDFDFD;
+/*   background-color: #FDFDFD; */
+  background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
+  background-size: 100vw 100vh;
   z-index: -1000;
   
   overflow: hidden;
@@ -142,6 +142,7 @@ img {
 }
 
 span {
+  mix-blend-mode: multiply;
   display: flex;
   justify-content: center;
   align-items: center;
