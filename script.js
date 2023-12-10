@@ -192,15 +192,18 @@ let newsImgs = {
   '1980' : ['', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
   '1990' : ['', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65']
 }
-let newsTitles = {
+let newsSources = {
   'main': [],
-  '1960' : [''],
-  '1970' : [''],
-  '1980' : [''],
-  '1990' : [''],
+  '1960' : ["", "경향신문 | 1965.05.06 기사(뉴스)"],
+  '1970' : ["", "경향신문 | 1972.02.16 기사(뉴스)", "조선일보 | 1974.05.09 기사(뉴스)", "경향신문 | 1975.08.23 기사(뉴스)", "경향신문 | 1977.03.19 기사(텍스트)", "동아일보 | 1978.09.05 기사(뉴스)", "동아일보 | 1978.10.21 기사(뉴스)", "동아일보 | 1979.03.23 기사(뉴스)", "동아일보 | 1979.11.14 기사(뉴스)"],
+  '1980' : [""],
+  '1990' : [""],
 }
 
 
+let newsImgDiv = document.getElementById('newsImg');
+let newsContentDiv = document.getElementById('newsContent');
+let newsSourceDiv = document.getElementById('newsSource');
 function titleHighlight(years='main') {
   
   trueSpans[years] = [[emptySpan]];
@@ -245,24 +248,22 @@ function titleHighlight(years='main') {
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
       
-      let newsImgDiv = document.getElementById('newsImg');
-      let newsTextDiv = document.getElementById('newsText');
       newsImgDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
-      newsTextDiv.innerHTML = ' ';
-      newsTextDiv.style.backgroundColor = '#FFFFFF00';
-      
+      newsContentDiv.innerHTML = ' ';
+      newsContentDiv.style.backgroundColor = '#FFFFFF00';
       
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'block';
-        newsTextDiv.style.display = 'block';
+        newsContentDiv.style.display = 'block';
         
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
         newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
         newsImgDiv.style.opacity = 100;
         
-        newsTextDiv.innerHTML = years;
-        newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        // newsContentDiv
+        newsSourceDiv.innerHTML = newsSources[years][i];
+        newsContentDiv.style.backgroundColor = '#' + randomColor[colorIndex];
       }
     }); 
   }
