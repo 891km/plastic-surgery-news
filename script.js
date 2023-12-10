@@ -199,6 +199,13 @@ let newsSources = {
   '1980' : [""],
   '1990' : [""],
 }
+let newsTexts = {
+  'main': [],
+  '1960' : ["", '미국성형학회의 보고에 의하면 최근 50여명의 여자들이 발뼈를 톱으로 자르는 성형수술을 받고 아름다운 발을 자랑하게 되었다고.'],
+  '1970' : ["", "경향신문 | 1972.02.16", "조선일보 | 1974.05.09", "경향신문 | 1975.08.23", "경향신문 | 1977.03.19", "동아일보 | 1978.09.05", "동아일보 | 1978.10.21", "동아일보 | 1979.03.23", "동아일보 | 1979.11.14"],
+  '1980' : [""],
+  '1990' : [""],
+}
 
 
 let newsImgDiv = document.getElementById('newsImg');
@@ -266,7 +273,7 @@ function titleHighlight(years='main') {
         newsImgDiv.style.opacity = 100;
         
         newsSourceDiv.innerHTML = newsSources[years][i];
-        newsTextDiv.innerHTML = newsSources[years][i];
+        newsTextDiv.innerHTML = newsTexts[years][i];
         newsSourceDiv.style.backgroundColor = '#' + randomColor[colorIndex];
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
       }
