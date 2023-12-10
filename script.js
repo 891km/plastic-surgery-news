@@ -297,11 +297,3 @@ window.addEventListener('scroll', function() {
   titleHighlight(currentYear); 
 });
 
-// 스크롤 속도 조절
-// $(function() {  
-//     console.log('실행');
-//     // Default
-//     jQuery.scrollSpeed(10, 20000);
-    
-// });
-
