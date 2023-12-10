@@ -46,7 +46,8 @@ canvas {
 }
 
 #newsImg {
-  display: none;
+  display: inline-block;
+/*   display: none; */
   position: relative;
   margin: 20px;
   top: 0;
@@ -59,7 +60,7 @@ canvas {
   
   overflow: visible;
   z-index: 1000;
-  transition: all 0.5s ease-in-out;
+/*   transition: all 0.5s ease-in-out; */
 }
 
 img {
@@ -75,15 +76,15 @@ img {
 }
 
 #newsContents {
-  display: none;
-  grid-template-rows: 20% auto;
+  display: block;
+/*   display: none; */
   position: relative;
   margin: 20px;
   margin-top: -10px;
   top: 0;
   right: 0;
   width: calc(100% - 40px);
-  height: auto;
+  height: 50vh;
   align-items: center;
   padding: 4px;
   box-sizing: border-box;
@@ -93,13 +94,19 @@ img {
   background-color: green;
 }
 
-#newsSoucre {
+#newsSource {
+  position: relative;
+  right: 0;
+  top: 0;
   width: 100%;
   height: auto;
   background-color: green;
 }
 
 #newsText {
+  position: relative;
+  right: 0;
+  top: 0;
   width: 100%;
   height: auto;  
   background-color: yellow;

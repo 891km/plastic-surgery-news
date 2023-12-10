@@ -204,6 +204,7 @@ let newsSources = {
 let newsImgDiv = document.getElementById('newsImg');
 let newsContentDiv = document.getElementById('newsContent');
 let newsSourceDiv = document.getElementById('newsSource');
+let newsTextDiv = document.getElementById('newsText');
 function titleHighlight(years='main') {
   
   trueSpans[years] = [[emptySpan]];
@@ -254,15 +255,17 @@ function titleHighlight(years='main') {
       newsContentDiv.style.backgroundColor = '#FFFFFF00';
       
       if(newsImgs[years] && newsImgs[years][i]) {
-        newsImgDiv.style.display = 'block';
-        newsContentDiv.style.display = 'block';
+        newsImgDiv.style.display = 'inline-block';
+        newsContentDiv.style.display = 'inline-block';
         
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
         newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
         newsImgDiv.style.opacity = 100;
         
-        // newsContentDiv
+        newsContentDiv.innerHTML = newsSources[years][i];
         newsSourceDiv.innerHTML = newsSources[years][i];
+        newsTextDiv.innerHTML = newsSources[years][i];
+        // console.log(newsSources[years][i]);
         newsContentDiv.style.backgroundColor = '#' + randomColor[colorIndex];
       }
     }); 
