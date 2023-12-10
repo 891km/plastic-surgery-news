@@ -59,14 +59,14 @@ canvas {
   
   overflow: visible;
   z-index: 1000;
+  transition: all 0.5s ease-in-out;
 }
 
 img {
   position: relative;
   top: 0;
   right: 0;
-  width: 100%;
-/*   width: auto; */
+  width: auto;
   height: auto;
   max-height: 70vh;
   max-width: 100%;
@@ -88,6 +88,7 @@ img {
   box-sizing: border-box;
   font-size: 18px;
   color: #FDFDFD;
+  transition: all 0.5s ease-in-out;
 }
 
 #year {

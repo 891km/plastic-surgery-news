@@ -248,8 +248,8 @@ function titleHighlight(years='main') {
       let newsImgDiv = document.getElementById('newsImg');
       let newsTextDiv = document.getElementById('newsText');
       newsImgDiv.innerHTML = ' ';
-      newsTextDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
+      newsTextDiv.innerHTML = ' ';
       newsTextDiv.style.backgroundColor = '#FFFFFF00';
       
       
@@ -259,6 +259,7 @@ function titleHighlight(years='main') {
         
         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
         newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
+        newsImgDiv.style.opacity = 100;
         
         newsTextDiv.innerHTML = years;
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
