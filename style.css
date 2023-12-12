@@ -1,6 +1,5 @@
-
 :root {
-  --footerHeight : 60vh;
+  --footerHeight : 10vh;
 }
 
 html, body {
@@ -18,7 +17,7 @@ body {
   box-sizing: border-box ;
   
   width: 100vw !important;
-  height: calc(100vh * (5 * 3 + 0.99) + var(--footerHeight));
+  height: calc(100vh * (5 * 3 + 0.99) + var(--footerHeight) + 100px);
   z-index: 0;
   
   flex-direction: column;
@@ -32,8 +31,8 @@ footer {
   bottom: 0;
   width: 100vw;
   height: var(--footerHeight);
-  background-color: #333;
-  color: #fff;
+  background-color: #222222;
+  color: #FDFDFD;
   padding: 20px 0;
   bottom: 0;
   
@@ -179,11 +178,10 @@ img {
   height: auto;
   max-width: 95%;
   min-width: 50%;
-/*   padding: 6px 10px; */
   padding: 6px 10px 8px 10px;
   box-sizing: border-box;
   
-  font-size: 14px;
+  font-size: 1em;
   font-variation-settings: 'wght' 400;
   color: white;
   word-break:keep-all;
@@ -238,9 +236,6 @@ span {
   overflow-y: visible;
   color: #FDFDFD;
   
-/*   font-family: 'Hahmlet', serif; */
-/*   font-family: 'Noto Sans KR', sans-serif; */
-  
-  transition: all 1s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
-/*   -webkit-transition: all 0.5s ease-in-out, color 0.5s ease-in-out, left 1s ease-in-out, top 1s ease-in-out; */
+  transition: all 0.5s ease-in-out;
+/*   transition: all 1s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out; */
 }

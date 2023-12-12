@@ -40,9 +40,11 @@ function setup() {
 
 
 function windowResized() {
-  imageToPixel(currentYear);
-  pixelToText(currentYear);
-  titleHighlight(currentYear); 
+  if (currentYear !== 'end') {
+    imageToPixel(currentYear);
+    pixelToText(currentYear);
+    titleHighlight(currentYear); 
+  }
 }
 
 
@@ -273,7 +275,7 @@ window.addEventListener('scroll', function() {
   currentYear = yearDataList[yearIndex];
   
   if (currentYear !== prevYear) {
-    if (currentYear != 'end') {
+    if (currentYear !== 'end') {
       imageToPixel(currentYear);
       pixelToText(currentYear); 
     }
@@ -281,7 +283,9 @@ window.addEventListener('scroll', function() {
    prevYear = currentYear;
   }
   
-  titleHighlight(currentYear); 
+  if (currentYear !== 'end') {
+    titleHighlight(currentYear); 
+  }
   
   if (scrollY > 0) {
     document.getElementById('scroll_down').style.opacity = '0';
