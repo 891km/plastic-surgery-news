@@ -310,7 +310,9 @@ window.addEventListener('scroll', function() {
   titleHighlight(currentYear); 
   
   if (scrollY > 0) {
-    document.getElementById('scroll_down').style.visibility = 'hidden';
+    document.getElementById('scroll_down').style.opacity = '0';
+  } else {
+    document.getElementById('scroll_down').style.opacity = '100';
   }
 });
 

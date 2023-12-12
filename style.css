@@ -21,7 +21,7 @@ body {
   z-index: 0;
 }
 
-#scroll_down {
+#scroll_down #scroll_up {
   position: fixed;
   z-index: 2000;
   display: flex;
@@ -34,8 +34,9 @@ body {
   background-color: #00000000;
   color: #1E1E20;
   margin: 4px;
+  opacity: 100;
   animation: iconScale 2s infinite;
-  visibility : visible;
+  transition: all 1s ease-in-out;
 }
 
 @keyframes iconScale {
@@ -50,13 +51,14 @@ body {
   }
 }
 
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
+  display: none;
   width: 12px;
-  background-color: #ffffff00;
+  background-color: #00000050;
 }
-body::-webkit-scrollbar-thumb {
-  width: 100%;
-  background-color: #2f354250;
+/* body::-webkit-scrollbar-thumb {
+  width: 12px;
+  background-color: #2f3542;
 } */
 
 canvas {
