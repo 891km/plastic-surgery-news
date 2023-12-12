@@ -3,7 +3,7 @@ let canvasHeight;
 // let windowWidth = window.width;
 // let windowHeight = window.height;
 
-let yearDataList = ['main', '1960', '1970', '1980', '1990', 'end'];
+let yearDataList = ['main', '1960', '1970', '1980', '1990'];
 let textDatas = {
   'main' : '    기사로보는과도한성형수술',
   'end' : "",
@@ -258,7 +258,7 @@ function titleHighlight(years='main') {
 let scrollY = window.scrollY;
 let yearIndex;
 let prevSpans = [];
-let countSection = 6 - 1;
+let countSection = 5 - 1;
 let oneSection = window.innerHeight * 3;
 let yearSection;
 let titleSection;
