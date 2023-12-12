@@ -37,7 +37,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 90vh;
+  top: 85vh;
   left: calc(50vw - 40px / 2);
   width: 40px;
   height: 40px;
