@@ -21,20 +21,20 @@ html, body {
 }
 
 body {
+/*   display: none; */
   display: flex;
   position: relative;
   left: 0;
   top: 0;
   padding-bottom: var(--footerHeight);
-  box-sizing: border-box ;
+  box-sizing: border-box;
   
-  width: 100vw !important;
+  width: 100vw;
   height: calc(100vh * (5 * 3 + 0.99) + var(--footerHeight) + 100px);
   z-index: 0;
   
   flex-direction: column;
   min-height: 100vh;
-/*   margin-bottom: var(--footerHeight); */
 }
 
 footer {
@@ -86,8 +86,12 @@ footer {
 /*   background-color: red; */
   color: #FDFDFD;
   opacity: 100;
-  animation: iconScale 2s infinite;
   transition: all 1s ease-in-out;
+}
+
+#scroll_up:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 @keyframes iconScale {
@@ -231,7 +235,6 @@ img {
   top: 0;
   width: 100vw;
   height: 100vh;
-/*   background-color: red; */
   background-color: #FDFDFD;
 /*   background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
   background-size: 100vw 100vh; */
@@ -252,5 +255,4 @@ span {
   color: #FDFDFD;
   
   transition: all 0.5s ease-in-out;
-/*   transition: all 1s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out; */
 }
