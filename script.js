@@ -105,7 +105,7 @@ function pixelToText(years='main') {
   
   textSpans = []; // 초기화
   let textIndex = 0;
-  let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.01);
+  let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.008);
   let adjustY = (windowHeight - canvasHeight) / 2;
   let paddingH = map(pixelSize, 118, 17, 10, 1);
 
@@ -187,7 +187,6 @@ let newsImgs = {
 let newsSources;
 let newsTexts;
 
-let newsGridDiv = document.getElementById('newsGrid');
 let newsImgDiv = document.getElementById('newsImg');
 let newsContentDiv = document.getElementById('newsContent');
 let newsSourceDiv = document.getElementById('newsSource');
@@ -230,17 +229,17 @@ function titleHighlight(years='main') {
   
   for (let i = 0; i < currentTitle + 1; i++) {
     yearTitle.textContent = yearTitles[years][i];
+    
     trueSpans[years][i].forEach(span => {
+      
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
     
-      newsGridDiv.style.opacity = 0;
       newsImgDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
       newsContentDiv.innerHTML = ' ';
     
-      
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'inline-block';
         newsContentDiv.style.display = 'block';
@@ -256,8 +255,6 @@ function titleHighlight(years='main') {
         
         newsTextDiv.innerHTML = newsTexts[years][i];
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
-        
-        newsGridDiv.style.opacity = 100;
       }
     }); 
   }
@@ -309,8 +306,8 @@ window.addEventListener('mousemove', function(event) {
   let x = event.clientX;
   let y = event.clientY;
 
-  let newx = x - 45/2;
-  let newy = y - 45/2;
+  let newx = x - 50/2;
+  let newy = y - 50/2;
 
   let pointer = document.getElementById('pointer');
   pointer.style.left = `${newx}px`;
