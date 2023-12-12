@@ -22,6 +22,7 @@ function preload() {
 }
 
 
+let textSpans = [];
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -33,6 +34,14 @@ function setup() {
   canvas.parent('canvasContainer');
   
   image(img, 0, 0, canvasWidth, canvasHeight);
+  
+  for (let i = 0; i < 1331; i++) {
+    let span = document.createElement('span');
+    span.id = i;
+    textSpans.push(span); // span을 배열에 추가
+    spanDiv.appendChild(textSpans[i]);
+  }
+  console.log(textSpans);
   
   changeImage();
   pixelToText();
@@ -87,7 +96,8 @@ function changeImage(years='main') {
 
 
 let spanDiv;
-let textSpans;
+
+
 function pixelToText(years='main') {
   let textData = textDatas[years];
   
@@ -98,7 +108,7 @@ function pixelToText(years='main') {
   spanDiv.id = 'spanDiv';
   container.appendChild(spanDiv);
   
-  textSpans = [];
+  // textSpans = [];
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2;
   let adjustY = (windowHeight - canvasHeight) / 2;
@@ -122,8 +132,8 @@ function pixelToText(years='main') {
 
     } else {
       
-      textSpans[textIndex] = document.createElement('span');
-      textSpans[textIndex].id = textIndex;
+      // textSpans[textIndex] = document.createElement('span');
+      // textSpans[textIndex].id = textIndex;
       textSpans[textIndex].innerText = textPixel; // 텍스트가 있는 span 추가
       textSpans[textIndex].style.fontVariationSettings = "'wght' " + fontWeight;
       textSpans[textIndex].style.fontSize = (pixelSize - 2) + "px";
@@ -135,7 +145,7 @@ function pixelToText(years='main') {
       textSpans[textIndex].style.top = pixel.y + adjustY + 'px';
       textSpans[textIndex].style.backgroundColor = '#FDFDFD00';
       textSpans[textIndex].style.color = '#1E1E20';
-      spanDiv.appendChild(textSpans[textIndex]);
+      // spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
     }
