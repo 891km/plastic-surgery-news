@@ -98,14 +98,20 @@ img {
   top: 0;
   width: auto;
   height: auto;
-  max-width: 100%;
+  max-width: 90%;
   min-width: 50%;
-  padding: 6px 10px;
+/*   padding: 6px 10px; */
+  padding: 6px 10px 7px 10px;
   box-sizing: border-box;
   
   font-size: 14px;
   font-variation-settings: 'wght' 400;
   color: white;
+  word-break:keep-all;
+}
+
+#newsText {
+  padding: 6px 10px 7px 10px;
 }
 
 #year {
