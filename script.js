@@ -39,14 +39,15 @@ function setup() {
 }
 
 
-function windowResized() {
-  imageToPixel(currentYear);
-  pixelToText(currentYear);
-  titleHighlight(currentYear);
-  
-  if (currentYear !== 'end') {
+function windowResized() {  
+  if (currentYear === 'end') {
+    imageToPixel('1990');
     pixelToText('1990');
-    titleHighlight('1990'); 
+    titleHighlight('1990');
+  } else {
+    imageToPixel(currentYear);
+    pixelToText(currentYear);
+    titleHighlight(currentYear);
   }
 }
 
@@ -310,6 +311,12 @@ window.addEventListener('mousemove', function(event) {
   pointer.style.left = `${newx}px`;
   pointer.style.top = `${newy}px`;
   pointer.style.mixBlendMode = 'difference';
+});
+
+
+let upBtn = document.getElementById('scroll_up');
+upBtn.addEventListener("click", function() {  
+  window.scrollTo(0, 0);
 });
 
 
