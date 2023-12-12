@@ -221,3 +221,15 @@ span {
   transition: all 1s ease-in-out, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 /*   -webkit-transition: all 0.5s ease-in-out, color 0.5s ease-in-out, left 1s ease-in-out, top 1s ease-in-out; */
 }
+
+footer {
+  background-color: #333; /* footer 배경색 */
+  color: #fff; /* 텍스트 색상 */
+  padding: 20px 0; /* 내부 여백 설정 */
+}
+
+.footer-content {
+  width: 80%; /* footer 내용의 너비 */
+  margin: 0 auto; /* 가운데 정렬을 위한 외부 여백 설정 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+}
