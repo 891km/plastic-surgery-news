@@ -21,19 +21,22 @@ body {
   z-index: 0;
 }
 
-#scroll-down {
+#scroll_down {
   position: fixed;
   z-index: 2000;
   display: flex;
-  top: calc(50vh - var(--ctl_width) * 1.8);
-  width: var(--ctl_width);
-  height: var(--ctl_width);
+  justify-content: center;
+  align-items: center;
+  top: 85vh;
+  left: calc(50vw - 54px / 2);
+  width: 54px;
+  height: 54px;
+  scale: 1.2;
   background-color: rgba(0,0,0,0);
+  color: #1E1E2090;
   margin: 2.4vw;
-  border-radius: 20%;
-  visibility: hidden;
 }
-}
+
 /* body::-webkit-scrollbar {
   width: 12px;
   background-color: #ffffff00;
@@ -52,7 +55,6 @@ canvas {
   width: 100vw;
   height: 100vh;
   z-index:-1;
-  
 }
 
 .newsGrid {
