@@ -1,10 +1,9 @@
 let canvasWidth;
 let canvasHeight;
 
-let yearDataList = ['main', '1960', '1970', '1980', '1990'];
+let yearDataList = ['main', '1960', '1970', '1980', '1990', 'end'];
 let textDatas = {
   'main' : '    기사로보는과도한성형수술',
-  // 'main' : '기사로보는과도한성형수술',
   '1960' : '여인의발을성형수술유행하이힐에맞도록성형수술한다고얼굴에상처입혀무면허의기소보조개만들어치부미국에성형수술붐미용수술성형의학서본올바른안내천연두반흔환자의안면삭피수술로곰보자국을없애는성형수술',
   '1970' : '유방성형수술실패댄서3백만원손배소송얼굴망치는성형수술학계서큰반발“치과의성형수술괜찮다”판결면허없이성형수술을하여검거된범인들지법판결“성형수술은—의료행위아니다”서울형사지법“쌍꺼풀등미용성형수술은무면허의도할수있다”돌팔이성형수술무죄남성성형수술유행「젊음」만드는성형수술미국서남성들에인기성형수술엔최선다하지만“감쪽같이”주문엔늘당황얼굴골격성형수술물리치료와성형수술받도록대법판시무면허의성형수술은의료법위반미여성들유방성형수술열풍너무크게불려부작용시설이좋고권위있는전문의로부터받아야하는각종성형수술성형수술성형수술을받고「엘비스프레슬리」와흡사한얼굴을지니게된모조가수1호「데니스와이즈」“젊음을재생합니다”베티여사수술뒤美에성형붐미국에“성형수술”붐미용성형수술환자가부쩍늘어병원마다...한국병원후유증환자실태조사부작용많은성형수술',
   '1980' : '프랑스남성들성형수술성행젊게보여취직하자미용수술성격도바꾼다두개안면골성형수술성공고대의대팀개가남자들도코성형수술유행쌍꺼풀만들고주름살없애는성형수술이환자...남성성형수술늘어싱가포르눈꺼풀코등중고년을위한건강관리노화현산과성형수술성형외과찾는환자들정신적인문제더많다중·고년을위한건강관리성형수술성형수술에거머리이용코성형수술18%가심한후유증함기선박사팀10년동안조사결과치아교정·성형수술크게늘어졸업시즌성형수술만원성형수술번져간다성형수술은전문의에게받는것이보다안전하다고말하는함기선박사여학생들은단체로…주부들은계로…성형수술“미장원가듯”성행레이저광선을이용한얼굴성형수술행복찾기“성형수술해볼까“담배피우면성형수술흉터남는다일본여성「동양미」성형수술붐예뻐지려다평생후회미용성형수술부작용많다컴퓨터영상이용코성형수술…수요급증여성6%가성형수술성형수술욕심이뒤탈만든다잭슨코·턱만고쳤다얼굴전체성형수술부인중국스포츠스타“서구멋부리기”기형턱성형수술위험남성성형수술늘고있다성형수술불만주부자살어린이성형수술유행기형얼굴“수술로완치된다”',
@@ -29,10 +28,9 @@ function setup() {
   canvas.id('canvas');
   canvas.parent('canvasContainer');
   
-  image(img, 0, - windowHeight * 0.009, canvasWidth, canvasHeight);
-
-  setupSpans();
-
+  // image(img, 0, - windowHeight * 0.009, canvasWidth, canvasHeight);
+  image(img, 0, -5, canvasWidth, canvasHeight);
+  
   imageToPixel();
   pixelToText();
 }
@@ -42,25 +40,6 @@ function windowResized() {
   imageToPixel(currentYear);
   pixelToText(currentYear);
   titleHighlight(currentYear); 
-}
-
-
-let spanDiv;
-let textSpans = [];
-function setupSpans() {
-  let container = document.getElementById('canvasContainer');
-  container.innerHTML = ''; // 초기화
-  
-  spanDiv = document.createElement('div');
-  spanDiv.id = 'spanDiv';
-  container.appendChild(spanDiv);
-  
-  for (let i = 0; i < 1500; i++) {
-    let span = document.createElement('span');
-    span.id = i;
-    textSpans.push(span); // span을 배열에 추가
-    spanDiv.appendChild(textSpans[i]);
-  }
 }
 
 
@@ -103,23 +82,25 @@ function imageToPixel(years='main') {
   } 
 }
 
-
+let spanDiv;
+let textSpans;
 function pixelToText(years='main') {
   let textData = textDatas[years];
   
-  // 초기화
-  textSpans.forEach(span => {
-    span.innerText = '';
-    span.style.color = '#FDFDFD00';
-  });
+  let container = document.getElementById('canvasContainer');
+  container.innerHTML = ''; // 초기화
   
+  spanDiv = document.createElement('div');
+  spanDiv.id = 'spanDiv';
+  container.appendChild(spanDiv);
+  
+  textSpans = []; // 초기화
   let textIndex = 0;
-  let adjustX = (windowWidth - canvasWidth) / 2 - 5;
+  let adjustX = (windowWidth - canvasWidth) / 2;
   let adjustY = (windowHeight - canvasHeight) / 2;
   let paddingH = map(pixelSize, 118, 17, 10, 1);
 
   pixelInfo.forEach((pixel, i) => {
-    
     let textPixel;
     if (years === 'main') {
       textPixel = textData.charAt(textIndex);
@@ -131,7 +112,9 @@ function pixelToText(years='main') {
     
     if (pixel.brightness <= 240) {
       
-      textSpans[textIndex].innerText = textPixel; // 텍스트가 있는 span 추가
+      textSpans[textIndex] = document.createElement('span');
+      textSpans[textIndex].id = textIndex;
+      textSpans[textIndex].innerText = textPixel;
       textSpans[textIndex].style.fontVariationSettings = "'wght' " + fontWeight;
       textSpans[textIndex].style.fontSize = (pixelSize - 2) + "px";
       textSpans[textIndex].style.width = pixelSize + "px";
@@ -142,11 +125,13 @@ function pixelToText(years='main') {
       textSpans[textIndex].style.top = pixel.y + adjustY + 'px';
       textSpans[textIndex].style.backgroundColor = '#FDFDFD00';
       textSpans[textIndex].style.color = '#1E1E20';
+      spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
     }
   }); 
 }
+
 
 let emptySpan = document.createElement('span');
 let lenDatas = {
@@ -191,9 +176,7 @@ let newsImgDiv = document.getElementById('newsImg');
 let newsContentDiv = document.getElementById('newsContent');
 let newsSourceDiv = document.getElementById('newsSource');
 let newsTextDiv = document.getElementById('newsText');
-
 function titleHighlight(years='main') {
-  
   trueSpans[years] = [[emptySpan]];
   let spanByLen = [];
   
@@ -270,15 +253,14 @@ let oneSection = window.innerHeight * 3;
 let yearSection;
 let titleSection;
 
-let prevYear = 'main';
-let currentYear = 'main';
+let prevYear = 'main'; // default
+let currentYear = 'main'; // default
 let yearTitle = document.getElementById('year');
-
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   
   let yearIndex = Math.min(Math.floor(scrollY / oneSection), 4);
-  currentYear = yearDataList[yearIndex];  
+  currentYear = yearDataList[yearIndex];
   
   if (currentYear !== prevYear) {
     imageToPixel(currentYear);

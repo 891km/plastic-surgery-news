@@ -16,7 +16,7 @@ body {
   display: relative;
   justify-content: center;
   width: 100vw !important;
-  height: calc(100vh * 15.99);
+  height: calc(100vh * (6 * 3 + 0.99));
   z-index: 0;
 }
 
