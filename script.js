@@ -40,10 +40,13 @@ function setup() {
 
 
 function windowResized() {
+  imageToPixel(currentYear);
+  pixelToText(currentYear);
+  titleHighlight(currentYear);
+  
   if (currentYear !== 'end') {
-    imageToPixel(currentYear);
-    pixelToText(currentYear);
-    titleHighlight(currentYear); 
+    pixelToText('1990');
+    titleHighlight('1990'); 
   }
 }
 

@@ -1,5 +1,5 @@
 :root {
-  --footerHeight : 10vh;
+  --footerHeight : 14vh;
 }
 
 .pointer {
@@ -43,12 +43,13 @@ footer {
   height: var(--footerHeight);
   background-color: #222222;
   color: #FDFDFD;
-  padding: 20px 0;
   bottom: 0;
   
+  display: flex;
+  margin: auto;
   text-align: center;
+  align-items: center;
   justify-content: center;
-  text-align: center;
   z-index: 2000;
 }
 
@@ -71,18 +72,17 @@ footer {
 }
 
 #scroll_up{
-  position: absolute;
+  position: relative;
   z-index: 2001;
   display: flex;
   justify-content: center;
   align-items: center;
 /*   bottom: 10vh; */
-  left: calc(50vw - 40px / 2);
+/*   left: calc(50vw - 40px / 2); */
   width: 40px;
   height: 40px;
 /*   background-color: red; */
   color: #FDFDFD;
-  margin: auto;
   opacity: 100;
   animation: iconScale 2s infinite;
   transition: all 1s ease-in-out;
