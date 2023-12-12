@@ -21,7 +21,7 @@ body {
   z-index: 0;
 }
 
-#scroll_down #scroll_up {
+#scroll_down, #scroll_up {
   position: fixed;
   z-index: 2000;
   display: flex;
@@ -37,6 +37,10 @@ body {
   opacity: 100;
   animation: iconScale 2s infinite;
   transition: all 1s ease-in-out;
+}
+
+#scroll_up {
+  opacity: 0;
 }
 
 @keyframes iconScale {
@@ -56,10 +60,6 @@ body::-webkit-scrollbar {
   width: 12px;
   background-color: #00000050;
 }
-/* body::-webkit-scrollbar-thumb {
-  width: 12px;
-  background-color: #2f3542;
-} */
 
 canvas {
   display: none;
