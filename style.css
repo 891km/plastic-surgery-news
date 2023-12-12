@@ -11,13 +11,17 @@ html, body {
 }
 
 body {
-  position: sticky;
+/*   position: sticky; */
   margin: 0;
-  display: relative;
+  display: flex;
   justify-content: center;
   width: 100vw !important;
   height: calc(100vh * (6 * 3 + 0.99));
   z-index: 0;
+  
+  flex-direction: column;
+  min-height: 100vh;
+  margin-bottom: var(--footerHeight); /* footer 높이만큼 body 하단 여백 추가 */
 }
 
 .pointer {
@@ -222,14 +226,25 @@ span {
 /*   -webkit-transition: all 0.5s ease-in-out, color 0.5s ease-in-out, left 1s ease-in-out, top 1s ease-in-out; */
 }
 
+:root {
+  --footerHeight : 60vh;
+}
+
 footer {
-  background-color: #333; /* footer 배경색 */
-  color: #fff; /* 텍스트 색상 */
-  padding: 20px 0; /* 내부 여백 설정 */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: var(--footerHeight);
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  bottom: 0;
+  z-index: -999;
 }
 
 .footer-content {
-  width: 80%; /* footer 내용의 너비 */
-  margin: 0 auto; /* 가운데 정렬을 위한 외부 여백 설정 */
-  text-align: center; /* 텍스트 가운데 정렬 */
+  margin: auto;
+  justify-content: center;
+  text-align: center;
 }
