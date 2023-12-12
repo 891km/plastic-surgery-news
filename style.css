@@ -49,12 +49,12 @@ footer {
   text-align: center;
   justify-content: center;
   text-align: center;
-  z-index: -999;
+  z-index: 2000;
 }
 
 #scroll_down{
   position: fixed;
-  z-index: 2000;
+  z-index: 1999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,40 +63,30 @@ footer {
   width: 40px;
   height: 40px;
   background-color: #00000000;
-  color: #1E1E20;
-  margin: 4px;
+  color: #222222;
+  margin: auto;
   opacity: 100;
   animation: iconScale 2s infinite;
-  transition: all 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
 #scroll_up{
-  position: relative;
-  z-index: 2000;
+  position: absolute;
+  z-index: 2001;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: calc(50vh - 40px / 2);
+/*   bottom: 10vh; */
   left: calc(50vw - 40px / 2);
   width: 40px;
   height: 40px;
-  background-color: #ffffff;
-/*   color: #FDFDFD; */
-  margin: 4px;
+/*   background-color: red; */
+  color: #FDFDFD;
+  margin: auto;
   opacity: 100;
   animation: iconScale 2s infinite;
   transition: all 1s ease-in-out;
 }
-
-#icon_down {
-  color: #222222;
-}
-
-#icon_up {
-  color: #FDFDFD;
-  z-index: 100000;
-}
-
 
 @keyframes iconScale {
   0% {
