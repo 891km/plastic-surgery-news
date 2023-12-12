@@ -207,5 +207,6 @@ span {
 /*   font-family: 'Hahmlet', serif; */
 /*   font-family: 'Noto Sans KR', sans-serif; */
   
+  -webkit-transition: font-size 2s ease-in-out;
   transition: all 0.5s ease-in-out;
 }

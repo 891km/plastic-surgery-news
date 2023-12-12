@@ -112,7 +112,10 @@ function changeImage(years='main') {
 function pixelToText(years='main') {
   let textData = textDatas[years];
   
-  // textSpans = [];
+  textSpans.forEach(span => {
+    span.innerText = '';
+  });
+  
   let textIndex = 0;
   let adjustX = (windowWidth - canvasWidth) / 2;
   let adjustY = (windowHeight - canvasHeight) / 2;
@@ -151,9 +154,6 @@ function pixelToText(years='main') {
 
       textIndex++;
     }
-    
-    textSpans
-    console.log(1500-textIndex);
   }); 
 }
 
