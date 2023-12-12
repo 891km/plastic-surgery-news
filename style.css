@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
   font-family: 'Noto Sans KR', sans-serif; 
 }
 
@@ -12,24 +13,19 @@ body {
   margin: 0;
   display: relative;
   justify-content: center;
-  width: 100vw;
+  width: 100vw !important;
   height: calc(100vh * 15.99);
-  overflow-x: auto; /* 스크롤이 필요한 경우에만 가로 스크롤바 표시 */
-  overflow-y: hidden; /* 세로 스크롤바 감추기 */
-/*   background-color: #FDFDFD; */
+  z-index: 0;
 }
 
 body::-webkit-scrollbar {
   width: 10px;
-/*   background-color: #2f3542 */
+  background-color: #ffffff00;
 }
 body::-webkit-scrollbar-thumb {
   width: 10px;
+/*   display: none; */
   background-color: #2f3542;
-}
-body::-webkit-scrollbar-track {
-  width: 10px;
-/*   background-color: #2f3542 */
 }
 
 canvas {
@@ -61,8 +57,8 @@ canvas {
   display: none;
   position: relative;
   margin: 20px;
-/*   margin: 20px 20px 0px 0px;
-  margin-bottom: 0px; */
+  margin: 20px 20px 0px 0px;
+  margin-bottom: 0px;
   top: 0;
   right: 0;
   height: auto;
@@ -157,6 +153,7 @@ img {
   top: 0;
   width: 100vw;
   height: 100vh;
+/*   background-color: red; */
   background-color: #FDFDFD;
 /*   background-image: url("https://cdn.glitch.global/1bf7e85a-3ade-4857-b191-94f5af1fa5b4/bgTexture_white.png?v=1702232835775");
   background-size: 100vw 100vh; */
