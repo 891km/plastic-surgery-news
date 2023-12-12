@@ -36,7 +36,7 @@ function setup() {
 
   setupSpans();
 
-  changeImage();
+  imageToPixel();
   pixelToText();
 }
 
@@ -56,12 +56,11 @@ function setupSpans() {
     textSpans.push(span); // span을 배열에 추가
     spanDiv.appendChild(textSpans[i]);
   }
-  console.log(textSpans);
 }
 
 
 function windowResized() {
-  changeImage(currentYear);
+  imageToPixel(currentYear);
   pixelToText(currentYear);
   titleHighlight(currentYear); 
 }
@@ -69,7 +68,7 @@ function windowResized() {
 
 let pixelSize;
 let pixelInfo = [];
-function changeImage(years='main') {
+function imageToPixel(years='main') {
   let textData = textDatas[years];
   
   let textLen = textData.length;
@@ -114,6 +113,7 @@ function pixelToText(years='main') {
   
   textSpans.forEach(span => {
     span.innerText = '';
+    span.style.color = '#FDFDFD00';
   });
   
   let textIndex = 0;
@@ -150,7 +150,6 @@ function pixelToText(years='main') {
       textSpans[textIndex].style.top = pixel.y + adjustY + 'px';
       textSpans[textIndex].style.backgroundColor = '#FDFDFD00';
       textSpans[textIndex].style.color = '#1E1E20';
-      // spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
     }
@@ -291,7 +290,7 @@ window.addEventListener('scroll', function() {
   currentYear = yearDataList[yearIndex];  
   
   if (currentYear !== prevYear) {
-    changeImage(currentYear);
+    imageToPixel(currentYear);
     pixelToText(currentYear); 
     prevYear = currentYear;
   }
@@ -326,6 +325,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .catch(error => {
       console.error('파일 로딩 중 오류 발생:', error);
     });
-  console.log("완료");
+  // console.log("완료");
 });
 
