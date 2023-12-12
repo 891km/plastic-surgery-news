@@ -118,6 +118,7 @@ function pixelToText(years='main') {
   let paddingH = map(pixelSize, 118, 17, 10, 1);
 
   pixelInfo.forEach((pixel, i) => {
+    
     let textPixel;
     if (years === 'main') {
       textPixel = textData.charAt(textIndex);
@@ -238,7 +239,6 @@ function titleHighlight(years='main') {
       newsImgDiv.style.border = '0px solid';
       
       newsContentDiv.innerHTML = ' ';
-      // newsContentDiv.style.backgroundColor = '#FFFFFF00';
       
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'inline-block';
@@ -293,6 +293,20 @@ window.addEventListener('scroll', function() {
     document.getElementById('scroll_down').style.opacity = '100';
   }
 
+});
+
+
+window.addEventListener('mousemove', function(event) {
+  let x = event.clientX;
+  let y = event.clientY;
+
+  let newx = x - 20;
+  let newy = y - 20;
+
+  let circle = document.getElementById('circle');
+  circle.style.left = `${newx}px`;
+  circle.style.top = `${newy}px`;
+  circle.style.mixBlendMode = 'difference';
 });
 
 
