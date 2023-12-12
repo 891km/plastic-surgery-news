@@ -22,7 +22,6 @@ function preload() {
 }
 
 
-let textSpans = [];
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -34,17 +33,30 @@ function setup() {
   canvas.parent('canvasContainer');
   
   image(img, 0, 0, canvasWidth, canvasHeight);
+
+  setupSpans();
+
+  changeImage();
+  pixelToText();
+}
+
+let spanDiv;
+let textSpans = [];
+function setupSpans() {
+  let container = document.getElementById('canvasContainer');
+  container.innerHTML = ''; // 초기화
   
-  for (let i = 0; i < 1331; i++) {
+  spanDiv = document.createElement('div');
+  spanDiv.id = 'spanDiv';
+  container.appendChild(spanDiv);
+  
+  for (let i = 0; i < 1500; i++) {
     let span = document.createElement('span');
     span.id = i;
     textSpans.push(span); // span을 배열에 추가
     spanDiv.appendChild(textSpans[i]);
   }
   console.log(textSpans);
-  
-  changeImage();
-  pixelToText();
 }
 
 
@@ -95,18 +107,10 @@ function changeImage(years='main') {
 }
 
 
-let spanDiv;
 
 
 function pixelToText(years='main') {
   let textData = textDatas[years];
-  
-  let container = document.getElementById('canvasContainer');
-  container.innerHTML = ''; // 초기화
-  
-  spanDiv = document.createElement('div');
-  spanDiv.id = 'spanDiv';
-  container.appendChild(spanDiv);
   
   // textSpans = [];
   let textIndex = 0;
@@ -125,15 +129,13 @@ function pixelToText(years='main') {
     let fontWeight = map(pixel.brightness, 0, 255, 850, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness > 240) {
-      
+  
       let span = document.createElement('span');
       span.innerText = ' '; // 텍스트 없는 span 추가
       spanDiv.appendChild(span);
 
     } else {
       
-      // textSpans[textIndex] = document.createElement('span');
-      // textSpans[textIndex].id = textIndex;
       textSpans[textIndex].innerText = textPixel; // 텍스트가 있는 span 추가
       textSpans[textIndex].style.fontVariationSettings = "'wght' " + fontWeight;
       textSpans[textIndex].style.fontSize = (pixelSize - 2) + "px";
@@ -149,6 +151,9 @@ function pixelToText(years='main') {
 
       textIndex++;
     }
+    
+    textSpans
+    console.log(1500-textIndex);
   }); 
 }
 
