@@ -107,6 +107,7 @@ function imageToPixel(years='main') {
 function pixelToText(years='main') {
   let textData = textDatas[years];
   
+  // 초기화
   textSpans.forEach(span => {
     span.innerText = '';
     span.style.color = '#FDFDFD00';
@@ -300,13 +301,13 @@ window.addEventListener('mousemove', function(event) {
   let x = event.clientX;
   let y = event.clientY;
 
-  let newx = x - 20;
-  let newy = y - 20;
+  let newx = x - 45/2;
+  let newy = y - 45/2;
 
-  let circle = document.getElementById('circle');
-  circle.style.left = `${newx}px`;
-  circle.style.top = `${newy}px`;
-  circle.style.mixBlendMode = 'difference';
+  let pointer = document.getElementById('pointer');
+  pointer.style.left = `${newx}px`;
+  pointer.style.top = `${newy}px`;
+  pointer.style.mixBlendMode = 'difference';
 });
 
 

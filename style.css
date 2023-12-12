@@ -20,6 +20,17 @@ body {
   z-index: 0;
 }
 
+.pointer {
+  position: fixed;
+  z-index: 10000;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: white;
+  pointer-events: none;
+}
+
+
 #scroll_down, #scroll_up {
   position: fixed;
   z-index: 2000;
