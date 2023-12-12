@@ -2,6 +2,16 @@
   --footerHeight : 10vh;
 }
 
+.pointer {
+  position: fixed;
+  z-index: 10000;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: white;
+  pointer-events: none;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -42,18 +52,7 @@ footer {
   z-index: -999;
 }
 
-.pointer {
-  position: fixed;
-  z-index: 10000;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  background-color: white;
-  pointer-events: none;
-}
-
-
-#scroll_down, #scroll_up {
+#scroll_down{
   position: fixed;
   z-index: 2000;
   display: flex;
@@ -71,9 +70,33 @@ footer {
   transition: all 1s ease-in-out;
 }
 
-#scroll_up {
-  opacity: 0;
+#scroll_up{
+  position: relative;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: calc(50vh - 40px / 2);
+  left: calc(50vw - 40px / 2);
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+/*   color: #FDFDFD; */
+  margin: 4px;
+  opacity: 100;
+  animation: iconScale 2s infinite;
+  transition: all 1s ease-in-out;
 }
+
+#icon_down {
+  color: #222222;
+}
+
+#icon_up {
+  color: #FDFDFD;
+  z-index: 100000;
+}
+
 
 @keyframes iconScale {
   0% {
