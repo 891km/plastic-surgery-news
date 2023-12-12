@@ -105,7 +105,7 @@ function pixelToText(years='main') {
   
   textSpans = []; // 초기화
   let textIndex = 0;
-  let adjustX = (windowWidth - canvasWidth) / 2;
+  let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.01);
   let adjustY = (windowHeight - canvasHeight) / 2;
   let paddingH = map(pixelSize, 118, 17, 10, 1);
 
@@ -316,7 +316,11 @@ window.addEventListener('mousemove', function(event) {
 
 let upBtn = document.getElementById('scroll_up');
 upBtn.addEventListener("click", function() {  
-  window.scrollTo(0, 0);
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant",
+  });
 });
 
 

@@ -2,7 +2,7 @@
   --footerHeight : 14vh;
 }
 
-.pointer {
+#pointer {
   position: fixed;
   z-index: 10000;
   border-radius: 50%;
@@ -23,6 +23,8 @@ html, body {
 body {
   display: flex;
   position: relative;
+  left: 0;
+  top: 0;
   padding-bottom: var(--footerHeight);
   box-sizing: border-box ;
   
