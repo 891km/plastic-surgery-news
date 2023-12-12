@@ -9,21 +9,32 @@ html, body {
 
 body {
 /*   display: none; */
+  position: fixed;
+  margin: 0;
+  display: absolute;
+  width: 100vw;
+  height: 00vh;
+  z-index: 0;
+  overflow: hidden;
+}
+.scrollBody {
   position: sticky;
   margin: 0;
-  display: relative;
+  display: absolute;
   justify-content: center;
   width: 100vw !important;
   height: calc(100vh * 15.99);
   z-index: 0;
 }
 
-body::-webkit-scrollbar {
-  width: 10px;
+.scrollBody::-webkit-scrollbar {
+  direction: ltr;
+  width: 14px;
   background-color: #ffffff00;
 }
-body::-webkit-scrollbar-thumb {
-  width: 10px;
+.scrollBody::-webkit-scrollbar-thumb {
+  width: 100%;
+  height: 50%;
 /*   display: none; */
   background-color: #2f3542;
 }
