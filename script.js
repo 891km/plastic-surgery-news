@@ -187,6 +187,7 @@ let newsImgs = {
 let newsSources;
 let newsTexts;
 
+let newsGridDiv = document.getElementById('newsGrid');
 let newsImgDiv = document.getElementById('newsImg');
 let newsContentDiv = document.getElementById('newsContent');
 let newsSourceDiv = document.getElementById('newsSource');
@@ -233,11 +234,12 @@ function titleHighlight(years='main') {
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
-      
+    
+      newsGridDiv.style.opacity = 0;
       newsImgDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
-      
       newsContentDiv.innerHTML = ' ';
+    
       
       if(newsImgs[years] && newsImgs[years][i]) {
         newsImgDiv.style.display = 'inline-block';
@@ -250,9 +252,12 @@ function titleHighlight(years='main') {
         newsImgDiv.style.opacity = 100;
         
         newsSourceDiv.innerHTML = newsSources[years][i];
-        newsTextDiv.innerHTML = newsTexts[years][i];
         newsSourceDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        
+        newsTextDiv.innerHTML = newsTexts[years][i];
         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+        
+        newsGridDiv.style.opacity = 100;
       }
     }); 
   }
