@@ -2,9 +2,9 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-y: scroll;
-  font-family: 'Noto Sans KR', sans-serif;
-  
+  font-family: 'Noto Sans KR', sans-serif; 
 }
+
 
 body {
 /*   display: none; */
@@ -14,7 +14,22 @@ body {
   justify-content: center;
   width: 100vw;
   height: calc(100vh * 15.99);
+  overflow-x: auto; /* 스크롤이 필요한 경우에만 가로 스크롤바 표시 */
+  overflow-y: hidden; /* 세로 스크롤바 감추기 */
 /*   background-color: #FDFDFD; */
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+/*   background-color: #2f3542 */
+}
+body::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: #2f3542;
+}
+body::-webkit-scrollbar-track {
+  width: 10px;
+/*   background-color: #2f3542 */
 }
 
 canvas {
