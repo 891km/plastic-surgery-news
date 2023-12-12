@@ -308,5 +308,9 @@ window.addEventListener('scroll', function() {
   }
   
   titleHighlight(currentYear); 
+  
+  if (scrollY > 0) {
+    document.getElementById('scroll_down').style.visibility = 'hidden';
+  }
 });
 
