@@ -302,17 +302,27 @@ window.addEventListener('scroll', function() {
 
 
 // 마우스 포인터
+let pointer = document.getElementById('pointer');
 window.addEventListener('mousemove', function(event) {
   let x = event.clientX;
   let y = event.clientY;
+  // console.log(x,y);
 
   let newx = x - 50/2;
   let newy = y - 50/2;
-
-  let pointer = document.getElementById('pointer');
+  
+  pointer.style.opacity = '100';
   pointer.style.left = `${newx}px`;
   pointer.style.top = `${newy}px`;
   pointer.style.mixBlendMode = 'difference';
+  
+
+});
+
+window.addEventListener("mouseout", function(event) {
+  console.log(event.clinetX);
+  console.log('실행');
+  pointer.style.opacity = '0';
 });
 
 
