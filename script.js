@@ -18,7 +18,7 @@ function preload() {
   img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287");
 }
 
-let adjustImgY;
+
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -29,9 +29,7 @@ function setup() {
   canvas.id('canvas');
   canvas.parent('canvasContainer');
   
-  adjustImgY = map(windowHeight, 500, 1000, 5, 1);
-  // image(img, 0, - windowHeight * 0.009, canvasWidth, canvasHeight);
-  image(img, 0, adjustImgY, canvasWidth, canvasHeight);
+  image(img, 0, 0, canvasWidth, canvasHeight);
   
   imageToPixel();
   pixelToText();
@@ -39,8 +37,6 @@ function setup() {
 
 
 function windowResized() {  
-  adjustImgY = map(windowHeight, 500, 800, 5, 1);
-  console.log(windowHeight, adjustImgY);
   if (currentYear === 'end') {
     imageToPixel('1990');
     pixelToText('1990');
@@ -61,15 +57,15 @@ function imageToPixel(years='main') {
   let textLen = textData.length;
   
   if (textLen <= 16) { //16
-    pixelSize = 118; //118
+    pixelSize = Math.floor(118 + (windowHeight * 0.002)); //118
   } else if (textLen <= 96) {
-    pixelSize = 40;
+    pixelSize = Math.floor(40 + (windowHeight * 0.002));
   } else if (textLen <= 375) {
-    pixelSize = 30;
+    pixelSize = Math.floor(30 + (windowHeight * 0.002));
   } else if (textLen <= 477) {
-    pixelSize = 28;
+    pixelSize = Math.floor(28 + (windowHeight * 0.002));
   } else if (textLen <= 1330) {
-    pixelSize = 17;
+    pixelSize = Math.floor(18 + (windowHeight * 0.002));
   }
   
   pixelInfo = [];
@@ -106,9 +102,12 @@ function pixelToText(years='main') {
   
   textSpans = []; // 초기화
   let textIndex = 0;
+  
+  let plusY = map(windowHeight, 500, 800, 5, 1);
+  console.log(windowHeight, plusY);
   let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.008);
   let adjustY = (windowHeight - canvasHeight) / 2;
-  let paddingH = map(pixelSize, 118, 17, 10, 1);
+  let paddingH = map(pixelSize, 118, 18, 10, 1);
 
   pixelInfo.forEach((pixel, i) => {
     let textPixel;
