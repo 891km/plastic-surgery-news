@@ -245,9 +245,9 @@ img {
   left: 30px;
   display: flex;
   align-items: center;
-  width: 200px;
+  width: auto;
   height: 100vh;
-  touch-action: none;
+  overflow : hidden;
   
   font-variation-settings: 'wght' 900;
   font-size: 110px;
@@ -279,8 +279,18 @@ span {
   align-items: center;
   color: #222222;
   background-color: rgba(255, 255, 255, 0);
-  overflow-y: visible;
+  overflow-y: hidden;
   color: #FDFDFD;
   
   transition: all 0.5s ease-in-out;
+}
+
+/* ::selection {
+  background-color: black;
+  color: yellow;
+} */
+
+::selection {
+  background-color: #222222;
+  color: #FDFDFD;
 }
