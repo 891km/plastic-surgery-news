@@ -121,7 +121,6 @@ function pixelToText(years='main') {
   let textIndex = 0;
   
   let plusY = map(windowHeight, 500, 800, 5, 1);
-  console.log(windowHeight, plusY);
   let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.008);
   let adjustY = (windowHeight - canvasHeight) / 2;
   let paddingH = map(pixelSize, size_main, size_90, 10, 1);
@@ -323,7 +322,6 @@ let pointer = document.getElementById('pointer');
 window.addEventListener('mousemove', function(event) {
   let x = event.clientX;
   let y = event.clientY;
-  // console.log(x,y);
 
   let newx = x - 50/2;
   let newy = y - 50/2;
