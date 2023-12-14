@@ -15,7 +15,8 @@ let randomColor = (['8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', 
 
 let img;
 function preload() {
-  img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287");
+  img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549");
+  // img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287");
 }
 
 
@@ -50,22 +51,38 @@ function windowResized() {
 
 
 let pixelSize;
+let size_main = 110, size_60 = 40, size_70 = 30, size_80 = 28, size_90 = 17;
 let pixelInfo = [];
 function imageToPixel(years='main') {
   let textData = textDatas[years];
   
   let textLen = textData.length;
   
-  if (textLen <= 16) { //16
-    pixelSize = Math.floor(118 + (windowHeight * 0.002)); //118
+  if (textLen <= 30) { //16
+    
+    size_main = Math.floor(110 + (windowHeight * 0.002));
+    pixelSize = size_main;
+    
   } else if (textLen <= 96) {
-    pixelSize = Math.floor(40 + (windowHeight * 0.002));
+    
+    size_60 = Math.floor(40 + (windowHeight * 0.002));
+    pixelSize = size_60;
+  
   } else if (textLen <= 375) {
-    pixelSize = Math.floor(30 + (windowHeight * 0.002));
+    
+    size_70 = Math.floor(30 + (windowHeight * 0.002));
+    pixelSize = size_70;
+  
   } else if (textLen <= 477) {
-    pixelSize = Math.floor(28 + (windowHeight * 0.002));
+    
+    size_80 = Math.floor(28 + (windowHeight * 0.002));
+    pixelSize = size_80;
+  
   } else if (textLen <= 1330) {
-    pixelSize = Math.floor(18 + (windowHeight * 0.002));
+    
+    size_90 = Math.floor(17 + (windowHeight * 0.002));
+    pixelSize = size_90;
+  
   }
   
   pixelInfo = [];
@@ -107,7 +124,7 @@ function pixelToText(years='main') {
   console.log(windowHeight, plusY);
   let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.008);
   let adjustY = (windowHeight - canvasHeight) / 2;
-  let paddingH = map(pixelSize, 118, 18, 10, 1);
+  let paddingH = map(pixelSize, size_main, size_90, 10, 1);
 
   pixelInfo.forEach((pixel, i) => {
     let textPixel;
