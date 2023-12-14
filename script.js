@@ -319,10 +319,11 @@ window.addEventListener('mousemove', function(event) {
 
 });
 
-window.addEventListener("mouseout", function(event) {
-  console.log(event.clinetX);
-  console.log('실행');
-  pointer.style.opacity = '0';
+document.addEventListener('mouseleave', function(event) {
+  if (event.clientY <= 0 || event.clientX <= 0) {
+    console.log('out');
+    pointer.style.opacity = '0';
+  }
 });
 
 
