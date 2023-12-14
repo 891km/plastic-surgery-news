@@ -1,7 +1,5 @@
 let canvasWidth;
 let canvasHeight;
-// let windowWidth = window.width;
-// let windowHeight = window.height;
 
 let yearDataList = ['main', '1960', '1970', '1980', '1990', 'end'];
 let textDatas = {
@@ -18,9 +16,9 @@ let randomColor = (['8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', 
 let img;
 function preload() {
   img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287");
-  // img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549");
 }
 
+let adjustImgY;
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
@@ -31,8 +29,9 @@ function setup() {
   canvas.id('canvas');
   canvas.parent('canvasContainer');
   
+  adjustImgY = map(windowHeight, 500, 1000, 5, 1);
   // image(img, 0, - windowHeight * 0.009, canvasWidth, canvasHeight);
-  image(img, 0, -5, canvasWidth, canvasHeight);
+  image(img, 0, adjustImgY, canvasWidth, canvasHeight);
   
   imageToPixel();
   pixelToText();
@@ -40,6 +39,8 @@ function setup() {
 
 
 function windowResized() {  
+  adjustImgY = map(windowHeight, 500, 800, 5, 1);
+  console.log(windowHeight, adjustImgY);
   if (currentYear === 'end') {
     imageToPixel('1990');
     pixelToText('1990');
@@ -321,7 +322,6 @@ window.addEventListener('mousemove', function(event) {
 
 document.addEventListener('mouseleave', function(event) {
   if (event.clientY <= 0 || event.clientX <= 0) {
-    console.log('out');
     pointer.style.opacity = '0';
   }
 });
