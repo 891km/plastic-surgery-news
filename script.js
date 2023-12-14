@@ -248,30 +248,34 @@ function titleHighlight(years='main') {
     
     trueSpans[years][i].forEach(span => {
       
+      
+      // text 하이라이트 배경
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
     
-      newsImgDiv.innerHTML = ' ';
-      newsImgDiv.style.border = '0px solid';
-      newsContentDiv.innerHTML = ' ';
+  
+      // newsGrid 영역
+//       newsImgDiv.innerHTML = ' ';
+//       newsImgDiv.style.border = '0px solid';
+//       newsContentDiv.innerHTML = ' ';
     
-      if(newsImgs[years] && newsImgs[years][i]) {
-        newsImgDiv.style.display = 'inline-block';
-        newsContentDiv.style.display = 'block';
-        newsContentDiv.appendChild(newsSourceDiv);
-        newsContentDiv.appendChild(newsTextDiv);
+//       if(newsImgs[years] && newsImgs[years][i]) {
+//         newsImgDiv.style.display = 'inline-block';
+//         newsContentDiv.style.display = 'block';
+//         newsContentDiv.appendChild(newsSourceDiv);
+//         newsContentDiv.appendChild(newsTextDiv);
         
-        newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
-        newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
-        newsImgDiv.style.opacity = 100;
+//         newsImgDiv.innerHTML = `<img src="${"newsImage/" + newsImgs[years][i] + ".png"}" >`;
+//         newsImgDiv.style.border = '2.2px solid #' + randomColor[colorIndex] + '90';
+//         newsImgDiv.style.opacity = 100;
         
-        newsSourceDiv.innerHTML = newsSources[years][i];
-        newsSourceDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+//         newsSourceDiv.innerHTML = newsSources[years][i];
+//         newsSourceDiv.style.backgroundColor = '#' + randomColor[colorIndex];
         
-        newsTextDiv.innerHTML = newsTexts[years][i];
-        newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
-      }
+//         newsTextDiv.innerHTML = newsTexts[years][i];
+//         newsTextDiv.style.backgroundColor = '#' + randomColor[colorIndex];
+//       }
     }); 
   }
   
