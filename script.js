@@ -234,7 +234,6 @@ function titleHighlight(years='main') {
   yearSection = (scrollY % oneSection);
   titleSection = oneSection / (trueSpans[years].length);
   let currentTitle = Math.floor(yearSection / titleSection);
-  // console.log(currentTitle);
   
   prevSpans.forEach(prevSpanGroup => {
     prevSpanGroup.forEach(span => {
