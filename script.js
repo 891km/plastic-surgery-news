@@ -1,9 +1,8 @@
-let canvasWidth;
-let canvasHeight;
 
 let yearDataList = ['main', '1960', '1970', '1980', '1990', 'end'];
+
 let textDatas = {
-  'main' : '    기사로보는과도한성형수술',
+  'main' : '기사로보는과도한성형수술',
   'end' : "",
   '1960' : '여인의발을성형수술유행하이힐에맞도록성형수술한다고얼굴에상처입혀무면허의기소보조개만들어치부미국에성형수술붐미용수술성형의학서본올바른안내천연두반흔환자의안면삭피수술로곰보자국을없애는성형수술',
   '1970' : '유방성형수술실패댄서3백만원손배소송얼굴망치는성형수술학계서큰반발“치과의성형수술괜찮다”판결면허없이성형수술을하여검거된범인들지법판결“성형수술은—의료행위아니다”서울형사지법“쌍꺼풀등미용성형수술은무면허의도할수있다”돌팔이성형수술무죄남성성형수술유행「젊음」만드는성형수술미국서남성들에인기성형수술엔최선다하지만“감쪽같이”주문엔늘당황얼굴골격성형수술물리치료와성형수술받도록대법판시무면허의성형수술은의료법위반미여성들유방성형수술열풍너무크게불려부작용시설이좋고권위있는전문의로부터받아야하는각종성형수술성형수술성형수술을받고「엘비스프레슬리」와흡사한얼굴을지니게된모조가수1호「데니스와이즈」“젊음을재생합니다”베티여사수술뒤美에성형붐미국에“성형수술”붐미용성형수술환자가부쩍늘어병원마다...한국병원후유증환자실태조사부작용많은성형수술',
@@ -13,81 +12,73 @@ let textDatas = {
 let textColor = '222222';
 let randomColor = (['8CC5F8', 'FF3D00', 'F8C1E1', 'FA8B00', 'F6CA1F', 'BBAC98', '25A25C']);
 
-let img;
+let imgs = [
+  "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549",
+  "https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287"  
+];
+
 function preload() {
-  img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_01.png?v=1701243663549");
-  // img = loadImage("https://cdn.glitch.global/1b5a1dda-71db-4347-8302-3a763a8029b3/AIFace_02.png?v=1701247036287");
+  img = loadImage(imgs[Math.floor(Math.random() * imgs.length)]);
 }
 
-
+let imageWidth;
+let imageHeight;
 function setup() {
   scrollY = 0;
   window.scrollTo(0, 0);
   
-  canvasHeight = windowHeight;
-  canvasWidth = canvasHeight * (img.width / img.height);
-  let canvas = createCanvas(canvasWidth, canvasHeight);
+  let canvas = createCanvas(windowWidth, windowHeight);
   canvas.id('canvas');
   canvas.parent('canvasContainer');
-  
-  image(img, 0, 0, canvasWidth, canvasHeight);
   
   imageToPixel();
   pixelToText();
 }
 
-
-function windowResized() {  
+function windowResized() { 
+  
   if (currentYear === 'end') {
+    
     imageToPixel('1990');
     pixelToText('1990');
     titleHighlight('1990');
+    
   } else {
+    
     imageToPixel(currentYear);
     pixelToText(currentYear);
     titleHighlight(currentYear);
+    
   }
 }
 
-
-let pixelSize;
-let size_main = 110, size_60 = 40, size_70 = 30, size_80 = 28, size_90 = 17;
 let pixelInfo = [];
+let pixelSize;
+let pixelSizes = {
+  'main' : 110,
+  'end' : 0,
+  '1960' : 40,
+  '1970' : 30,
+  '1980' : 28,
+  '1990' : 16.9
+  };
+
 function imageToPixel(years='main') {
+  console.log(imageHeight);
+  // load image
+  imageHeight = windowHeight;
+  imageWidth = imageHeight * (img.width / img.height);
+  image(img, 0, 0, imageWidth, imageHeight);
+  
   let textData = textDatas[years];
-  
-  let textLen = textData.length;
-  
-  if (textLen <= 30) { //16
-    
-    size_main = Math.floor(110 + (windowHeight * 0.002));
-    pixelSize = size_main;
-    
-  } else if (textLen <= 96) {
-    
-    size_60 = Math.floor(40 + (windowHeight * 0.002));
-    pixelSize = size_60;
-  
-  } else if (textLen <= 375) {
-    
-    size_70 = Math.floor(30 + (windowHeight * 0.002));
-    pixelSize = size_70;
-  
-  } else if (textLen <= 477) {
-    
-    size_80 = Math.floor(28 + (windowHeight * 0.002));
-    pixelSize = size_80;
-  
-  } else if (textLen <= 1330) {
-    
-    size_90 = Math.floor(17 + (windowHeight * 0.002));
-    pixelSize = size_90;
-  
-  }
+  let min = 0.4; 
+  let max = 1; 
+  let multRatio = Math.max(map(imageHeight, 400, 780, min, max), min);
+  pixelSize = pixelSizes[years] * multRatio;
   
   pixelInfo = [];
-  for (let y = 0; y < canvasHeight; y += pixelSize) {
-    for (let x = 0; x < canvasWidth; x += pixelSize) {
+  for (let y = 0; y < imageHeight; y += pixelSize) {
+    for (let x = 0; x < imageWidth; x += pixelSize) {
       let pos = get(x,y);
       let r = red(pos);
       let g = green(pos);
@@ -118,22 +109,27 @@ function pixelToText(years='main') {
   container.appendChild(spanDiv);
   
   textSpans = []; // 초기화
-  let textIndex = 0;
-  
-  let plusY = map(windowHeight, 500, 800, 5, 1);
-  let adjustX = (windowWidth - canvasWidth) / 2 - (windowWidth * 0.008);
-  let adjustY = (windowHeight - canvasHeight) / 2;
-  let paddingH = map(pixelSize, size_main, size_90, 10, 1);
 
-  pixelInfo.forEach((pixel, i) => {
+  let adjustX = (windowWidth - imageWidth) / 2 - (windowWidth * 0.008);
+  let adjustY;
+  if (years === 'main') {
+    adjustY = windowHeight / 8;
+  } else {
+    adjustY = 0;
+  }
+  
+  let paddingH = map(pixelSize, pixelSizes['main'], pixelSizes['1990'], 10, 1);
+
+  let textIndex = 0;
+  pixelInfo.forEach((pixel) => {
     let textPixel;
+    let fontWeight = map(pixel.brightness, 0, 255, 850, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
+    
     if (years === 'main') {
       textPixel = textData.charAt(textIndex);
     } else {
       textPixel = textData.charAt(textIndex % textData.length);
     }
-    
-    let fontWeight = map(pixel.brightness, 0, 255, 850, 100); // 밝기에 따라 폰트 굵기 조절 (0: 가장 얇게, 255: 가장 굵게)
     
     if (pixel.brightness <= 240) {
       
@@ -153,14 +149,14 @@ function pixelToText(years='main') {
       spanDiv.appendChild(textSpans[textIndex]);
 
       textIndex++;
+      
     }
   }); 
 }
 
 
-let emptySpan = document.createElement('span');
 let lenDatas = {
-  'main' : Array.from({ length: 16 }, () => 1),
+  'main' : Array.from({ length: textDatas['main'].length }, () => 1),
   'end' : [],
   '1960' : [18, 20, 16, 15, 27],
   '1970' : [18, 9, 20, 17, 19, 28, 9, 8, 20, 23, 8, 12, 18, 21, 26, 4, 41, 22, 10, 20, 22],
@@ -168,14 +164,17 @@ let lenDatas = {
   '1990' : [8, 9, 10, 15, 16, 18, 10, 21, 14, 15, 20, 8, 14, 9, 17, 11, 14, 13, 11, 18, 16, 9, 13, 18, 10, 22, 14, 27, 21, 10, 28, 10, 11, 26, 13, 16, 24, 14, 12, 18, 21, 17, 12, 14, 15, 13, 26, 13, 22, 14, 23, 11, 23, 9, 12, 18, 17, 22, 16, 16, 24, 16, 11, 23, 26, 21, 25, 10, 27, 12, 24, 40, 14, 15, 16, 17, 16, 11, 14, 22, 9],
   
 };
+
 let trueDatas = {
-  'main' : [0, 0, 0, 0].concat(Array.from({ length: 12 }, () => Math.floor(Math.random() * 2))),
+  'main' : Array.from({ length: textDatas['main'].length }, () => Math.floor(Math.random() * 2)),
   'end' : [],
   '1960' : [1, 0, 0, 0, 0],
   '1970' : [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1],
   '1980' : [1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0],
   '1990' : [1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0],
 };
+
+let emptySpan = document.createElement('span');
 let trueSpans = {
   'main' : [],
   'end' : [],
@@ -184,6 +183,7 @@ let trueSpans = {
   '1980' : [[emptySpan]],
   '1990' : [[emptySpan]]
   };
+
 let yearTitles = {
   'main' : [],
   'end' : [],
@@ -192,6 +192,7 @@ let yearTitles = {
   '1980' : ['', '1980', '1981', '1981', '1982', '1983', '1983', '1984', '1985', '1985', '1985', '1985', '1986', '1987', '1987', '1988', '1988', '1988', '1989', '1989'],
   '1990' : ['', '1990', '1990', '1990', '1991', '1991', '1991', '1992', '1992', '1992', '1992', '1992', '1992', '1993', '1993', '1993', '1993', '1994', '1994', '1994', '1995', '1995', '1995', '1995', '1996', '1996', '1996', '1997', '1997', '1998', '1998', '1998', '1998', '1999', '1999', '1999', '1999', '1999', '1999']
   };
+
 let newsImgs = {
   'main' : [],
   'end' : [],
@@ -200,13 +201,14 @@ let newsImgs = {
   '1980' : ['', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
   '1990' : ['', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65']
 }
+
 let newsSources;
 let newsTexts;
-
 let newsImgDiv = document.getElementById('newsImg');
 let newsContentDiv = document.getElementById('newsContent');
 let newsSourceDiv = document.getElementById('newsSource');
 let newsTextDiv = document.getElementById('newsText');
+
 function titleHighlight(years='main') {
   trueSpans[years] = [[emptySpan]];
   let spanByLen = [];
@@ -229,8 +231,8 @@ function titleHighlight(years='main') {
       }
     }  
   }
-  
-  oneSection = window.innerHeight * 3;
+
+  oneSection = window.innerHeight * 4;
   yearSection = (scrollY % oneSection);
   titleSection = oneSection / (trueSpans[years].length);
   let currentTitle = Math.floor(yearSection / titleSection);
@@ -242,19 +244,16 @@ function titleHighlight(years='main') {
     });
   });
 
-  
   for (let i = 0; i < currentTitle + 1; i++) {
     yearTitle.textContent = yearTitles[years][i];
     
     trueSpans[years][i].forEach(span => {
-      
       
       // text 하이라이트 배경
       let colorIndex = i % randomColor.length;
       span.style.backgroundColor = '#' + randomColor[colorIndex];
       span.style.color = '#FDFDFD';
     
-  
       // newsGrid 영역
       newsImgDiv.innerHTML = ' ';
       newsImgDiv.style.border = '0px solid';
@@ -284,20 +283,21 @@ function titleHighlight(years='main') {
 
 
 let scrollY = window.scrollY;
-let yearIndex;
+let yearIndex = 0;
 let prevSpans = [];
 let countSection = yearDataList.length - 1;
-let oneSection = window.innerHeight * 3;
+let oneSection;
 let yearSection;
 let titleSection;
 
 let prevYear = 'main'; // default
 let currentYear = 'main'; // default
 let yearTitle = document.getElementById('year');
+
 window.addEventListener('scroll', function() {
   scrollY = window.scrollY;
   
-  let yearIndex = Math.min(Math.floor(scrollY / oneSection), countSection);
+  yearIndex = Math.min(Math.floor(scrollY / oneSection), countSection);
   currentYear = yearDataList[yearIndex];
   
   if (currentYear !== prevYear) {
@@ -334,10 +334,9 @@ window.addEventListener('mousemove', function(event) {
   pointer.style.left = `${newx}px`;
   pointer.style.top = `${newy}px`;
   pointer.style.mixBlendMode = 'difference';
-  
-
 });
 
+// load json
 document.addEventListener('mouseleave', function(event) {
   if (event.clientY <= 0 || event.clientX <= 0) {
     pointer.style.opacity = '0';
