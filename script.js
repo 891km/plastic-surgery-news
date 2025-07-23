@@ -67,7 +67,6 @@ let pixelSizes = {
 };
 
 function imageToPixel(years = "main") {
-  console.log(imageHeight);
   // load image
   imageHeight = windowHeight;
   imageWidth = imageHeight * (img.width / img.height);
