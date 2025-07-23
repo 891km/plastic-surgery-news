@@ -411,7 +411,7 @@ function titleHighlight(years = "main") {
         newsContentDiv.appendChild(newsTextDiv);
 
         newsImgDiv.innerHTML = `<img src="${
-          "/images/newsImage/" + newsImgs[years][i] + ".png"
+          "./images/newsImage/" + newsImgs[years][i] + ".png"
         }" >`;
         newsImgDiv.style.border =
           "2.2px solid #" + randomColor[colorIndex] + "90";
