@@ -24,7 +24,7 @@ let imgs = [
   "images/background-image-face-2.png",
 ];
 
-// let img;
+let img;
 function preload() {
   img = loadImage(imgs[Math.floor(Math.random() * imgs.length)]);
 }
