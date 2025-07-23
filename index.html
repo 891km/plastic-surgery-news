@@ -2,47 +2,62 @@
 <html lang="ko">
   <head>
     <title>Plastic-Surgery-News</title>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
     <script src="https://unpkg.com/scrollto-with-animation/dist/scrollto-with-animation.min.js"></script>
-    <script src="https://kit.fontawesome.com/3841f068e0.js" crossorigin="anonymous"></script>
-    
-    <style> 
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;900&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;900&display=swap');
-    </style>
-    
-    <script src="./script.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/f664c5c4-d240-40d1-9f41-2f4ae7bf62ca/plastic_surgery_news_icon.png?v=1724430748835">
-    <meta charset="utf-8" />
+    <script
+      src="https://kit.fontawesome.com/3841f068e0.js"
+      crossorigin="anonymous"
+    ></script>
 
+    <!-- font -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@100;900&display=swap");
+    </style>
+
+    <script src="/script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <meta charset="utf-8" />
   </head>
   <body>
-    
-    <div id="pointer" style="mix-blend-mode: difference;"></div>
-    
+    <div id="pointer" style="mix-blend-mode: difference"></div>
+
     <i id="scroll_down" class="fa-solid fa-arrow-down fa-2xl"></i>
-    
-    <div id="year"> </div>
+
+    <div id="year"></div>
 
     <div id="newsGrid">
-        <div id="newsImg" oncontextmenu="return false" ondragstart="return false" onselectstart="return false"> </div>
-        <div id="newsContent">
-          <div id="newsSource"> </div>
-          <div id="newsText"> </div>
-        </div> 
+      <div
+        id="newsImg"
+        oncontextmenu="return false"
+        ondragstart="return false"
+        onselectstart="return false"
+      ></div>
+      <div id="newsContent">
+        <div id="newsSource"></div>
+        <div id="newsText"></div>
+      </div>
     </div>
 
-    <div id="canvasContainer"> </div>
-    
+    <div id="canvasContainer"></div>
+
     <footer class="footer">
       <div class="footer_grid">
-        <div class="footer_block" style="font-size: 1.2em"> 기사로 보는 과도한 성형수술 </div>
+        <div class="footer_block" style="font-size: 1.2em">
+          기사로 보는 과도한 성형수술
+        </div>
         <i class="footer_block fa-solid fa-arrow-up fa-2xl" id="scroll_up"></i>
-        <a class="footer_block" style="font-size: 1.2em" href="https://newslibrary.naver.com" target="_blank"> https://newslibrary.naver.com </a>
+        <a
+          class="footer_block"
+          style="font-size: 1.2em"
+          href="https://newslibrary.naver.com"
+          target="_blank"
+        >
+          https://newslibrary.naver.com
+        </a>
       </div>
     </footer>
-    
   </body>
 </html>
