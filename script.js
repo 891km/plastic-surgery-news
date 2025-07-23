@@ -20,8 +20,8 @@ let randomColor = [
 ];
 
 let imgs = [
-  "images/background-image-face-1.png",
-  "images/background-image-face-2.png",
+  "./images/background-image-face-1.png",
+  "./images/background-image-face-2.png",
 ];
 
 let img;
